@@ -1,0 +1,1146 @@
+id	name	type	type_general	species	kingdom	product_names	product_counts	most_unique_product_name	most_unique_product_count
+A0A023J8Z5	Delta guaiene synthase	sesq	sesq	Aquilaria microcarpa	Plantae	δ-guaiene; germacrene A; α-humulene	[8, 6, 2]	α-humulene	2
+A0A059PYD5	Caryophyllene synthase	mono	mono	Artemisia annua	Plantae	β-phellandrene	[13]	β-phellandrene	13
+A0A067SEC9	Sesquiterpene synthase GALMADRAFT_104215	sesq	sesq	Galerina marginata	Fungi	β-gurjunene	[1]	β-gurjunene	1
+A0A075FA51	(+)-copalyl diphosphate synthase 3, chloroplastic	di-int	di	Marrubium vulgare	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	[16]	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	16
+A0A075FAK4	Peregrinol diphosphate synthase CPS1	di-int	di	Marrubium vulgare	Plantae	peregrinol diphosphate(3−)	[2]	peregrinol diphosphate(3−)	2
+A0A075FBG7	9,13-epoxylabda-14-ene synthase	di	di	Marrubium vulgare	Plantae	9,13(R)-epoxylabd-14-ene; miltiradiene; (13R)-Manoyl oxide	[2, 9, 3]	9,13(R)-epoxylabd-14-ene	2
+A0A075W0Z3	Sesquiterpene synthase 1	sesq	sesq	Matricaria chamomilla var. recutita	Plantae	(+)-epi-α-bisabolol	[3]	(+)-epi-α-bisabolol	3
+A0A075W3D9	Sesquiterpene synthase 4	sesq	sesq	Matricaria chamomilla	Plantae	bicyclogermacrene	[8]	bicyclogermacrene	8
+A0A076GAR6	Terpene synthase	sesq	sesq	Populus trichocarpa	Plantae	(−)-β-elemene	[26]	(−)-β-elemene	26
+A0A076GAU5	Terpene synthase	sesq	sesq	Populus trichocarpa	Plantae	elemol	[5]	elemol	5
+A0A076GAU9	Terpene synthase	sesq	sesq	Populus trichocarpa	Plantae	γ-curcumene	[8]	γ-curcumene	8
+A0A076GBT5	Terpene synthase	sesq	sesq	Populus trichocarpa	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A076KZH5	Terpene synthase	sesq	sesq	Oryza barthii	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A076KZS5	Terpene synthase	sesq	sesq	Oryza officinalis	Plantae	(−)-β-caryophyllene; (−)-germacrene A	[64, 24]	(−)-germacrene A	24
+A0A076L4M0	Terpene synthase	sesq	sesq	Oryza glaberrima	Plantae	(−)-β-caryophyllene; (−)-germacrene A	[64, 24]	(−)-germacrene A	24
+A0A076L4Z9	Terpene synthase	sesq	sesq	Oryza nivara	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A076L503	Terpene synthase	sesq	sesq	Oryza glumipatula	Plantae	(−)-β-caryophyllene; (−)-germacrene A	[64, 24]	(−)-germacrene A	24
+A0A076L784	Terpene synthase	sesq	sesq	Oryza rufipogon	Plantae	(−)-germacrene D; (−)-germacrene A	[24, 24]	(−)-germacrene D	24
+A0A097ZIE0	Delta-elemene synthase	sesq	sesq	Citrus jambhiri	Plantae	δ-elemene	[4]	δ-elemene	4
+A0A0A0QUT9	Putative delta-guaiene synthase	sesq	sesq	Aquilaria sinensis	Plantae	(−)-germacrene A; δ-guaiene	[24, 8]	δ-guaiene	8
+A0A0A0RCB5	Sesquisabinene B synthase 2	sesq	sesq	Santalum album	Plantae	sesquisabinene B	[5]	sesquisabinene B	5
+A0A0A0RDR2	Sesquisabinene B synthase 1	sesq	sesq	Santalum album	Plantae	sesquisabinene B	[5]	sesquisabinene B	5
+A0A0A0RDZ8	Beta-bisabolene synthase	sesq	sesq	Santalum album	Plantae	(S)-β-bisabolene	[16]	(S)-β-bisabolene	16
+A0A0A7DNH6	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+A0A0B4EB91	Sesquiterpene synthase MAN_10655	sesq	sesq	Metarhizium anisopliae	Fungi	(−)-γ-cadinene; α-cadinol; δ-cadinene; germacrene D; (−)-β-elemene; α-cadinene; α-muurolene; γ-muurolene; (−)-β-caryophyllene	[5, 5, 37, 7, 26, 5, 18, 12, 64]	(−)-γ-cadinene	5
+A0A0B4FWC3	Sesquiterpene synthase	sesq	sesq	Metarhizium brunneum	Fungi	(+)-corvol ether B; (+)-corvol ether A	[6, 6]	(+)-corvol ether B	6
+A0A0B4G3Q7	Sesquiterpene synthase	sesq	sesq	Metarhizium brunneum	Fungi	(+)-corvol ether B; (+)-corvol ether A	[6, 6]	(+)-corvol ether B	6
+A0A0B4G504	(E)-beta farnesene synthase MBR_03882	sesq	sesq	Metarhizium brunneum	Fungi	trans-β-farnesene	[24]	trans-β-farnesene	24
+A0A0B4GN88	Sesquiterpene synthase MGU_11447	sesq	sesq	Metarhizium guizhouense	Fungi	(+)-corvol ether B; (+)-corvol ether A	[6, 6]	(+)-corvol ether B	6
+A0A0B4IF96	Sesquiterpene synthase MAJ_08936	sesq	sesq	Metarhizium majus	Fungi	(+)-corvol ether B; (+)-corvol ether A	[6, 6]	(+)-corvol ether B	6
+A0A0B5KP67	TPS4	sesq	sesq	Santalum spicatum	Plantae	sesquisabinene B	[5]	sesquisabinene B	5
+A0A0C3FBR2	Sesquiterpene synthase	sesq	sesq	Piloderma croceum	Fungi	viridiflorene; γ-cadinene; (−)-β-elemene	[6, 7, 26]	viridiflorene	6
+A0A0C9VD04	Sesquiterpene synthase M422DRAFT_47084	sesq	sesq	Sphaerobolus stellatus 	Fungi	viridiflorene; viridiflorol	[6, 2]	viridiflorol	2
+A0A0D2L718	Delta(6)-protoilludene synthase	sesq	sesq	Hypholoma sublateritium	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A0D4D912	Germacrene A synthase	sesq	sesq	Xanthium strumarium	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A0E0LRP1	Sesquiterpene synthase	sesq	sesq	Oryza punctata	Plantae	(S)-β-bisabolene	[16]	(S)-β-bisabolene	16
+A0A0E3KJK7	Beta-caryophyllene synthase	sesq	sesq	Ocimum kilimandscharicum	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A0F4GLU2	Geranylgeranyl diphosphate synthase	sester	sester	Zymoseptoria brevis	Fungi	sesterevisene	[1]	sesterevisene	1
+A0A0F6P1F4	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+A0A0G7ZNT4	alpha-Humulene synthase	sesq	sesq	Picea glauca	Plantae	(1E,4E,8E)-α-humulene	[35]	(1E,4E,8E)-α-humulene	35
+A0A0H4U9R8	Terpene synthase 2	sesq	sesq	Laurus nobilis	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+A0A0H5BB10	Copalyl diphosphate synthase	di-int	di	Streptomyces cyslabdanicus	Bacteria	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	[16]	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	16
+A0A0H5BN57	(12E)-labda-8(17),12,14-triene synthase	di	di	Streptomyces cyslabdanicus	Bacteria	(12E)-labda-8(17),12,14-triene	[2]	(12E)-labda-8(17),12,14-triene	2
+A0A0H5BN61	(12E)-labda-8(17),12,14-triene synthase	di	di	Streptomyces anulatus	Bacteria	(12E)-labda-8(17),12,14-triene	[2]	(12E)-labda-8(17),12,14-triene	2
+A0A0M3Q1Q3	Gamma-terpinene synthase 1	mono	mono	Thymus vulgaris	Plantae	γ-terpinene	[22]	γ-terpinene	22
+A0A0M4M0T9	(-)-kolavenyl diphosphate synthase TPS28	di-int	di	Tripterygium wilfordii	Plantae	(−)-kolavenyl diphosphate	[4]	(−)-kolavenyl diphosphate	4
+A0A0M4MMY1	Diterpene synthase class I	di	di	Tripterygium wilfordii	Plantae	ent-kaurene; ent-isokaurene	[31, 3]	ent-isokaurene	3
+A0A0M5L832	(-)-kolavenyl diphosphate synthase TPS14	di-int	di	Tripterygium wilfordii	Plantae	(−)-kolavenyl diphosphate	[4]	(−)-kolavenyl diphosphate	4
+A0A0P0ZD79	Variediene synthase	di	di	Emericella variicolor	Fungi	variediene; variediene	[7, 7]	variediene	7
+A0A0P0ZEM1	Stellatatriene synthase	sester	sester	Emericella variicolor	Fungi	stellata-2,6,19-triene	[1]	stellata-2,6,19-triene	1
+A0A0S2IHL6	Beta-amyrin synthase 1	tri	tri	Kalopanax septemlobus	Plantae	β-amyrin	[41]	β-amyrin	41
+A0A0U1XNG2	Germacrene A synthase 1	sesq	sesq	Barnadesia spinosa	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A0U1XRI2	Germacrene A synthase 2	sesq	sesq	Barnadesia spinosa	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A0U2D9C5	Ent-8-alpha-hydroxylabd-13-en-15-yl diphosphate synthase CPS4	di-int	di	Salvia miltiorrhiza	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+A0A0U2U4F3	Beta-amyrin synthase 1	tri	tri	Barbarea vulgaris	Plantae	β-amyrin	[41]	β-amyrin	41
+A0A0U3LQ20	Ent-copalyl diphosphate synthase, chloroplastic	di-int	di	Salvia miltiorrhiza	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+A0A0U4CDK4	Ent-kaur-16-ene synthase	di	di	Salvia miltiorrhiza	Plantae	ent-kaurene	[31]	ent-kaurene	31
+A0A0U4IMN4	Germacrene A synthase	sesq	sesq	Taraxacum officinale	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A0U4KG90	Germacrene A synthase	sesq	sesq	Taraxacum officinale	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A0U5G0B1	Ophiobolin F synthase	sester	sester	Aspergillus calidoustus	Fungi	ophiobolin F	[6]	ophiobolin F	6
+A0A0U5GLI1	Spiroviolene	di	di	Aspergillus calidoustus	Fungi	(−)-spiroviolene	[2]	(−)-spiroviolene	2
+A0A0U5GNT1	Drimenol cyclase drtB	sesq	sesq	Aspergillus calidoustus	Fungi	drimenol	[3]	drimenol	3
+A0A100IAT3	Geranylfarnesol	sester; di	mixed	Aspergillus niger	Fungi	(2E,6E,10E,14E)-geranylfarnesol; geranyllinalool	[5, 7]	(2E,6E,10E,14E)-geranylfarnesol	5
+A0A125S8N1	(Z)-gamma-bisabolene synthase K7	sesq	sesq	Helianthus annuus	Plantae	(Z)-γ-bisabolene	[9]	(Z)-γ-bisabolene	9
+A0A125S8N2	(Z)-gamma-bisabolene synthase K11	sesq	sesq	Helianthus annuus	Plantae	(Z)-γ-bisabolene	[9]	(Z)-γ-bisabolene	9
+A0A125SXN1	Pre-alpha-onocerin synthase LCC	tri	tri	Lycopodium clavatum	Plantae	pre-α-onocerin	[1]	pre-α-onocerin	1
+A0A125SXN2	Alpha-onocerin synthase LCD	tri	tri	Lycopodium clavatum	Plantae	α-onocerin	[1]	α-onocerin	1
+A0A125SXN3	Cycloartenol synthase LCA	tri	tri	Lycopodium clavatum	Plantae	cycloartenol	[22]	cycloartenol	22
+A0A135LYJ9	Geranylfarnesol	sester	sester	Penicillium griseofulvum	Fungi	(2E,6E,10E,14E)-geranylfarnesol	[5]	(2E,6E,10E,14E)-geranylfarnesol	5
+A0A140AZ63	Terpene synthase	sesq	sesq	Phyllotreta striolata	Insecta	(6R,7S)-himachala-9,11-diene; trans-α-himachalene; (6R,7S)-2,2,6-trimethyl-10-methylenebicyclo[5.4.0]undec-1(11)-ene; (Z)-α-bisabolene; β-bisabolene; (−)-γ-cadinene; (6E)-nerolidol; β-bisabolene; (E)-α-bisabolene	[1, 1, 1, 5, 16, 5, 16, 16, 6]	(6R,7S)-himachala-9,11-diene	1
+A0A140AZ66	Terpene synthase	mono; sesq	mixed	Phyllotreta striolata	Insecta	β-myrcene; (Z)-β-ocimene; (E)-β-ocimene; linalool; β-bisabolene; (E)-α-bisabolene; (6Z)-nerolidol; (−)-β-elemene	[58, 15, 27, 27, 16, 6, 3, 26]	(6Z)-nerolidol	3
+A0A140AZ69	Terpene synthase	sesq; mono; di	mixed	Phyllotreta striolata	Insecta	β-bisabolene; (E)-α-bisabolene; (6E)-nerolidol; β-myrcene; (Z)-β-ocimene; (E)-β-ocimene; linalool; geranyllinalool; β-bisabolene; (E)-α-bisabolene; (6Z)-nerolidol; (6E)-nerolidol; trans-β-farnesene	[16, 6, 16, 58, 15, 27, 27, 7, 16, 6, 3, 16, 24]	(6Z)-nerolidol	3
+A0A140AZ72	Terpene synthase	sesq; mono; di	mixed	Phyllotreta striolata	Insecta	(6E)-nerolidol; trans-β-farnesene; linalool; geranyllinalool; β-bisabolene; (E)-α-bisabolene; (6Z)-nerolidol; (6E)-nerolidol	[16, 24, 27, 7, 16, 6, 3, 16]	(6Z)-nerolidol	3
+A0A140KFG9	Hedycaryol synthase	sesq	sesq	Camellia brevistyla	Plantae	hedycaryol	[2]	hedycaryol	2
+A0A142BX70	Germacrene D	sesq	sesq	Xanthium strumarium	Plantae	(−)-germacrene D; β-copaene	[24, 12]	β-copaene	12
+A0A142BX71	Sesquiterpene synthase	sesq	sesq	Xanthium strumarium	Plantae	guaia-4,6-diene	[2]	guaia-4,6-diene	2
+A0A142BX72	Putative monoterpene synthase	sesq	sesq	Xanthium strumarium	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A142BX74	Sesquiterpene synthase	sesq	sesq	Xanthium strumarium	Plantae	guaia-4,6-diene	[2]	guaia-4,6-diene	2
+A0A142ZC57	Lycopaoctaene synthase	tetra; tri	mixed	Botryococcus braunii	Plantae	lycopaoctaene; squalene; (14E,18E)-lycopadiene	[1, 19, 1]	lycopaoctaene	1
+A0A144YEA5	Squalene synthase LSS	tri	tri	Botryococcus braunii	Plantae	squalene	[19]	squalene	19
+A0A151ZEA6	Terpene synthase	sesq	sesq	Tieghemostelium lacteum	Amoebozoa	(2S,3R,6S,9S)-(−)-protoillud-7-ene	[6]	(2S,3R,6S,9S)-(−)-protoillud-7-ene	6
+A0A162QA28	Geranylgeranyl pyrophosphate synthase	sester	sester	Colletotrichum incanum	Fungi	sesterorbiculene	[3]	sesterorbiculene	3
+A0A167CIH5	Beta-geranylfarnesene	sester	sester	Colletotrichum incanum	Fungi	β-geranylfarnesene; betaestacin I	[3, 6]	β-geranylfarnesene	3
+A0A167V661	Valerianol synthase TPS8	sesq	sesq	Camellia sinensis	Plantae	valerianol	[8]	valerianol	8
+A0A169T193	Astellifadiene synthase	sester	sester	Emericella variicolor	Fungi	astellifadiene	[1]	astellifadiene	1
+A0A177DNJ5	Geranylgeranyl diphosphate synthase	sester	sester	Alternaria alternata	Fungi	sesterfisherol	[2]	sesterfisherol	2
+A0A178U9Y5	Bifunctional dolabella-3,7-dien-18-ol synthase/dolathalia-3,7,11-triene synthase TPS20	di	di	Arabidopsis thaliana	Plantae	(3E,7E)-dolabella-3,7-dien-18-ol; (3E,7E)-dolathalia-3,7,11-triene	[2, 1]	(3E,7E)-dolathalia-3,7,11-triene	1
+A0A1B4XBG5	Cycloaraneosene synthase sdnA	di	di	Sordaria araneosa	Fungi	cycloaraneosene	[1]	cycloaraneosene	1
+A0A1C7AAN2	(-)-kolavenyl diphosphate synthase TPS10	di-int	di	Tripterygium wilfordii	Plantae	(−)-kolavenyl diphosphate	[4]	(−)-kolavenyl diphosphate	4
+A0A1C9J6A7	(R)-limonene synthase 1	mono	mono	Citrus sinensis	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+A0A1D6EFT8	Eudesmanediol synthase	sesq	sesq	Zea mays	Plantae	7-epi-ent-eudesmane-5,11-diol	[2]	7-epi-ent-eudesmane-5,11-diol	2
+A0A1D6IY18	Terpene synthase6	sesq	sesq	Zea mays	Plantae	(S)-β-macrocarpene; (S)-β-bisabolene	[3, 16]	(S)-β-macrocarpene	3
+A0A1D6K6U5	Ent-copalyl diphosphate synthase AN2	di-int	di	Zea mays	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+A0A1D6KUI6	Dolabradiene synthase KSL4	di	di	Zea mays	Plantae	dolabradiene	[1]	dolabradiene	1
+A0A1D6LTV0	Alpha-terpineol synthase	mono	mono	Zea mays 	Plantae	(S)-(−)-α-terpineol; 4-terpineol; (4S)-limonene	[14, 4, 18]	4-terpineol	4
+A0A1F5LDE4	Penichrysol	di	di	Penicillium arizonense	Fungi	penichrysol	[4]	penichrysol	4
+A0A1G9S4L4	Terpene synthase	di	di	Allokutzneria albata	Bacteria	(S)-(+)-cembrene A	[1]	(S)-(+)-cembrene A	1
+A0A1H0BVV7	Uncharacterized protein	di	di	Allokutzneria albata	Bacteria	spiroalbatene; thunbergol	[1, 1]	spiroalbatene	1
+A0A1I9LTE4	Terpene cyclase/mutase family member	tri	tri	Arabidopsis thaliana	Plantae	lanosterol	[16]	lanosterol	16
+A0A1J0CQ86	Terpene synthase 3	sesq	sesq	Pseudotaxiphyllum elegans	Plantae	γ-curcumene	[8]	γ-curcumene	8
+A0A1J0CQ90	Terpene synthase 2	sesq	sesq	Scapania nemorea	Plantae	bicycloelemene; bicyclogermacrene	[3, 8]	bicycloelemene	3
+A0A1J0CQ92	Terpene synthase 3	sesq	sesq	Anomodon rostratus	Plantae	(S)-β-bisabolene; γ-curcumene	[16, 8]	γ-curcumene	8
+A0A1J0CQ97	Terpene synthase 7	sesq	sesq	Anthoceros punctatus	Plantae	β-acoradiene	[2]	β-acoradiene	2
+A0A1J0CQA2	Terpene synthase 1	sesq	sesq	Woodsia scopulina	Plantae	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A1J0CQA6	Terpene synthase	sesq	sesq	Pityrogramma trifoliata	Plantae	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A1L1WGB8	Sesquiterpene synthase	sesq	sesq	Liquidambar formosana	Plantae	(+)-δ-cadinene; α-muurolene	[20, 18]	α-muurolene	18
+A0A1L1WGC4	Alpha, beta-caryophyllene synthase	sesq	sesq	Liquidambar formosana	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+A0A1L1WGD9	Beta-elemol synthase	sesq	sesq	Liquidambar formosana	Plantae	β-elemol; guaiol	[1, 2]	β-elemol	1
+A0A1L1WGF5	TPS02	sesq	sesq	Liquidambar formosana	Plantae	α-selinene	[10]	α-selinene	10
+A0A1L2D3T3	10-epi-juneol synthase	sesq	sesq	Inula hupehensis	Plantae	10-epi-juneol; τ-cadinol	[1, 4]	10-epi-juneol	1
+A0A1L5YKS7	Alpha-gurjunene synthase	sesq	sesq	Marchantia polymorpha	Plantae	(−)-α-gurjunene; 5-hydroxy-α-gurjunene	[2, 1]	5-hydroxy-α-gurjunene	1
+A0A1L6Z3A0	Pseudolaratriene synthase	di	di	Pseudolarix amabilis	Plantae	pseudolaratriene	[1]	pseudolaratriene	1
+A0A1L6Z3A5	Alpha-bisabolene synthase	sesq	sesq	Pseudolarix amabilis	Plantae	(E,R)-α-bisabolene	[4]	(E,R)-α-bisabolene	4
+A0A1L7NYF8	(+)-alpha-bisabolol synthase	sesq	sesq	Artemisia maritima	Plantae	(E,R)-α-bisabolene; (+)-α-bisabolol	[4, 2]	(+)-α-bisabolol	2
+A0A1L7NYG2	Koidzumiol synthase	sesq	sesq	Artemisia absinthium	Plantae	koidzumiol	[1]	koidzumiol	1
+A0A1L7NYG3	(+)-alpha-bisabolol synthase	sesq	sesq	Artemisia kurramensis	Plantae	(+)-α-bisabolol	[2]	(+)-α-bisabolol	2
+A0A1L7U8F2	(1R,4R,5S)-(-)-guaia-6,10(14)-diene synthase	sesq	sesq	Fusarium mangiferae	Fungi	(1R,4R,5S)-(−)-guaia-6,10(14)-diene	[2]	(1R,4R,5S)-(−)-guaia-6,10(14)-diene	2
+A0A1L7VZE7	(1R,4R,5S)-(-)-guaia-6,10(14)-diene synthase	sesq	sesq	Fusarium proliferatum	Fungi	(1R,4R,5S)-(−)-guaia-6,10(14)-diene	[2]	(1R,4R,5S)-(−)-guaia-6,10(14)-diene	2
+A0A1L9UKS1	Variediene synthase	di	di	Aspergillus brasiliensis	Fungi	variediene	[7]	variediene	7
+A0A1L9WUI2	Terpene cyclase aneC	sesq	sesq	Aspergillus aculeatus	Fungi	dauca-4,7-diene	[1]	dauca-4,7-diene	1
+A0A1M6RNB3	Terpene synthase	di	di	Chryseobacterium polytrichastri	Bacteria	chrysodiene	[1]	chrysodiene	1
+A0A1N7T9S7	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+A0A1P8AVI0	Terpene cyclase/mutase family member	tri	tri	Arabidopsis thaliana	Plantae	β-amyrin	[41]	β-amyrin	41
+A0A1P8AW29	Terpene cyclase/mutase family member	tri	tri	Arabidopsis thaliana	Plantae	tirucalla-7,24-dien-3β-ol	[4]	tirucalla-7,24-dien-3β-ol	4
+A0A1P8B2H6	Terpene cyclase/mutase family member	tri	tri	Arabidopsis thaliana	Plantae	cycloartenol	[22]	cycloartenol	22
+A0A1S3ZET1	(-)-camphene/tricyclene synthase	mono	mono	Nicotiana tabacum	Plantae	(−)-camphene	[5]	(−)-camphene	5
+A0A1S4B920	copal-8-ol diphosphate hydratase	di-int	di	Nicotiana tabacum	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+A0A1S4C9W7	cis-abienol synthase	di	di	Nicotiana tabacum	Plantae	cis-abienol	[4]	cis-abienol	4
+A0A1S4CZT8	cis-abienol synthase	di	di	Nicotiana tabacum	Plantae	cis-abienol	[4]	cis-abienol	4
+A0A1S5RW73	(-)-kolavenyl diphosphate synthase	di-int	di	Salvia divinorum	Plantae	(−)-kolavenyl diphosphate	[4]	(−)-kolavenyl diphosphate	4
+A0A1U8I4V5	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+A0A1U8QHE3	Pimaradiene synthase pbcA	di	di	Emericella nidulans	Fungi	ent-pimara-8(14),15-diene	[2]	ent-pimara-8(14),15-diene	2
+A0A1V0D8Y5	3-carene synthase	mono	mono	Lavandula x intermedia	Plantae	(+)-car-3-ene	[11]	(+)-car-3-ene	11
+A0A1V0E492	Caryophyllene synthase	sesq	sesq	Piper nigrum	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A1V0E4A6	Cadinene synthase	sesq	sesq	Piper nigrum	Plantae	δ-cadinol	[4]	δ-cadinol	4
+A0A1V0QSF2	Terpene synthase	sesq	sesq	Cannabis sativa	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A1V0QSF3	Terpene synthase	sesq	sesq	Cannabis sativa	Plantae	(+)-valencene; γ-eudesmol	[7, 1]	γ-eudesmol	1
+A0A1V0QSF6	Terpene synthase	sesq	sesq	Cannabis sativa	Plantae	δ-selinene	[1]	δ-selinene	1
+A0A1V0QSG6	Terpene synthase	sesq	sesq	Cannabis sativa	Plantae	Allo-Aromadendrene	[3]	Allo-Aromadendrene	3
+A0A1V1FVQ6	Ophiobolin F synthase oblA	sester	sester	Emericella variicolor 	Fungi	ophiobolin F	[6]	ophiobolin F	6
+A0A1W6GW06	(-)-5-epieremophilene synthase STPS2	sesq	sesq	Salvia miltiorrhiza 	Plantae	(−)-5-epi-eremophilene	[3]	(−)-5-epi-eremophilene	3
+A0A1W6GW18	(-)-5-epieremophilene synthase STPS3	sesq	sesq	Salvia miltiorrhiza 	Plantae	(−)-5-epi-eremophilene	[3]	(−)-5-epi-eremophilene	3
+A0A1W6GW32	(-)-5-epieremophilene synthase STPS1	sesq	sesq	Salvia miltiorrhiza	Plantae	(−)-5-epi-eremophilene	[3]	(−)-5-epi-eremophilene	3
+A0A1W6QDI7	Miltiradiene synthase KSL1, chloroplastic	di	di	Isodon rubescens	Plantae	miltiradiene	[9]	miltiradiene	9
+A0A1W6QDJ1	Ent-copalyl diphosphate synthase 4	di-int	di	Isodon rubescens	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+A0A1X9IRQ7	Copalyl diphosphate synthase 1, chloroplastic	di-int	di	Isodon rubescens	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	[16]	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	16
+A0A1X9ISH5	Nezukol synthase KSL3	di	di	Isodon rubescens	Plantae	miltiradiene; nezukol; oridonin; eriocalyxin B	[9, 1, 1, 1]	nezukol	1
+A0A1Y1C7Q5	Quiannulatene synthase	sester	sester	Emericella variicolor	Fungi	2-trans,6-trans,10-trans-geranylgeranyl diphosphate(3−); quiannulatene	[1, 2]	2-trans,6-trans,10-trans-geranylgeranyl diphosphate(3−)	1
+A0A1Z3GBK8	Ent-atiserene synthase KSL4, chloroplastic	di	di	Isodon rubescens	Plantae	ent-atiserene; ent-kaurene	[1, 31]	ent-atiserene	1
+A0A1Z3GC64	Ent-kaurene synthase 5, chloroplastic	di	di	Isodon rubescens	Plantae	ent-kaurene	[31]	ent-kaurene	31
+A0A1Z3GCD1	Isopimaradiene synthase	di	di	Isodon rubescens	Plantae	isopimara-8(14),15-diene	[2]	isopimara-8(14),15-diene	2
+A0A284RNH4	Delta(6)-protoilludene synthase	sesq	sesq	Armillaria ostoyae	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A286R621	Prespatane sesquiterpene synthase	sesq	sesq	Laurencia pacifica	Red algae	prespatane	[1]	prespatane	1
+A0A290U6M0	SQS5a	sesq	sesq	Citrus sinensis	Plantae	Allo-Aromadendrene	[3]	Allo-Aromadendrene	3
+A0A290U6M6	SQS2	sesq	sesq	Citrus sinensis	Plantae	β-cadinene	[5]	β-cadinene	5
+A0A290U6N1	SQS1	sesq	sesq	Citrus sinensis	Plantae	β-cubebene; α-copaene	[6, 13]	β-cubebene	6
+A0A290U6P6	SQS4	sesq	sesq	Citrus sinensis	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+A0A291LSD6	Beta-selinene synthase	sesq	sesq	Zea mays 	Plantae	(+)-β-selinene	[8]	(+)-β-selinene	8
+A0A291SJC7	Isoafricanol synthase	sesq	sesq	"Streptomyces malaysiensis
+"	Bacteria	(+)-isoafricanol	[3]	(+)-isoafricanol	3
+A0A2A2D8W5	Terpene synthase	sesq; di	mixed	Streptomyces albireticuli	Bacteria	(−)-β-elemene; Shyobunol; elemol; (6E)-nerolidol; (+)-4-epi-cubebol; albireticulene	[26, 1, 5, 16, 3, 1]	Shyobunol	1
+A0A2K9RFY0	Ent-kaurene synthase TSP4	di	di	Vitex agnus-castus	Plantae	ent-kaurene	[31]	ent-kaurene	31
+A0A2K9RFZ2	Diterpene synthase 2	di	di	Vitex agnus-castus	Plantae	(13S)-vitexifolin A; viteagnusin D; 9,13(R)-epoxylabd-14-ene	[2, 1, 2]	viteagnusin D	1
+A0A2K9RFZ7	Peregrinol diphosphate synthase TPS1, chloroplastic	di-int	di	Vitex agnus-castus	Plantae	peregrinol diphosphate(3−)	[2]	peregrinol diphosphate(3−)	2
+A0A2K9RFZ8	Syn-copalyl diphosphate synthase TPS3	di-int	di	Vitex agnus-castus	Plantae	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[4]	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	4
+A0A2K9RFZ9	Class I diterpene synthase TPS6	di	di	Vitex agnus-castus	Plantae	labd-13(16),14-diene-9-ol; syn-isopimara-7,15-diene	[1, 1]	labd-13(16),14-diene-9-ol	1
+A0A2K9RG07	Kolavenyl diphosphate synthase TPS5	di-int	di	Vitex agnus-castus	Plantae	(+)-kolavenyl diphosphate(3−)	[2]	(+)-kolavenyl diphosphate(3−)	2
+A0A2L0VXR0	Bifunctional premutilin synthase	di	di	Clitopilus passeckerianus 	Fungi	premutilin	[2]	premutilin	2
+A0A2P2MRY0	Germanicol synthase	tri	tri	Rhizophora mucronata	Plantae	germanicol	[3]	germanicol	3
+A0A2R4QKX7	Copaene synthase	sesq	sesq	Piper nigrum	Plantae	α-copaene; β-cadinene	[13, 5]	β-cadinene	5
+A0A2Z6AQX6	Preasperterpenoid A synthase PvPS	sester	sester	Talaromyces verruculosus	Fungi	preasperterpenoid A	[4]	preasperterpenoid A	4
+A0A2Z6AQX7	Sesterbrasiliatriene synthase PbSS	sester	sester	Penicillium brasilianum	Fungi	sesterbrasiliatriene	[2]	sesterbrasiliatriene	2
+A0A2Z6E967	Beta-caryophyllene synthase	sesq	sesq	Zanthoxylum piperitum	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A2Z6E9F0	Beta-phellandrene synthase	mono	mono	Zanthoxylum piperitum	Plantae	β-phellandrene	[13]	β-phellandrene	13
+A0A2Z6FZ31	Sesterterpene synthase btcA	sester	sester	Colletotrichum orbiculare	Fungi	betaestacin I	[6]	betaestacin I	6
+A0A343W969	Terpene synthase	sesq	sesq	Murgantia histrionica	Insecta	"(1S,6S,7R)-sesquipiperitol
+"	[1]	"(1S,6S,7R)-sesquipiperitol
+"	1
+A0A345ZQ22	Ent-labda-13-en-8-ol diphosphate synthase	di	di	Panicum virgatum 	Plantae	labd-13-en-8,15-diol	[2]	labd-13-en-8,15-diol	2
+A0A348AUV5	Valerianol synthase TPS1A	sesq	sesq	Camellia hiemalis 	Plantae	valerianol	[8]	valerianol	8
+A0A348AUV6	Valerianol synthase TPS1B	sesq	sesq	Camellia hiemalis	Plantae	valerianol	[8]	valerianol	8
+A0A348AUV7	Valerianol synthase TPS1C	sesq	sesq	Camellia hiemalis 	Plantae	valerianol	[8]	valerianol	8
+A0A348AUV9	Valerianol synthase TPS1E	sesq	sesq	Camellia hiemalis	Plantae	valerianol	[8]	valerianol	8
+A0A348AUW0	Valerianol synthase TPS1F	sesq	sesq	Camellia hiemalis	Plantae	valerianol	[8]	valerianol	8
+A0A348AUW1	Valerianol synthase TPS1G	sesq	sesq	Camellia hiemalis 	Plantae	valerianol	[8]	valerianol	8
+A0A348B779	Sesquiterpene synthase 1	sesq	sesq	Postia placenta	Fungi	α-copaene; β-copaene; α-muurolene; γ-muurolene; δ-cadinene	[13, 12, 18, 12, 37]	β-copaene	12
+A0A348B780	Sesquiterpene synthase 2	sesq	sesq	Postia placenta	Fungi	α-copaene; β-copaene; α-muurolene; γ-muurolene; δ-cadinene	[13, 12, 18, 12, 37]	β-copaene	12
+A0A348B781	Sesquiterpene synthase 3	sesq	sesq	Postia placenta	Fungi	δ-cadinene; β-elemene; γ-cadinene; α-cadinene	[37, 2, 7, 5]	β-elemene	2
+A0A348B782	Sesquiterpene synthase 6	sesq	sesq	Postia placenta	Fungi	δ-cadinene; bicyclogermacrene; bicycloelemene; (−)-α-gurjunene; 9-epi-(E)-caryophylene; bicyclosesquiphellandrene	[37, 8, 3, 2, 1, 2]	9-epi-(E)-caryophylene	1
+A0A348B784	"Delta(6)-protoilludene synthase 8
+"	sesq	sesq	Postia placenta	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A348B788	Sesquiterpene synthase 14	sesq	sesq	Postia placenta	Fungi	pentalenene; (−)-β-caryophyllene	[4, 64]	pentalenene	4
+A0A348B790	Delta(6)-protoilludene synthase 18	sesq	sesq	Postia placenta	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A348B793	Monoterpene synthase 25	mono	mono	Postia placenta	Fungi	β-myrcene; linalool	[58, 27]	linalool	27
+A0A348FUE1	Copalyl diphosphate synthase	di-int	di	Talaromyces verruculosus	Fungi	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	[16]	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	16
+A0A385AJL4	Terpene synthase	sesq	sesq	Cavenderia fasciculata	Amoebozoa	(2S,3R,6S,9S)-(−)-protoillud-7-ene	[6]	(2S,3R,6S,9S)-(−)-protoillud-7-ene	6
+A0A385AJM2	Terpene synthase	sesq	sesq	Acytostelium subglobosum	Amoebozoa	(2S,3R,6S,9S)-(−)-protoillud-7-ene	[6]	(2S,3R,6S,9S)-(−)-protoillud-7-ene	6
+A0A385AJM4	Terpene synthase	sesq	sesq	Heterostelium pallidum	Amoebozoa	(2S,3R,6S,9S)-(−)-protoillud-7-ene	[6]	(2S,3R,6S,9S)-(−)-protoillud-7-ene	6
+A0A385AJM6	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	(−)-β-elemene; (+)-valencene; α-selinene; (−)-7-epi-α-selinene	[26, 7, 10, 1]	(−)-7-epi-α-selinene	1
+A0A385AJM7	Germacrene A synthase	sesq; di	mixed	Porphyridium purpureum	Red algae	(2S,3R,6S,9S)-(−)-protoillud-7-ene; (−)-β-elemene; (-)-Aristolene; β-copaene; germacrene A; (R)-cembrene A; trans-β-farnesene	[6, 26, 2, 12, 6, 1, 24]	(R)-cembrene A	1
+A0A385AJN0	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	trans-β-farnesene	[24]	trans-β-farnesene	24
+A0A386JV86	Terpene synthase	sesq	sesq	Nezara viridula	Insecta	(Z)-α-bisabolene	[5]	(Z)-α-bisabolene	5
+A0A396GKK7	Beta-amyrin synthase	tri	tri	Medicago truncatula	Plantae	β-amyrin	[41]	β-amyrin	41
+A0A3G1HQN7	Terpene synthase	sesq	sesq	Boreostereum vibrans	Fungi	δ-cadinol	[4]	δ-cadinol	4
+A0A3G1QTS7	Ent-kaurene synthase	di	di	Isodon eriocalyx	Plantae	ent-kaurene	[31]	ent-kaurene	31
+A0A3G9EAS3	Beta-caryophyllene synthase	sesq	sesq	Acanthopanax sieboldianus	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A3G9ED98	Germacrene D synthase	sesq	sesq	Acanthopanax sciadophylloides	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+A0A3G9EJT8	Beta-caryophyllene synthase	sesq	sesq	Acanthopanax sciadophylloides	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A3G9EJV0	Germacrene B synthase	sesq	sesq	Curcuma zedoaria	Plantae	(1E,4E)-germacrene B	[9]	(1E,4E)-germacrene B	9
+A0A3G9EY38	Beta-eudesmol synthase	sesq	sesq	Curcuma zedoaria	Plantae	β-eudesmol	[3]	β-eudesmol	3
+A0A3G9F1F9	Beta-eudesmol synthase	sesq	sesq	Curcuma zedoaria	Plantae	β-eudesmol	[3]	β-eudesmol	3
+A0A3L6G2C1	Eudesmanediol synthase	sesq	sesq	Zea mays	Plantae	7-epi-ent-eudesmane-5,11-diol	[2]	7-epi-ent-eudesmane-5,11-diol	2
+A0A3L6G998	(E)-beta-caryophyllene synthase	sesq	sesq	Zea mays	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A3Q9FFM1	Sesterterpene synthase	sester	sester	Talaromyces wortmannii 	Fungi	preasperterpenoid A	[4]	preasperterpenoid A	4
+A0A3S9GV71	Terpene synthase 1	sesq; mono	mixed	Erythrolobus australicus	Red algae	nerolidol; linalool	[2, 27]	nerolidol	2
+A0A3S9GVB5	Terpene synthase 2	sesq	sesq	Erythrolobus australicus	Red algae	alpha-Ylangene; (−)-β-elemene; (-)-Aristolene; β-copaene; α-muurolene; (Z)-α-bisabolene	[1, 26, 2, 12, 18, 5]	alpha-Ylangene	1
+A0A411JJ93	Terpene cyclase/mutase family member	tri	tri	Glycyrrhiza glabra	Plantae	lupeol; β-amyrin	[14, 41]	lupeol	14
+A0A482AJV9	Germacrene D synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+A0A482IC14	"Cedrol synthase
+"	sesq	sesq	Leucosceptrum canum	Plantae	cedrol	[2]	cedrol	2
+A0A4S8MAF3	Delta(6)-protoilludene synthase	sesq	sesq	Dendrothele bispora	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A4Y5L9K3	Germacrene B synthase	sesq	sesq	Cannabis sativa	Plantae	(1E,4E)-germacrene B	[9]	(1E,4E)-germacrene B	9
+A0A4Y5QVX4	(-)limonene synthase	mono	mono	Cannabis sativa	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+A0A4Y5QVX6	Hedycaryol synthase	sesq	sesq	Cannabis sativa	Plantae	hedycaryol	[2]	hedycaryol	2
+A0A5K6WHY7	Sesquiterpene synthase	sesq	sesq	Ageratina adenophora	Plantae	(−)-exo-α-bergamotene	[14]	(−)-exo-α-bergamotene	14
+A0A5Q0QMX0	Sesquiterpene synthase Agr9	sesq	sesq	Agrocybe aegerita	Fungi	γ-muurolene; δ-cadinene; β-cadinene	[12, 37, 5]	β-cadinene	5
+A0A5Q0QMX1	Sesquiterpene synthase Agr8	sesq	sesq	Agrocybe aegerita	Fungi	γ-muurolene; α-selinene; δ-cadinene; (−)-β-elemene; (+)-β-selinene; β-cadinene	[12, 10, 37, 26, 8, 5]	β-cadinene	5
+A0A5Q0QN66	Delta(6)-protoilludene synthase	sesq	sesq	Agrocybe aegerita	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A5Q0QNH9	Delta(6)-protoilludene synthase	sesq	sesq	Agrocybe aegerita	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+A0A5Q0QNJ2	viridiflorene synthase Agr2	sesq	sesq	Agrocybe aegerita	Fungi	viridiflorene	[6]	viridiflorene	6
+A0A5Q0QP64	Bifunctional terpene synthase Agr4	sesq; mono	mixed	Agrocybe aegerita	Fungi	δ-cadinene; γ-muurolene; α‐cubebene; β-myrcene; epizonarene; (−)-epicubenol	[37, 12, 3, 58, 4, 1]	(−)-epicubenol	1
+A0A5Q0QRJ3	Sesquiterpene synthase Agr1	sesq	sesq	Agrocybe aegerita	Fungi	δ-cadinene; α-muurolene; γ-muurolene; α-selinene; (+)-β-selinene; δ-cadinol; α-cadinol	[37, 18, 12, 10, 8, 4, 5]	δ-cadinol	4
+A0A5Q0QSI8	Sesquiterpene synthase Agr5	sesq	sesq	Agrocybe aegerita	Fungi	viridiflorene; viridiflorol	[6, 2]	viridiflorol	2
+A0A5Q0QU70	Sesquiterpene synthase Agr3	sesq	sesq	Agrocybe aegerita	Fungi	α-muurolene; γ-muurolene; δ-cadinene; δ-cadinol	[18, 12, 37, 4]	δ-cadinol	4
+A0A5S9I252	Terpene cyclase 6	sesq	sesq	Hypocrea atroviridis	Fungi	trichobrasilenol; (1E,4E,8E)-α-humulene; (−)-β-caryophyllene; (E)-2-epi-β-caryophyllene; (+)-isoafricanol; (+)-(2S,3R,9R)-pristinol; african-3-ene; african-1-ene	[1, 35, 64, 5, 3, 2, 1, 1]	trichobrasilenol	1
+A0A650A7H3	Sesquiterpene synthase	sesq	sesq	Oryza glaberrima	Plantae	zingiberene; β-sesquiphellandrene	[9, 11]	zingiberene	9
+A0A650A7I8	Sesquiterpene synthase	sesq	sesq	Oryza sativa Japonica Group	Plantae	(S)-β-bisabolene; β-sesquiphellandrene	[16, 11]	β-sesquiphellandrene	11
+A0A650A7K4	Sesquiterpene synthase	sesq	sesq	Oryza rufipogon	Plantae	zingiberene; (S)-β-bisabolene	[9, 16]	zingiberene	9
+A0A650A7M1	Sesquiterpene synthase	sesq	sesq	Oryza rufipogon	Plantae	(S)-β-bisabolene; β-sesquiphellandrene	[16, 11]	β-sesquiphellandrene	11
+A0A650A7N6	Sesquiterpene synthase	sesq	sesq	Oryza sativa f. spontanea	Plantae	(S)-β-bisabolene; β-sesquiphellandrene	[16, 11]	β-sesquiphellandrene	11
+A0A650A7N9	Sesquiterpene synthase	sesq	sesq	Oryza barthii	Plantae	zingiberene; β-sesquiphellandrene	[9, 11]	zingiberene	9
+A0A650A872	Sesquiterpene synthase	sesq	sesq	Oryza sativa f. spontanea	Plantae	zingiberene; β-sesquiphellandrene	[9, 11]	zingiberene	9
+A0A678QA10	Diterpene synthase	di	di	Tripterygium wilfordii	Plantae	miltiradiene	[9]	miltiradiene	9
+A0A6A6W5M9	Geranylgeranyl diphosphate synthase	di	di	Pseudovirgaria hyperparasitica	Fungi	penichrysol; phomopsene	[4, 2]	phomopsene	2
+A0A6B8MS60	Terpene synthase 9	sesq	sesq	Taiwania cryptomerioides	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A6B8N100	Terpene synthase 3	sesq	sesq	Taiwania cryptomerioides	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+A0A6B8N4Y9	Terpene synthase 4	sesq	sesq	Taiwania cryptomerioides	Plantae	germacrene D-4-ol	[2]	germacrene D-4-ol	2
+A0A6C0QES1	Terpene synthase12	sesq	sesq	Taiwania cryptomerioides	Plantae	δ-cadinene	[37]	δ-cadinene	37
+A0A6C0THV5	Zingiberene synthase	sesq	sesq	Taiwania cryptomerioides	Plantae	zingiberene	[9]	zingiberene	9
+A0A6C0TJK8	Germacrene D synthase	sesq	sesq	Taiwania cryptomerioides	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+A0A6C0TL59	Cedrol synthase	sesq	sesq	Taiwania cryptomerioides	Plantae	cedrol	[2]	cedrol	2
+A0A6C0TLK1	Longifolene synthase	sesq	sesq	Taiwania cryptomerioides	Plantae	longifolene	[5]	longifolene	5
+A0A6G7GHF5	Ophiobolin synthase	sester	sester	Aspergillus ustus	Fungi	ophiobolin F	[6]	ophiobolin F	6
+A0A6M6CCF6	(+)-bornyl diphosphate synthase	mono	mono	Salvia officinalis 	Plantae	(+)-bornyl diphosphate	[2]	(+)-bornyl diphosphate	2
+A0A6M6CCT4	(+)-sabinene synthase	mono	mono	Salvia officinalis	Plantae	(+)-sabinene	[9]	(+)-sabinene	9
+A0A6M6CDA0	1,8-cineole synthase	mono	mono	Salvia fruticosa	Plantae	1,8-cineole	[18]	1,8-cineole	18
+A0A6P6W6H5	Limonene synthase, chloroplastic	sesq; mono	mixed	Coffea arabica	Plantae	trans-β-farnesene; β-pinene; sabinene; α-pinene; limonene; terpinolene; β-myrcene	[24, 12, 13, 20, 33, 40, 58]	β-pinene	12
+A0A6P8ANR6	Fusicocccadiene	di; sester	mixed	Pyricularia grisea	Fungi	fusicocccadiene; (2E,6E,10E,14E)-geranylfarnesol	[1, 5]	fusicocccadiene	1
+A0A6S6QR11	Bifunctional premutilin synthase	di	di	Rhodocybe pseudopiperita	Fungi	premutilin	[2]	premutilin	2
+A0A7D0AGU9	Terpene synthase	mono	mono	Empoasca onukii	Insecta	geraniol	[21]	geraniol	21
+A0A7G5KLV0	Monoterepene synthase TPS1, chloropastic	mono	mono	Cananga odorata	Plantae	β-pinene; β-thujene; α-terpinene; sabinene	[12, 1, 7, 13]	β-thujene	1
+A0A7G5KLV1	Sesquiterpene synthase TPS2	sesq	sesq	 Cananga odorata	Plantae	β-ylangene; β-cubebene; β-copaene	[1, 6, 12]	β-ylangene	1
+A0A7G5KLV2	Sesquiterpene synthase TPS3	sesq	sesq	 Cananga odorata	Plantae	(−)-exo-α-bergamotene	[14]	(−)-exo-α-bergamotene	14
+A0A7G5KLV3	Monoterpene synthase TPS4, chloroplastic	mono	mono	Cananga odorata	Plantae	geraniol	[21]	geraniol	21
+A0A7L7S5T2	Cadinene synthase	sesq; mono	mixed	Ficus carica	Plantae	δ-cadinene; α-pinene	[37, 20]	α-pinene	20
+A0A7L7S8U7	Delta-elemene synthase	sesq	sesq	Ficus carica	Plantae	δ-elemene	[4]	δ-elemene	4
+A0A7L7SCQ9	Germacrene D synthase	sesq	sesq	Ficus carica	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+A0A7L7SES4	1,8-cineole synthase	mono	mono	Ficus carica	Plantae	1,8-cineole	[18]	1,8-cineole	18
+A0A7L7SG75	E-beta-caryophyllene synthase	sesq	sesq	Ficus carica	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+A0A7S5GI43	Sesquiterpene synthase 6	sesq	sesq	Tripterygium wilfordii	Plantae	(6E)-nerolidol; α-bisabolol	[16, 3]	α-bisabolol	3
+A0A7S5GI44	Sesquiterpene synthase 1-2	sesq	sesq	Tripterygium wilfordii	Plantae	(6E)-nerolidol; cis-α-begamotene; α-farnesene	[16, 1, 3]	cis-α-begamotene	1
+A0A7S5L324	Sesquiterpene synthase 1-1	sesq; mono; di	mixed	Tripterygium wilfordii	Plantae	(6E)-nerolidol; cis-α-bergamotene; α-farnesene; linalool; geranyllinalool	[16, 1, 3, 27, 7]	cis-α-bergamotene	1
+A0A7S5L3H2	Sesquiterpene synthase 2	sesq; mono; di	mixed	Tripterygium wilfordii	Plantae	(6E)-nerolidol; linalool; geranyllinalool	[16, 27, 7]	geranyllinalool	7
+A0A7S5L3J3	Sesquiterpene synthase 3	sesq; mono	mixed	Tripterygium wilfordii	Plantae	α-farnesene; (6E)-nerolidol; α-bisabolol; geraniol	[3, 16, 3, 21]	α-farnesene	3
+A0A8F4PMV8	Geranylfarnesol	sester; di	mixed	Canariomyces arenarius	Fungi	(2E,6E,10E,14E)-geranylfarnesol; geranylgeraniol	[5, 2]	geranylgeraniol	2
+A0A8F4PMX6	Pb1	sester	sester	Colletotrichum siamense	Fungi	betaestacin I	[6]	betaestacin I	6
+A0A8F4PMY5	Sesterorbiculene	sester	sester	Colletotrichum gloeosporioides	Fungi	sesterorbiculene	[3]	sesterorbiculene	3
+A0A8F4PNJ7	(-)-variculatriene B	sester	sester	Colletotrichum sublineola	Fungi	(-)-Variculatriene B	[5]	(-)-Variculatriene B	5
+A0A8F4PNT1	Fusaproliferene	sester	sester	Colletotrichum orbiculare	Fungi	fusaproliferene; betaestacin I	[1, 6]	fusaproliferene	1
+A0A8F4PNT7	Preasperterpenoid	sester	sester	Talaromyces verruculosus	Fungi	preasperterpenoid A	[4]	preasperterpenoid A	4
+A0A8F4PP18	Bm3	sester	sester	Colletotrichum fioriniae	Fungi	preterpestacin I	[3]	preterpestacin I	3
+A0A8F4PPH7	Brassiteraene A	sester	sester	Colletotrichum higginsianum	Fungi	Brassiteraene A; Brassiteraene B	[1, 1]	Brassiteraene A	1
+A0A8F4PPI6	Variculatriene A	sester	sester	Pestalotiopsis fici	Fungi	variculatriene A; clavaphyllene; β-geranylfarnesene	[1, 1, 3]	variculatriene A	1
+A0A8F4PPJ2	Geranylfarnesol	sester; di	mixed	Aspergillus aculeatus	Fungi	(2E,6E,10E,14E)-geranylfarnesol; GJ1012 C; variediene	[5, 3, 7]	GJ1012 C	3
+A0A8F4PQH5	Variediene, geranylgeraniol	di	di	Sordaria macrospora	Fungi	variediene; geranylgeraniol	[7, 2]	geranylgeraniol	2
+A0A8F4PQI4	Sesterbrasiliatriene	sester	sester	Penicillium arizonense	Fungi	sesterbrasiliatriene	[2]	sesterbrasiliatriene	2
+A0A8F4PQP7	(-)-variculatriene B	sester	sester	Lophiostoma macrostomum	Fungi	(-)-Variculatriene B	[5]	(-)-Variculatriene B	5
+A0A8F4SK79	(-)-variculatriene B	sester	sester	Pyricularia oryzae	Fungi	(-)-Variculatriene B	[5]	(-)-Variculatriene B	5
+A0A8F4SK83	Pb1	sester	sester	Colletotrichum higginsianum	Fungi	betaestacin I	[6]	betaestacin I	6
+A0A8F4SK84	Variediene	di	di	Aspergillus brasiliensis	Fungi	GJ1012 C; variediene	[3, 7]	GJ1012 C	3
+A0A8F4SK87	Variediene	di	di	Baudoinia panamericana	Fungi	GJ1012 C; variediene	[3, 7]	GJ1012 C	3
+A0A8F4SKT7	(-)-variculatriene B	sester	sester	Colletotrichum higginsianum	Fungi	(-)-Variculatriene B	[5]	(-)-Variculatriene B	5
+A0A8F4SKU0	(-)-variculatriene B	sester	sester	Pyricularia oryzae	Fungi	(-)-Variculatriene B	[5]	(-)-Variculatriene B	5
+A0A8F4SNK4	Sesterorbiculene	sester	sester	Colletotrichum orbiculare	Fungi	sesterorbiculene	[3]	sesterorbiculene	3
+A0A8F4SNK9	Ophiobolin F	sester	sester	Bipolaris maydis	Fungi	ophiobolin F	[6]	ophiobolin F	6
+A0A8F4SPY9	Preasperterpenoid	sester	sester	Thermothielavioides terrestris	Fungi	preasperterpenoid A	[4]	preasperterpenoid A	4
+A0A8F4SPZ5	Bm3	sester	sester	Macrophomina phaseolina	Fungi	preterpestacin I	[3]	preterpestacin I	3
+A0A8K1AY78	TndC	di	di	Aspergillus flavipes	Fungi	talarodiene	[1]	talarodiene	1
+A0RZI2	Putative lyase	sesq	sesq	Medicago truncatula	Plantae	(-)-cubebol	[2]	(-)-cubebol	2
+A0RZI3	Putative geranyl diphosphate diphosphatase	sesq	sesq	Medicago truncatula	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+A0SJQ5	Squalene synthase	tri	tri	Ganoderma lucidum	Fungi	squalene	[19]	squalene	19
+A1C8C3	Ophiobolin F synthase oblA	sester	sester	Aspergillus clavatus	Fungi	ophiobolin F	[6]	ophiobolin F	6
+A1CVK0	Protostadienol synthase A	tri	tri	Neosartorya fischeri	Fungi	(17Z)-protosta-17(20),24-dien-3β-ol	[4]	(17Z)-protosta-17(20),24-dien-3β-ol	4
+A1DN30	Sesterfisherol synthase	sester	sester	Neosartorya fischeri	Fungi	sesterfisherol	[2]	sesterfisherol	2
+A1E4D1	Terpene cyclase	tri	tri	Polygala tenuifolia	Plantae	β-amyrin	[41]	β-amyrin	41
+A1JH12	Pinene synthase	mono	mono	Quercus ilex	Plantae	α-pinene	[20]	α-pinene	20
+A2PZA54	Fusicoccadiene synthase	di	di	Diaporthe amygdali	Fungi	fusicocca-2,10(14)-diene; delta-araneosene; GGPP; GGPP; GGPP	[2, 2, 3, 3, 3]	fusicocca-2,10(14)-diene	2
+A3KI17	2-methylisoborneol synthase	mono	mono	Streptomyces ambofaciens	Bacteria	2-methylisoborneol	[5]	2-methylisoborneol	5
+A4FG19	2-methylisoborneol synthase	mono	mono	Saccharopolyspora erythraea	Bacteria	2-methylisoborneol	[5]	2-methylisoborneol	5
+A4FVP2	Tricyclene synthase	mono	mono	Arabidopsis thaliana	Plantae	tricyclene	[9]	tricyclene	9
+A4KAG7	Ent-isokaur-15-ene synthase	di	di	Oryza sativa subsp. indica 	Plantae	ent-isokaurene	[3]	ent-isokaurene	3
+A4KAG8	Ent-isokaur-15-ene synthase	di	di	Oryza sativa subsp. japonica	Plantae	ent-isokaurene	[3]	ent-isokaurene	3
+A4UUM6	Pinene synthase	mono	mono	Rosmarinus officinalis	Plantae	α-pinene; β-pinene	[20, 12]	β-pinene	12
+A4VB63	Terpene cyclase	tri	tri	Dioscorea zingiberensis	Plantae	cycloartenol	[22]	cycloartenol	22
+A5A8G0	copalyl diphosphate synthase/ent-kaurene synthase	di-int; di	mixed	Physcomitrium patens	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−); ent-kaurene	[21, 31]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+A5AQH7	Uncharacterized protein	sesq	sesq	Vitis vinifera	Plantae	(1E,4E,8E)-α-humulene	[35]	(1E,4E,8E)-α-humulene	35
+A5BEB8	Uncharacterized protein	sesq	sesq	Vitis vinifera	Plantae	α‐cubebene	[3]	α‐cubebene	3
+A5LHW8	Terpene cyclase	tri	tri	Olea europaea	Plantae	α-amyrin	[4]	α-amyrin	4
+A5Y5L5	Plastid 1,8-cineol synthase	mono	mono	Nicotiana suaveolens	Plantae	1,8-cineole	[18]	1,8-cineole	18
+A5YZT7	Monoterpene synthase	mono	mono	Zea mays	Plantae	α-terpineol; limonene; γ-terpinene; terpinolene	[14, 33, 22, 40]	α-terpineol	14
+A6XH05	Cineole synthase	mono	mono	Salvia fruticosa	Plantae	1,8-cineole	[18]	1,8-cineole	18
+A7BG60	Beta-pinene synthase	mono	mono	Citrus jambhiri	Plantae	(−)-β-pinene	[21]	(−)-β-pinene	21
+A7BJ35	Terpene cyclase/mutase family member	tri	tri	Rhizophora stylosa	Plantae	β-amyrin	[41]	β-amyrin	41
+A7BJ36	Terpene cyclase/mutase family member	tri	tri	Kandelia candel	Plantae	β-amyrin	[41]	β-amyrin	41
+A7IZZ1	(-)-limonene synthase	mono	mono	Cannabis sativa	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+A7IZZ2	(+)-alpha-pinene synthase	mono	mono	Cannabis sativa	Plantae	(+)-α-pinene	[10]	(+)-α-pinene	10
+A7NH01	(+)-T-muurolol synthase	sesq	sesq	Roseiflexus castenholzii	Bacteria	(+)-τ-muurolol	[2]	(+)-τ-muurolol	2
+A8C980	Germanicol synthase	tri	tri	Rhizophora stylosa	Plantae	germanicol	[3]	germanicol	3
+A8C981	Taraxerol synthase	tri	tri	Rhizophora stylosa	Plantae	taraxerol	[2]	taraxerol	2
+A8CDT2	Beta-amyrin synthase	tri	tri	Bruguiera gymnorhiza	Plantae	β-amyrin	[41]	β-amyrin	41
+A8CDT3	Lupeol synthase	tri	tri	Bruguiera gymnorhiza	Plantae	lupeol	[14]	lupeol	14
+A8NCK5	Alpha-cuprenene synthase COP6	sesq	sesq	Coprinopsis cinerea	Fungi	(−)-α-cuprenene	[1]	(−)-α-cuprenene	1
+A8NE23	Alpha-muurolene synthase	sesq	sesq	Coprinopsis cinerea	Fungi	α-muurolene; γ-muurolene; (+)-(R)-germacrene A	[18, 12, 12]	γ-muurolene	12
+A8NU13	Linoleate 10R-lipoxygenase COP4	sesq	sesq	Coprinopsis cinerea	Fungi	(-)-cubebol; β-copaene; β-cubebene; sativene	[2, 12, 6, 2]	(-)-cubebol	2
+A8R7G3	Terpene cyclase	tri	tri	Adiantum capillus-veneris 	Plantae	cycloartenol	[22]	cycloartenol	22
+A9AWD5	(+)-kolavenyl diphosphate synthase	di-int	di	Herpetosiphon aurantiacus	Bacteria	(+)-kolavenyl diphosphate(3−)	[2]	(+)-kolavenyl diphosphate(3−)	2
+A9FZ87	(+)-eremophilene synthase	sesq	sesq	Sorangium cellulosum	Bacteria	(+)-eremophilene	[2]	(+)-eremophilene	2
+A9GK58	10-epi-cubebol synthase	sesq	sesq	Sorangium cellulosum	Bacteria	(−)-10-epi-cubebol; germacrene D; cubebol; δ-cadinene; τ-cadinol; (−)-cubenol; α-cadinol; epizonarene; 10-epi-alpha-cubebene; 10-epi-beta-cubebene; cadina-3,5-diene; cis-muurola-4(15)5-diene; 1,10-di-epi-cubenol	[1, 7, 2, 37, 4, 1, 5, 4, 1, 1, 1, 1, 1]	(−)-10-epi-cubebol	1
+ATN39899.1	Merosterolic acid A synthase	meroterpenoid	meroterpenoid	Scytonema sp.	Cyanobacteria	merosterolic acid A	[1]	merosterolic acid A	1
+B0FGA9	Germacrene A synthase 2	sesq	sesq	Helianthus annuus	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+B0KZ40	Phytoene synthase 3, chloroplastic	tetra	tetra	Zea mays	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+B0Y565	Squalene hopane cyclase afumA	tri	tri	Neosartorya fumigata	Fungi	21-beta-H-hopane-3-beta,22-diol	[1]	21-beta-H-hopane-3-beta,22-diol	1
+B0Y5B4	Protostadienol synthase A	tri	tri	Neosartorya fumigata	Fungi	(17Z)-protosta-17(20),24-dien-3β-ol	[4]	(17Z)-protosta-17(20),24-dien-3β-ol	4
+B1B1U3	Alpha-humulene synthase	sesq	sesq	Zingiber zerumbet	Plantae	(1E,4E,8E)-α-humulene	[35]	(1E,4E,8E)-α-humulene	35
+B1B1U4	Beta-eudesmol synthase	sesq	sesq	Zingiber zerumbet	Plantae	β-eudesmol; 10-epi-γ-eudesmol; α-eudesmol	[3, 1, 1]	10-epi-γ-eudesmol	1
+B1PLH3	Terpene cyclase/mutase family member	tri	tri	Solanum lycopersicum	Plantae	β-amyrin; lanosterol	[41, 16]	lanosterol	16
+B1W019	(+)-caryolan-1-ol synthase	sesq	sesq	Streptomyces griseus subsp. Griseus	Bacteria	(+)-β-caryophyllene; (+)-caryolan-1-ol	[3, 1]	(+)-caryolan-1-ol	1
+B2C4D0	(E)-beta-caryophyllene synthase	sesq	sesq	Zea mays	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+B2C4D3	(E)-beta-caryophyllene synthase	sesq	sesq	Zea diploperennis	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B2C4D4	(E)-beta-caryophyllene synthase	sesq	sesq	Zea mays	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B2C4D5	(E)-beta-caryophyllene synthase	sesq	sesq	Zea luxurians	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B2C4D6	(E)-beta-caryophyllene synthase	sesq	sesq	Zea mays	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B2C4D7	(E)-beta-caryophyllene synthase	sesq	sesq	Zea mays	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B2C4D8	(E)-beta-caryophyllene synthase	sesq	sesq	Zea perennis	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B2DBF0	Phyllocladan-16-alpha-ol synthase	di-int; di	mixed	Phomopsis amygdali 	Fungi	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); phyllocladan-16α-ol	[16, 1]	phyllocladan-16α-ol	1
+B2DBF1	Copalyl diphosphate synthase	di-int	di	Phomopsis amygdali	Fungi	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	[16]	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	16
+B2J4A4	Germacrene A synthase	sesq	sesq	Nostoc punctiforme	Bacteria	5-epi-α-selinene	[1]	5-epi-α-selinene	1
+B2KSJ5	(+)-gamma-cadinene synthase	sesq	sesq	Cucumis melo 	Plantae	(+)-γ-cadinene; (+)-δ-cadinene	[3, 20]	(+)-γ-cadinene	3
+B2KSJ6	Alpha-farnesene synthase	sesq	sesq	Cucumis melo	Plantae	(E,E)-α-farnesene	[9]	(E,E)-α-farnesene	9
+B3TPQ6	Beta-cubebene synthase	sesq	sesq	Magnolia grandiflora	Plantae	β-cubebene	[6]	β-cubebene	6
+B3TPQ7	Alpha-terpineol synthase	mono	mono	Magnolia grandiflora	Plantae	(S)-(−)-α-terpineol; (R)-(+)-α-terpineol	[14, 2]	(R)-(+)-α-terpineol	2
+B3Y522	Dammaradiene synthase	tri	tri	Dryopteris crassirhizoma	Plantae	dammara-20,24-diene	[1]	dammara-20,24-diene	1
+B4XAK4	Caryophyllene/humulene synthase	sesq	sesq	Pinus sylvestris	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+B4XAK5	1(10),5-germacradien-4-ol synthase	sesq	sesq	Pinus sylvestris	Plantae	1(10),5-germacradien-4-ol	[1]	1(10),5-germacradien-4-ol	1
+B4XAK6	Longifolene synthase	sesq	sesq	Pinus sylvestris	Plantae	(+)-longifolene; (+)-α-longipinene	[2, 4]	(+)-longifolene	2
+B4YYR2	Germacrene B synthase	sesq	sesq	Cistus creticus	Plantae	(1E,4E)-germacrene B	[9]	(1E,4E)-germacrene B	9
+B5A434	(+)-alpha-terpineol synthase	mono; sesq	mixed	Santalum album	Plantae	(R)-(+)-α-terpineol; (4S)-limonene; linalool; β-myrcene; (−)-α-pinene; (+)-sabinene; geraniol; terpinolene; β-bisabolene	[2, 18, 27, 58, 26, 9, 21, 40, 16]	(R)-(+)-α-terpineol	2
+B5A435	Sesquiterpene synthase	sesq	sesq	Santalum album	Plantae	germacrene D-4-ol; (−)-helminthogermacrene; (−)-β-elemene; α-guaiene; (1E,4E,8E)-α-humulene; γ-muurolene; (+)-β-selinene; α-selinene; δ-guaiene; γ-cadinene; δ-cadinene; (6E)-nerolidol; linalool	[2, 1, 26, 5, 35, 12, 8, 10, 8, 7, 37, 16, 27]	(−)-helminthogermacrene	1
+B5GMG2	1,8-cineole synthase	mono	mono	Streptomyces clavuligerus	Bacteria	1,8-cineole; 1,8-cineole	[18, 18]	1,8-cineole	18
+B5GRC8	Labda-7,13(16),14-triene synthase	di	di	Streptomyces clavuligerus	Bacteria	labda-7,13(16),14-triene	[1]	labda-7,13(16),14-triene	1
+B5GS26	(-)-delta-cadinene synthase	sesq	sesq	Streptomyces clavuligerus	Bacteria	δ-cadinene	[37]	δ-cadinene	37
+B5GW45	(+)-T-muurolol synthase	sesq	sesq	Streptomyces clavuligerus	Bacteria	(+)-τ-muurolol	[2]	(+)-τ-muurolol	2
+B5H7H3	Pristinol synthase	sesq	sesq	Streptomyces pristinaespiralis	Bacteria	(+)-(2S,3R,9R)-pristinol	[2]	(+)-(2S,3R,9R)-pristinol	2
+B5HDJ6	Selina-4(15),7(11)-diene synthase	sesq	sesq	Streptomyces pristinaespiralis	Bacteria	selina-4(15),7(11)-diene	[1]	selina-4(15),7(11)-diene	1
+B6EXY6	Beta-amyrin synthase	tri	tri	Arabidopsis thaliana 	Plantae	β-amyrin	[41]	β-amyrin	41
+B6H063	Aristolochene synthase prx2	sesq	sesq	Penicillium rubens	Fungi	(+)-aristolochene	[4]	(+)-aristolochene	4
+B6HFX8	Conidiogenone synthase	di	di	Penicillium rubens	Fungi	penichrysol	[4]	penichrysol	4
+B6K412	Squalene-hopene cyclase	tri	tri	Schizosaccharomyces japonicus	Fungi	hop-22(29)-ene; hopan-22-ol	[4, 4]	hop-22(29)-ene	4
+B6SCF4	Myrcene synthase, chloroplastic	mono	mono	Humulus lupulus	Plantae	β-myrcene	[58]	β-myrcene	58
+B6SCF5	Alpha-humulene synthase	sesq	sesq	Humulus lupulus	Plantae	(1E,4E,8E)-α-humulene	[35]	(1E,4E,8E)-α-humulene	35
+B6SCF6	Germacrene-A synthase	sesq	sesq	Humulus lupulus	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+B6UV92	Phytoene synthase 3, chloroplastic	tetra	tetra	Oryza sativa subsp. japonica	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+B8PD44	Sesquiterpene synthase 10	sesq	sesq	Postia placenta	Fungi	α-copaene; β-cubebene; α‐cubebene; cyclosativene; sativene; β-copaene; sesquisabinene B; cadina-1(6),4-diene; γ-muurolene; bicyclosesquiphellandrene; allo-aromadendr-9-ene; (+)-4-epi-cubebol; α-muurolene; cubebol; δ-cadinene	[13, 6, 3, 1, 2, 12, 5, 7, 12, 2, 1, 3, 18, 2, 37]	cyclosativene	1
+B8PQ84	Copalyl diphosphate synthase CPS1, chloroplastic	di-int	di	Salvia miltiorrhiza	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	[16]	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−)	16
+B8XA41	Santalene and bergamotene synthase	sesq	sesq	Solanum habrochaites	Plantae	(+)-α-santalene; (+)-endo-β-bergamotene; (−)-endo-α-bergamotene	[6, 2, 4]	(+)-endo-β-bergamotene	2
+B9GSM9	Terpene synthase	di-int	di	Populus trichocarpa	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+B9RHW5	Casbene synthase	di	di	Ricinus communis	Plantae	casbene	[2]	casbene	2
+B9RXW0	Alpha-farnesene synthase	sesq	sesq	Ricinus communis	Plantae	(E,E)-α-farnesene	[9]	(E,E)-α-farnesene	9
+B9S9Z3	Alpha-copaene synthase	sesq	sesq	Ricinus communis	Plantae	(+)-δ-cadinene; α-copaene	[20, 13]	α-copaene	13
+B9T625	Ent-kaurene synthase B	di	di	Ricinus communis	Plantae	ent-kaurene	[31]	ent-kaurene	31
+B9X0J1	Baccharis oxide synthase	tri	tri	Stevia rebaudiana	Plantae	baccharis oxide	[1]	baccharis oxide	1
+BAR94033.1	Diterpene synthase	di	di	"Stylissa massa 
+"	Animalia	mixed diterpenes	[1]	mixed diterpenes	1
+BDI63083.1	Sesquiterpene synthase	sesq	sesq	Agaricus bisporus	Fungi	cadina-1,4-diene; cadina-1(6),4-diene; δ-cadinene; zonarene	[6, 7, 37, 6]	cadina-1,4-diene	6
+BDI63084.1	Sesquiterpene synthase	sesq	sesq	Agaricus bisporus	Fungi	δ-cadinene; epizonarene	[37, 4]	epizonarene	4
+BDI63085.1	Sesquiterpene synthase	sesq	sesq	Agaricus bisporus	Fungi	(Z)-α-bisabolene	[5]	(Z)-α-bisabolene	5
+BDI63087.1	Sesquiterpene synthase	sesq	sesq	Au. vulgare	Fungi	Δ6-Protoilludene	[1]	Δ6-Protoilludene	1
+BDI63091.1	Sesquiterpene synthase	sesq	sesq	Au. vulgare	Fungi	cadina-1,4-diene; cadina-1(6),4-diene; δ-cadinene; β-copaene; (E)-β-farnesene; zonarene	[6, 7, 37, 12, 4, 6]	(E)-β-farnesene	4
+BDI63095.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+BDI63096.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+BDI63099.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	cadina-1,4-diene; cadina-1(6),4-diene; δ-cadinene ; β-copaene; zonarene	[6, 7, 1, 12, 6]	δ-cadinene 	1
+BDI63103.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	β-barbatene	[2]	β-barbatene	2
+BDI63105.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	unknown compound	[1]	unknown compound	1
+BDI63106.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	acora-3,7(14)-diene	[1]	acora-3,7(14)-diene	1
+BDI63107.1	Sesquiterpene synthase	sesq	sesq	P. ostreatus	Fungi	δ-cadinene; isobazzanene; α-muurolene	[37, 4, 18]	isobazzanene	4
+BDI63108.1	Sesquiterpene synthase	sesq	sesq	P. ostreatus	Fungi	δ-cadinene; α-muurolene; zonarene	[37, 18, 6]	zonarene	6
+BDI63109.1	Sesquiterpene synthase	sesq	sesq	P. ostreatus	Fungi	δ-cadinene; isobazzanene; α-muurolene	[37, 4, 18]	isobazzanene	4
+BDI63110.1	Sesquiterpene synthase	sesq	sesq	P. ostreatus	Fungi	cadina-1,4-diene; cadina-1(6),4-diene; δ-cadinene; (E)-β-farnesene; zonarene	[6, 7, 37, 4, 6]	(E)-β-farnesene	4
+BDI63111.1	Sesquiterpene synthase	sesq	sesq	P. ostreatus	Fungi	pleostene	[2]	pleostene	2
+BDI63113.1	Sesquiterpene synthase	sesq	sesq	P. ostreatus	Fungi	α-cuprenene	[1]	α-cuprenene	1
+BDI63114.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	δ-cadinene	[37]	δ-cadinene	37
+BDI63116.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	cadina-1,4-diene; cadina-1(6),4-diene; δ-cadinene; β-copaene; zonarene	[6, 7, 37, 12, 6]	cadina-1,4-diene	6
+BDI63117.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	cadina-1,4-diene; cadina-1(6),4-diene; δ-cadinene; β-copaene; (E)-β-farnesene	[6, 7, 37, 12, 4]	(E)-β-farnesene	4
+BDI63118.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+BDI63121.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	γ-cadinene	[7]	γ-cadinene	7
+BDI63123.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	α-barbatene; β-barbatene	[1, 2]	α-barbatene	1
+BDI63124.1	Sesquiterpene synthase	sesq	sesq	T. versicolor	Fungi	dauca-4(11),8-diene; isobazzanene	[1, 4]	dauca-4(11),8-diene	1
+BDO24661.1	Sesquiterpene synthase	sesq	sesq	Lepista nuda	Fungi	pleostene; isobazzanene	[2, 4]	pleostene	2
+BaTC-1		di	di	Briareum asbestinum	Coral	cembrene A	[4]	cembrene A	4
+BaTC-2		di; sesq; mono	mixed	Briareum asbestinum	Coral	klysimplexin R; (2-trans,6-trans)-farnesol; geraniol	[2, 7, 21]	klysimplexin R	2
+C0KWV3	Linalool synthase	mono	mono	Perilla setoyensis	Plantae	linalool	[27]	linalool	27
+C0KWV4	Geraniol synthase	mono	mono	Perilla setoyensis	Plantae	geraniol	[21]	geraniol	21
+C0KWV5	Linalool synthase	mono	mono	Perilla frutescens var. hirtella	Plantae	linalool	[27]	linalool	27
+C0KWV6	Geraniol synthase	mono	mono	Perilla frutescens var. hirtella	Plantae	geraniol	[21]	geraniol	21
+C0KWV7	Linalool synthase	mono	mono	Perilla frutescens var. hirtella	Plantae	linalool	[27]	linalool	27
+C0PPM5	Alpha-longipinene synthase	sesq	sesq	Picea sitchensis	Plantae	(+)-α-longipinene; longifolene; γ-himachalene; trans-β-farnesene; β-longipinene	[4, 5, 3, 24, 1]	β-longipinene	1
+C0PPR1	(-)-linalool synthase	mono	mono	Picea sitchensis	Plantae	(R)-linalool	[11]	(R)-linalool	11
+C0PT35	1,8-cineole synthase	mono	mono	Picea sitchensis	Plantae	1,8-cineole; (S)-(−)-α-terpineol; β-myrcene; β-pinene; (+)-α-pinene	[18, 14, 58, 12, 10]	(+)-α-pinene	10
+C0PTH8	(-)-beta-phellandrene synthase	mono	mono	Picea sitchensis	Plantae	β-phellandrene; (−)-β-pinene; (−)-α-pinene; β-myrcene; α-phellandrene; terpinolene	[13, 21, 26, 58, 14, 40]	β-phellandrene	13
+C0SSW7	Ent-copalyl diphosphate synthase	di-int	di	Triticum aestivum	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+C1K5M3	Beta-phellandrene synthase (neryl-diphosphate-cyclizing)	mono	mono	Solanum lycopersicum	Plantae	β-phellandrene	[13]	β-phellandrene	13
+C3RSF5	Alpha pinene synthase	mono	mono	Chamaecyparis formosensis	Plantae	α-pinene	[20]	α-pinene	20
+C5H3I7	Sesquiterpene synthase	sesq	sesq	Oryza sativa	Plantae	zingiberene; β-sesquiphellandrene	[9, 11]	zingiberene	9
+C5I6F7	(E)-beta-caryophyllene synthase	sesq	sesq	Arabidopsis lyrata	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+C5YHH7	Zingiberene synthase	sesq	sesq	Sorghum bicolor	Plantae	zingiberene	[9]	zingiberene	9
+C5YHI2	Beta-sesquiphellandrene synthase	sesq	sesq	Sorghum bicolor	Plantae	β-sesquiphellandrene	[11]	β-sesquiphellandrene	11
+C5YHZ9	Uncharacterized protein	sesq	sesq	Sorghum bicolor	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+C5YN30	Uncharacterized protein	sesq	sesq	Sorghum bicolor	Plantae	(Z)-γ-bisabolene; (−)-exo-α-bergamotene	[9, 14]	(Z)-γ-bisabolene	9
+C7ASI9	Carene synthase	mono	mono	Picea glauca	Plantae	(+)-car-3-ene	[11]	(+)-car-3-ene	11
+C7E5V7	(E)-beta-farnesene synthase	sesq	sesq	Zea mays subsp. mexicana 	Plantae	trans-β-farnesene	[24]	trans-β-farnesene	24
+C7E5V8	(E)-beta-farnesene synthase	sesq	sesq	Zea mays subsp. huehuetenangensis	Plantae	trans-β-farnesene	[24]	trans-β-farnesene	24
+C7E5V9	(E)-beta-farnesene synthase	sesq	sesq	Zea diploperennis	Plantae	trans-β-farnesene	[24]	trans-β-farnesene	24
+C7E5W0	(E)-beta-farnesene synthase	sesq	sesq	Zea perennis	Plantae	trans-β-farnesene	[24]	trans-β-farnesene	24
+C7PLV2	(-)-gamma-cadinene synthase	sesq	sesq	Chitinophaga pinensis	Bacteria	(−)-γ-cadinene	[5]	(−)-γ-cadinene	5
+C7SCX0	Terpene cyclase/mutase family member	tri	tri	Malus domestica	Plantae	β-amyrin	[41]	β-amyrin	41
+C8XPS0	Miltiradiene synthase KSL1	di	di	Salvia miltiorrhiza	Plantae	miltiradiene	[9]	miltiradiene	9
+C9K1X5	Cyclooctat-9-en-7-ol synthase	di	di	Streptomyces melanosporofaciens	Bacteria	cyclooctat-9-en-7-ol	[1]	cyclooctat-9-en-7-ol	1
+C9K2Q3	Fusicoccadiene synthase	di	di	Alternaria brassicicola	Fungi	fusicocca-2,10(14)-diene	[2]	fusicocca-2,10(14)-diene	2
+CgCS		tri	tri	Colletotrichum gloeosporioides	Fungi	colleterpenol	[1]	colleterpenol	1
+CiTC-1		sesq	sesq	Capnella imbricata	Coral	Capnellene	[1]	Capnellene	1
+D0UZK2	Terpene synthase 1	sesq	sesq	Citrus sinensis	Plantae	(+)-valencene	[7]	(+)-valencene	7
+D0VFU8	Squalene synthase	tri	tri	Solanum lycopersicum	Plantae	squalene	[19]	squalene	19
+D0VMR6	Delta-guaiene synthase 1	sesq	sesq	Aquilaria crassna	Plantae	δ-guaiene; α-guaiene	[8, 5]	α-guaiene	5
+D0VMR7	Delta-guaiene synthase 2	sesq	sesq	Aquilaria crassna	Plantae	δ-guaiene; α-guaiene	[8, 5]	α-guaiene	5
+D0VMR8	Delta-guaiene synthase 3	sesq	sesq	Aquilaria crassna	Plantae	δ-guaiene; α-guaiene	[8, 5]	α-guaiene	5
+D1MJ52	Germacrene A synthase 3	sesq	sesq	Helianthus annuus	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+D2B747	4-epi-cubebol synthase	sesq	sesq	Streptosporangium roseum	Bacteria	(+)-4-epi-cubebol	[3]	(+)-4-epi-cubebol	3
+D2X8G0	Ent-copalyl diphosphate synthase	di-int	di	Picea glauca	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+D2X8G1	(-)-ent-kaurene synthase	di	di	Picea glauca	Plantae	ent-kaurene	[31]	ent-kaurene	31
+D2X8G2	Ent-copalyl diphosphate synthase	di-int	di	Picea sitchensis	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+D2X8Y8	(-)-ent-kaurene synthase	di	di	Picea glauca	Plantae	ent-kaurene	[31]	ent-kaurene	31
+D2XEB3	(-)-ent-kaurene synthase	di	di	Picea glauca	Plantae	ent-kaurene	[31]	ent-kaurene	31
+D2YZP9	(S)-beta-bisabolene synthase	sesq	sesq	Zingiber officinale 	Plantae	(S)-β-bisabolene	[16]	(S)-β-bisabolene	16
+D3KYU2	2-methylisoborneol synthase	mono	mono	Streptomyces lasalocidi	Bacteria	2-methylisoborneol	[5]	2-methylisoborneol	5
+D4IIJ0	Kaurene synthase	di	di	Helianthus annuus	Plantae	ent-kaurene	[31]	ent-kaurene	31
+D4IIJ1	Kaurene synthase	di	di	Helianthus annuus	Plantae	ent-kaurene	[31]	ent-kaurene	31
+D5KXD2	Beta caryophyllene/humulene synthase	sesq; mono	mixed	Solanum lycopersicum	Plantae	β-bisabolene; (Z)-γ-bisabolene; γ-curcumene; (−)-β-caryophyllene; (1E,4E,8E)-α-humulene; terpinolene; limonene; β-myrcene; (E)-β-ocimene	[16, 9, 8, 64, 35, 40, 33, 58, 27]	γ-curcumene	8
+D5KXJ0	15-cis-phytoene synthase	tetra-int; tetra	mixed	Enterobacter agglomerans	Bacteria	prephytoene diphosphate; 15-cis-phytoene	[3, 15]	prephytoene diphosphate	3
+D5SJ87	Labda-7,13-dienyl diphosphate synthase	di-int	di	Streptomyces clavuligerus	Bacteria	(5S,9S,10S,13E)-labda-7,13-dien-15-yl diphosphate(3−)	[1]	(5S,9S,10S,13E)-labda-7,13-dien-15-yl diphosphate(3−)	1
+D5SL78	R-linalool synthase	mono; sesq	mixed	Streptomyces clavuligerus	Bacteria	(R)-linalool; (6E)-nerolidol	[11, 16]	(R)-linalool	11
+D7T0P8	Terpene cyclase/mutase family member	tri	tri	Vitis vinifera	Plantae	β-amyrin	[41]	β-amyrin	41
+D8RLD3	(+)-germacrene D synthase	sesq	sesq	Selaginella moellendorffii 	Plantae	(+)-germacrene D; α-copaene; (−)-β-elemene; bicyclogermacrene; γ-cadinene; δ-cadinene; α-cadinene	[6, 13, 26, 8, 7, 37, 5]	α-cadinene	5
+D8RNZ9	(3S,6E)-nerolidol synthase	sesq; mono	mixed	Selaginella moellendorffii	Plantae	(3S,6E)-nerolidol; limonene; (S)-linalool	[5, 33, 10]	(3S,6E)-nerolidol	5
+D9J0D3	Cembratrienol synthase 2a	di	di	Nicotiana sylvestris	Plantae	alpha-cembratrien-ol; beta-cembratrien-ol	[3, 3]	alpha-cembratrien-ol	3
+D9J0D4	Cembratrienol synthase 2b	di	di	Nicotiana sylvestris	Plantae	alpha-cembratrien-ol; beta-cembratrien-ol	[3, 3]	alpha-cembratrien-ol	3
+D9J0D5	Cembratrienol synthase 3	di	di	Nicotiana sylvestris	Plantae	alpha-cembratrien-ol; beta-cembratrien-ol	[3, 3]	alpha-cembratrien-ol	3
+D9XD61	7-epi-alpha-eudesmol synthase	sesq	sesq	Streptomyces viridochromogenes	Bacteria	7-epi-α-eudesmol	[1]	7-epi-α-eudesmol	1
+D9XDR8	(-)-alpha-amorphene synthase	sesq	sesq	Streptomyces viridochromogenes	Bacteria	(−)-α-amorphene	[1]	(−)-α-amorphene	1
+DgTC-1		sesq	sesq	Dendronephtha gigantea	Coral	nephthene	[4]	nephthene	4
+DgTC-2		di; sesq	mixed	Dendronephtha gigantea	Coral	cembrene A; (2-trans,6-trans)-farnesol	[4, 7]	cembrene A	4
+E2E2N3	(E)-beta-ocimene synthase, chloroplastic	mono	mono	Origanum vulgare	Plantae	(E)-β-ocimene; β-myrcene; α-terpinene; β-phellandrene; (Z)-β-ocimene; γ-terpinene	[27, 58, 7, 13, 15, 22]	α-terpinene	7
+E2E2N4	(E)-beta-caryophyllene synthase	sesq; mono	mixed	Origanum vulgare	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene; β-myrcene; limonene; (E)-β-ocimene; terpinolene; linalool	[64, 35, 58, 33, 27, 40, 27]	(E)-β-ocimene	27
+E2E2N5	Terpene synthase 6	sesq; mono	mixed	Origanum vulgare	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene; β-myrcene; limonene; (E)-β-ocimene; terpinolene; linalool	[64, 35, 58, 33, 27, 40, 27]	(E)-β-ocimene	27
+E2E2N7	Bicyclogermacrene synthase	sesq; mono	mixed	Origanum vulgare	Plantae	bicyclogermacrene; Allo-Aromadendrene; (1E,4E,8E)-α-humulene; (−)-β-caryophyllene; terpinolene; limonene; geraniol; β-myrcene; (Z)-β-ocimene; (E)-β-ocimene; γ-terpinene; linalool; α-terpineol	[8, 3, 35, 64, 40, 33, 21, 58, 15, 27, 22, 27, 14]	Allo-Aromadendrene	3
+E2E2N8	Terpene synthase 3	sesq; mono	mixed	Origanum vulgare	Plantae	(−)-germacrene D; bicyclogermacrene; β-myrcene; limonene; terpinolene; geraniol	[24, 8, 58, 33, 40, 21]	bicyclogermacrene	8
+E2E2P0	Gamma-terpinene synthase	mono	mono	Origanum vulgare	Plantae	γ-terpinene; α-terpinene; α-thujene; α-pinene; sabinene; β-myrcene; p-cymene; (4R)-limonene	[22, 7, 7, 20, 13, 58, 1, 11]	p-cymene	1
+E2E2P1	Beta-phellandrene synthase	mono	mono	Origanum vulgare	Plantae	β-phellandrene; (+)-sabinene; α-thujene; α-pinene; β-myrcene	[13, 9, 7, 20, 58]	α-thujene	7
+E2E2P2	Beta-phellandrene synthase	mono	mono	Origanum vulgare	Plantae	β-phellandrene; (+)-sabinene	[13, 9]	(+)-sabinene	9
+E2IHE0	Copal-8-ol diphosphate hydratase	di-int	di	Cistus creticus subsp. creticus	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+E2IUA6	Taraxerol synthase	tri	tri	Kalanchoe daigremontiana	Plantae	taraxerol	[2]	taraxerol	2
+E2IUA7	Glutinol synthase	tri	tri	Kalanchoe daigremontiana	Plantae	friedelin	[2]	friedelin	2
+E2IUA8	Friedelin synthase	tri	tri	Kalanchoe daigremontiana	Plantae	friedelin	[2]	friedelin	2
+E2IUA9	Lupeol synthase	tri	tri	Kalanchoe daigremontiana	Plantae	lupeol	[14]	lupeol	14
+E2IUB0	Cycloartenol synthase	tri	tri	Kalanchoe daigremontiana	Plantae	cycloartenol	[22]	cycloartenol	22
+E3VWJ0	Pentalenene synthase	sesq	sesq	Streptomyces arenae	Bacteria	pentalenene	[4]	pentalenene	4
+E3W202	Santalene synthase	sesq	sesq	Santalum album	Plantae	(−)-exo-α-bergamotene; (+)-α-santalene; (−)-β-santalene	[14, 6, 3]	(−)-β-santalene	3
+E3W203	Santalene synthase	sesq	sesq	Santalum austrocaledonicum	Plantae	(−)-β-santalene; (+)-α-santalene; (−)-exo-α-bergamotene	[3, 6, 14]	(−)-β-santalene	3
+E3W204	Santalene synthase	sesq	sesq	Santalum spicatum	Plantae	(−)-β-santalene; (+)-α-santalene; (−)-exo-α-bergamotene	[3, 6, 14]	(−)-β-santalene	3
+E3W205	Beta-bisabolene synthase	sesq	sesq	Santalum austrocaledonicum	Plantae	β-bisabolene	[16]	β-bisabolene	16
+E3W206	Alpha-bisabolol synthase	sesq	sesq	Santalum spicatum 	Plantae	(E,R)-α-bisabolene	[4]	(E,R)-α-bisabolene	4
+E3W207	Sesquiterpene synthase	sesq	sesq	Santalum austrocaledonicum	Plantae	(1E,4E,8E)-α-humulene	[35]	(1E,4E,8E)-α-humulene	35
+E3W208	Sesquiterpene synthase	sesq	sesq	Santalum spicatum	Plantae	guaiol; elemol	[2, 5]	guaiol	2
+E3W326	(-)-beta-bisabolene synthase	sesq	sesq	Santalum album	Plantae	(S)-β-bisabolene	[16]	(S)-β-bisabolene	16
+E3WDE2	Ent-kaurene synthase	di-int; di	mixed	Liochlaena subulata	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−); ent-kaurene	[21, 31]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+E4MYY0	(2Z,6E)-hedycaryol synthase	sesq	sesq	Kitasatospora setae	Bacteria	(2Z,6E)-hedycaryol	[2]	(2Z,6E)-hedycaryol	2
+E4N7E5	(+)-corvol ether B/A synthase	sesq	sesq	Kitasatospora setae	Bacteria	(+)-corvol ether B; (+)-corvol ether A	[6, 6]	(+)-corvol ether B	6
+E4V6I8	Protostadienol synthase A	tri	tri	Arthroderma gypseum	Fungi	(17Z)-protosta-17(20),24-dien-3β-ol	[4]	(17Z)-protosta-17(20),24-dien-3β-ol	4
+E5GAF3	(E)-beta-caryophyllene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+E5GAF4	(E)-beta-caryophyllene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+E5GAF5	(E)-beta-caryophyllene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+E5GAF6	(E)-alpha-bergamotene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-exo-α-bergamotene	[14]	(−)-exo-α-bergamotene	14
+E5GAF7	Terpene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+E5GAF8	Germacrene D synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+E5GAG0	Gamma-cadinene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-γ-cadinene	[5]	(−)-γ-cadinene	5
+E5GAG1	Beta-curcumene synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-β-curcumene	[3]	(−)-β-curcumene	3
+E5GAG2	(+)-alpha-phellandrene synthase	mono	mono	Vitis vinifera	Plantae	(+)-α-phellandrene	[1]	(+)-α-phellandrene	1
+E5GAG4	(+)-alpha-pinene synthase	mono	mono	Vitis vinifera	Plantae	(+)-α-pinene	[10]	(+)-α-pinene	10
+E5L4Y4	Germacrene A synthase	sesq	sesq	Vitis vinifera	Plantae	(−)-germacrene A; δ-guaiene	[24, 8]	δ-guaiene	8
+E5RM29	Sesquiterpene synthase	sesq	sesq	Toona sinensis	Plantae	(−)-β-elemene	[26]	(−)-β-elemene	26
+E7DN63	Beta-amyrin synthase	tri	tri	Solanum lycopersicum	Plantae	β-amyrin	[41]	β-amyrin	41
+E7DN64	Delta-amyrin synthase	tri	tri	Solanum lycopersicum	Plantae	δ-amyrin; α-amyrin; β-amyrin	[1, 4, 41]	δ-amyrin	1
+E8W6C7	(+)-(1(10)E,4E,6S,7R)-germacradien-6-ol synthase	sesq	sesq	Streptomyces pratensis	Bacteria	(+)-(1(10)E,4E,6S,7R)-germacradien-6-ol	[1]	(+)-(1(10)E,4E,6S,7R)-germacradien-6-ol	1
+E9E766	Sesquiterpene synthase	sesq	sesq	Metarhizium acridum	Fungi	(+)-corvol ether B; (+)-corvol ether A; epizonarene; γ-cadinene; δ-cadinene; α-cadinene; α-cadinol	[6, 6, 4, 7, 37, 5, 5]	epizonarene	4
+E9F8R9	Sesquiterpene synthase MAA_08668	sesq	sesq	Metarhizium robertsii 	Fungi	nerolidol; α-cadinol; (−)-γ-cadinene; germacrene D; δ-cadinene; α-cadinene; α-muurolene; (−)-β-elemene; (−)-β-caryophyllene	[2, 5, 5, 7, 37, 5, 18, 26, 64]	nerolidol	2
+E9N3U9	Beta-phellandrene synthase	mono	mono	Lavandula angustifolia	Plantae	β-phellandrene	[13]	β-phellandrene	13
+ErTC-1		sesq; mono	mixed	Eleutherobia rubra	Coral	(2-trans,6-trans)-farnesol; linalool	[7, 27]	(2-trans,6-trans)-farnesol	7
+ErTC-2		di; sesq; mono	mixed	Eleutherobia rubra	Coral	cembrene A; elemol; trans-β-farnesene; (E,E)-α-farnesene; (2-trans,6-trans)-farnesol; linalool; geraniol	[4, 5, 24, 9, 7, 27, 21]	cembrene A	4
+F0ZDD0	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	(−)-β-elemene; trans-β-farnesene; (E,E)-α-farnesene	[26, 24, 9]	(E,E)-α-farnesene	9
+F0ZK52	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	(−)-β-elemene; germacrene D	[26, 7]	germacrene D	7
+F0ZL92	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	δ-elemene; (−)-β-elemene; (−)-β-caryophyllene; trans-β-farnesene; (E)-2-epi-β-caryophyllene	[4, 26, 64, 24, 5]	δ-elemene	4
+F0ZLU4	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	(2S,3R,6S,9S)-(−)-protoillud-7-ene	[6]	(2S,3R,6S,9S)-(−)-protoillud-7-ene	6
+F0ZPL2	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	1,2,4,8-tetramethylbicyclo[6.3.0]undeca-2,4-diene; alpha-neoclovene; (E)-2-epi-β-caryophyllene; beta-Neoclovene	[1, 1, 5, 1]	1,2,4,8-tetramethylbicyclo[6.3.0]undeca-2,4-diene	1
+F1A1D4	Terpene synthase	sesq	sesq	Dictyostelium purpureum	Amoebozoa	bicycloelemene; (−)-β-elemene	[3, 26]	bicycloelemene	3
+F1CKI6	Carene synthase 1	mono	mono	Picea sitchensis	Plantae	(+)-car-3-ene; terpinolene; (+)-sabinene; (−)-α-pinene; 4-terpineol; (−)-β-phellandrene; β-myrcene; α-terpineol; γ-terpinene	[11, 40, 9, 26, 4, 9, 58, 14, 22]	4-terpineol	4
+F1CKI8	Carene synthase 2	mono	mono	Picea sitchensis	Plantae	(+)-car-3-ene	[11]	(+)-car-3-ene	11
+F1CKI9	Carene synthase 3	mono	mono	Picea sitchensis 	Plantae	(+)-car-3-ene	[11]	(+)-car-3-ene	11
+F1CKJ1	(+)-sabinene synthase	mono	mono	Picea sitchensis 	Plantae	(+)-sabinene	[9]	(+)-sabinene	9
+F2XF92	Isopimaradiene synthase	di	di	Picea sitchensis	Plantae	isopimara-7,15-diene; isopimara-8(14),15-diene	[4, 2]	isopimara-8(14),15-diene	2
+F2XF93	(-)-linalool synthase	mono	mono	Picea glauca	Plantae	(R)-linalool	[11]	(R)-linalool	11
+F2XF94	(+)-3-carene synthase	mono	mono	Picea engelmannii x Picea glauca	Plantae	(+)-car-3-ene; terpinolene; (+)-sabinene; 4-terpineol; (−)-α-pinene; α-terpineol; (−)-β-phellandrene; β-myrcene; γ-terpinene; α-terpinene; α-phellandrene; α-thujene	[11, 40, 9, 4, 26, 14, 9, 58, 22, 7, 14, 7]	4-terpineol	4
+F2XF95	(-)-alpha/beta-pinene synthase	mono	mono	Picea glauca	Plantae	(−)-α-pinene; (−)-β-pinene	[26, 21]	(−)-β-pinene	21
+F2XF96	(-)-alpha/beta-pinene synthase	mono	mono	Picea glauca	Plantae	(−)-β-pinene; (−)-α-pinene	[21, 26]	(−)-β-pinene	21
+F2XF97	Alpha-humulene synthase	sesq	sesq	Picea glauca	Plantae	(1E,4E,8E)-α-humulene; (−)-β-caryophyllene; (+)-α-longipinene; longifolene; α-muurolene; γ-himachalene	[35, 64, 4, 5, 18, 3]	γ-himachalene	3
+F2XF98	1,8-cineole synthase	mono	mono	Picea engelmannii x Picea glauca	Plantae	1,8-cineole; (S)-(−)-α-terpineol; β-myrcene; (+)-α-pinene; β-pinene; γ-terpinene	[18, 14, 58, 10, 12, 22]	(+)-α-pinene	10
+F2XF99	(E,E)-alpha-farnesene synthase/(E)-beta-ocimene synthase	sesq; mono	mixed	Picea engelmannii x Picea glauca	Plantae	(E,E)-α-farnesene; (E)-β-ocimene	[9, 27]	(E,E)-α-farnesene	9
+F2XFA0	Longifolene synthase	sesq	sesq	Picea engelmannii	Plantae	(+)-longifolene; (+)-α-longipinene	[2, 4]	(+)-longifolene	2
+F2XFA1	(-)-beta-phellandrene synthase	mono	mono	Picea sitchensis	Plantae	(−)-β-phellandrene; (−)-β-pinene; (−)-α-pinene; β-myrcene; α-phellandrene; terpinolene	[9, 21, 26, 58, 14, 40]	(−)-β-phellandrene	9
+F2XFA2	1,8-cineole synthase	mono	mono	Picea glauca	Plantae	1,8-cineole; (S)-(−)-α-terpineol; (+)-α-pinene; β-myrcene; β-pinene	[18, 14, 10, 58, 12]	(+)-α-pinene	10
+F2XFA4	(-)-beta-phellandrene synthase 1, chloroplastic	mono	mono	Picea sitchensis	Plantae	(−)-β-phellandrene; (−)-β-pinene; (−)-α-pinene; β-myrcene; α-phellandrene; terpinolene	[9, 21, 26, 58, 14, 40]	(−)-β-phellandrene	9
+F2XFA5	(-)-beta-phellandrene synthase 3, chloroplastic	mono	mono	Picea sitchensis	Plantae	(−)-β-phellandrene; (−)-β-pinene; (−)-α-pinene; β-myrcene; α-phellandrene; terpinolene	[9, 21, 26, 58, 14, 40]	(−)-β-phellandrene	9
+F2XFA6	(-)-linalool synthase	mono	mono	Picea sitchensis	Plantae	(R)-linalool	[11]	(R)-linalool	11
+F2XFA8	(-)-alpha/beta-pinene synthase	mono	mono	Picea sitchensis	Plantae	(−)-α-pinene; (−)-β-pinene; linalool; β-phellandrene; camphene; β-myrcene	[26, 21, 27, 13, 1, 58]	camphene	1
+F2XFB2	Levopimaradiene/abietadiene synthase	di	di	Picea sitchensis	Plantae	abieta-8(14),12-diene; abieta-7,13-diene; neoabietadiene; Palustradiene	[7, 4, 6, 1]	Palustradiene	1
+F6I4Y2	Uncharacterized protein	sesq	sesq	Vitis vinifera	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+F6M8I0	Monoterpene synthase	sesq	sesq	Santalum album	Plantae	β-bisabolene	[16]	β-bisabolene	16
+F8TWC9	Terpene synthase 1	sesq	sesq	Populus trichocarpa	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+F8UL80	Germacrene A synthase	sesq	sesq	Tanacetum parthenium	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+F8UL81	E-beta-caryophyllene synthase	sesq	sesq	Tanacetum parthenium	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+F8WQD0	Shionone synthase	tri	tri	Aster tataricus	Plantae	shionone	[1]	shionone	1
+G0LES5	Trichodiene synthase	sesq	sesq	Trichoderma arundinaceum	Fungi	trichodiene	[18]	trichodiene	18
+G0Y286	Presqualene diphosphate synthase	tri-int	tri	Botryococcus braunii	Plantae	presqualene alcohol	[2]	presqualene alcohol	2
+G0Y287	Botryococcus squalene synthase	tri	tri	Botryococcus braunii 	Plantae	squalene; bisfarnesyl ether; squalene; bisfarnesyl ether	[19, 2, 19, 2]	bisfarnesyl ether	2
+G0Y288	Botryococcene synthase	tri	tri	Botryococcus braunii 	Plantae	C30 botryococcene; presqualene alcohol	[1, 2]	C30 botryococcene	1
+G0Y7D1	Trans-ocimene synthase	mono	mono	Litsea cubeba	Plantae	(E)-β-ocimene	[27]	(E)-β-ocimene	27
+G0Y7D2	Alpha-thujene synthase	mono	mono	Litsea cubeba	Plantae	α-thujene	[7]	α-thujene	7
+G0Y7D3	Alpha-thujene synthase/sabinene synthase	mono	mono	Litsea cubeba	Plantae	α-thujene; (+)-sabinene	[7, 9]	α-thujene	7
+G1DGI7	(13E)-labda-7,13-dien-15-ol synthase	di	di	Selaginella moellendorffii	Plantae	(13E)-labda-7,13-dien-15-ol	[1]	(13E)-labda-7,13-dien-15-ol	1
+G1JUH1	(-)-camphene/tricyclene synthase	mono	mono	Solanum lycopersicum	Plantae	tricyclene; (−)-camphene; (4S)-limonene	[9, 5, 18]	(−)-camphene	5
+G1JUH4	Beta myrcene/limonene synthase	mono	mono	Solanum lycopersicum 	Plantae	limonene	[33]	limonene	33
+G1JUH5	Cineol synthase	mono	mono	Solanum lycopersicum	Plantae	1,8-cineole	[18]	1,8-cineole	18
+G1JUH6	Germacrene synthase	sesq	sesq	Solanum lycopersicum	Plantae	germacrene C	[5]	germacrene C	5
+G2P5T1	Isoafricanol synthase	sesq	sesq	Streptomyces violaceusniger	Bacteria	(+)-isoafricanol	[3]	(+)-isoafricanol	3
+G3CCC0	Copal-8-ol diphosphate hydratase	di-int	di	Nicotiana tabacum	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+G3CCC1	Cis-abienol synthase	di	di	Nicotiana tabacum	Plantae	cis-abienol	[4]	cis-abienol	4
+G3E4M4	Ent-copalyl diphosphate synthase 2	di-int	di	Isodon eriocalyx	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+G3E4M6	Ent-copalyl diphosphate synthase 1	di-int	di	Isodon eriocalyx	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+G5CV35	Alpha-phellandrene synthase	mono	mono	Solanum pennellii	Plantae	α-phellandrene	[14]	α-phellandrene	14
+G5CV38	Copalyl diphosphate synthase	di-int	di	Solanum lycopersicum	Plantae	(+)-copalyl diphosphate	[6]	(+)-copalyl diphosphate	6
+G5CV40	Terpene synthase	sesq	sesq	Solanum lycopersicum	Plantae	(−)-exo-α-bergamotene	[14]	(−)-exo-α-bergamotene	14
+G5CV42	Terpene synthase	sesq	sesq	Solanum lycopersicum	Plantae	cis-muurola-3,5-diene	[2]	cis-muurola-3,5-diene	2
+G5CV43	Terpene synthase	sesq	sesq	Solanum lycopersicum	Plantae	guaia-1(10),11-diene	[3]	guaia-1(10),11-diene	3
+G5CV44	Terpene synthase	sesq	sesq	Solanum lycopersicum	Plantae	guaia-1(10),11-diene; β-acoradiene	[3, 2]	β-acoradiene	2
+G5CV45	Viridiflorene synthase	sesq	sesq	Solanum lycopersicum	Plantae	viridiflorene	[6]	viridiflorene	6
+G5CV46	Viridiflorene synthase	sesq	sesq	Solanum lycopersicum	Plantae	viridiflorene	[6]	viridiflorene	6
+G5CV48	Terpene synthase	mono	mono	Solanum lycopersicum	Plantae	1,8-cineole	[18]	1,8-cineole	18
+G5CV50	Ent-kaurene synthase	di	di	Solanum lycopersicum	Plantae	ent-kaurene	[31]	ent-kaurene	31
+G5CV51	Terpene synthase	di	di	Solanum lycopersicum	Plantae	lycosantalene	[1]	lycosantalene	1
+G5CV52	Sesquiterpene synthase	sesq; mono	mixed	Solanum lycopersicum	Plantae	(+)-valencene; trans-β-farnesene; γ-gurjunene; (E,E)-α-farnesene; (−)-exo-α-bergamotene; β-bisabolene; (Z)-γ-bisabolene; (E)-γ-bisabolene; (−)-endo-α-bergamotene; limonene; β-myrcene; delta-2-carene; (Z)-β-ocimene; (E)-β-ocimene; terpinolene; γ-terpinene; linalool	[7, 24, 2, 9, 14, 16, 9, 3, 4, 33, 58, 4, 15, 27, 40, 22, 27]	γ-gurjunene	2
+G5CV54	TPS14	sesq	sesq	Solanum lycopersicum	Plantae	β-bisabolene; α-bisabolene	[16, 1]	α-bisabolene	1
+G5CV56	Terpene synthase	sesq	sesq	Solanum lycopersicum	Plantae	(+)-epi-α-bisabolol	[3]	(+)-epi-α-bisabolol	3
+G7K980	Terpene cyclase/mutase family member	tri	tri	Medicago truncatula	Plantae	β-amyrin; cycloartenol; lanosterol	[41, 22, 16]	lanosterol	16
+G7LHE5	Beta-amyrin synthase	tri	tri	Medicago truncatula	Plantae	β-amyrin	[41]	β-amyrin	41
+G8GJ94	Sclareol synthase	di	di	Salvia sclarea	Plantae	sclareol	[1]	sclareol	1
+G8GJ95	Copal-8-ol diphosphate hydratase TPSSA3	di-int	di	Salvia sclarea 	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+G8GJ96	Copal-8-ol diphosphate hydratase TPSSA9	di-int	di	Salvia sclarea	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+G8H5M7	Sesquiterpene synthase	sesq; mono	mixed	Solanum habrochaites	Plantae	germacrene C; (1E,4E)-germacrene B; germacrene A; (1E,4E,8E)-α-humulene; germacrene A; (1E,4E)-germacrene B; terpinolene; limonene; β-myrcene	[5, 9, 6, 35, 6, 9, 40, 33, 58]	germacrene C	5
+G8H5M8	Sesquiterpene synthase 12	sesq; mono	mixed	Solanum habrochaites	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene; γ-curcumene; β-bisabolene; (Z)-γ-bisabolene; β-myrcene; limonene; (E)-β-ocimene; terpinolene	[64, 35, 8, 16, 9, 58, 33, 27, 40]	γ-curcumene	8
+G8H5M9	Sesquiterpene synthase	mono; sesq	mixed	Solanum habrochaites	Plantae	limonene; β-myrcene; β-farnesene	[33, 58, 1]	β-farnesene	1
+G8H5N0	Sesquiterpene synthase	sesq; mono	mixed	Solanum habrochaites	Plantae	(+)-valencene; trans-β-farnesene; γ-gurjunene; (−)-exo-α-bergamotene; (−)-endo-α-bergamotene; β-bisabolene; (Z)-γ-bisabolene; (E)-γ-bisabolene; limonene; β-myrcene; (E)-β-ocimene; terpinolene; γ-terpinene; delta-2-carene; (Z)-β-ocimene; linalool	[7, 24, 2, 14, 4, 16, 9, 3, 33, 58, 27, 40, 22, 4, 15, 27]	γ-gurjunene	2
+G8H5N1	Sesquiterpene synthase	mono; sesq	mixed	Solanum habrochaites	Plantae	terpinolene; limonene; β-myrcene; α-pinene; delta-2-carene; (Z)-β-ocimene; (E)-β-ocimene; γ-terpinene; trans-β-farnesene	[40, 33, 58, 20, 4, 15, 27, 22, 24]	delta-2-carene	4
+G8H5N2	Sesquiterpene synthase	sesq	sesq	Solanum habrochaites	Plantae	germacrene A	[6]	germacrene A	6
+G9M5S4	Ent-kaurene synthase like 1	di	di	Triticum aestivum	Plantae	ent-kaurene	[31]	ent-kaurene	31
+G9M5S5	Ent-kaurene synthase like 2	di	di	Triticum aestivum	Plantae	ent-kaurene	[31]	ent-kaurene	31
+G9M5S6	Ent-kaurene synthase like 3	di	di	Triticum aestivum	Plantae	ent-kaurene	[31]	ent-kaurene	31
+G9M5S9	Ent-kaurene synthase like 6	di	di	Triticum aestivum	Plantae	ent-kaurene	[31]	ent-kaurene	31
+G9MAN7	Bifunctional diterpene synthase	di-int; di	mixed	Selaginella moellendorffii	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); miltiradiene	[16, 9]	miltiradiene	9
+H2KWF1	Parkeol synthase	tri	tri	Oryza sativa subsp. japonica	Plantae	parkeol	[1]	parkeol	1
+H2VFR7	Presqualene diphosphate synthase	tri-int	tri	Zymomonas mobilis subsp. mobilis	Bacteria	presqualene diphosphate(3−)	[4]	presqualene diphosphate(3−)	4
+H6VLG0	Copalyl diphosphate synthase 2	di-int	di	Salvia miltiorrhiza	Plantae	(+)-copalyl diphosphate	[6]	(+)-copalyl diphosphate	6
+H6VLG5	Ent-13-epi-manoyl oxide synthase KSL2	di	di	Salvia miltiorrhiza	Plantae	(13R)-epi-8,13-epoxylabd-14-ene	[1]	(13R)-epi-8,13-epoxylabd-14-ene	1
+H6WZF2	Terpineol synthase, chloroplastic	mono	mono	Nicotiana alata	Plantae	1,8-cineole; α-terpineol; β-myrcene; linalool; limonene; sabinene	[18, 14, 58, 27, 33, 13]	sabinene	13
+H8ZM73	Bifunctional cis-abienol synthase	di-int; di	mixed	Abies balsamea	Plantae	copal-8-ol diphosphate(3−); cis-abienol	[8, 4]	cis-abienol	4
+H9C6R1	Valerianol synthase	sesq	sesq	Camellia sinensis	Plantae	valerianol	[8]	valerianol	8
+H9L9E5	Alpha-copaene synthase	sesq	sesq	Eleutherococcus trifoliatus	Plantae	α-copaene	[13]	α-copaene	13
+HcTC-1		di	di	Heliopora coerulea	Coral	7,11,15-Trimethyl-3-methylene-hexadeca-1,6,10,14-tetraene; alpha-springene	[1, 1]	7,11,15-Trimethyl-3-methylene-hexadeca-1,6,10,14-tetraene	1
+HcTC-2		sesq	sesq	Heliopora coerulea	Coral	nephthene	[4]	nephthene	4
+HcTC-3		di; sesq	mixed	Heliopora coerulea	Coral	elisabethatriene; nephthene	[2, 4]	elisabethatriene	2
+I1M2G5	Neryl diphosphate diphosphatase, chloroplastic	mono	mono	Glycine max	Plantae	nerol	[2]	nerol	2
+I1S104	Longiborneol synthase CLM1	sesq	sesq	Gibberella zeae	Fungi	longiborneol	[1]	longiborneol	1
+I1TE91	Germacrene A synthase	sesq	sesq	Cynara cardunculus	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+I1ZHA5	Beta-cadinene synthase	sesq	sesq	Chamaecyparis formosensis	Plantae	β-cadinene	[5]	β-cadinene	5
+I2CM55	Santalene and bergamotene synthase-like protein	sesq	sesq	Solanum habrochaites	Plantae	(+)-α-santalene	[6]	(+)-α-santalene	6
+I2CM56	Santalene and bergamotene synthase-like protein	sesq	sesq	Solanum habrochaites	Plantae	(+)-endo-β-bergamotene	[2]	(+)-endo-β-bergamotene	2
+I2CM59	Pinene synthase	mono	mono	Solanum habrochaites	Plantae	α-pinene	[20]	α-pinene	20
+I2CM69	Limonene synthase	mono	mono	Solanum habrochaites	Plantae	limonene	[33]	limonene	33
+I2N045	Tsukubadiene synthase	di	di	Streptomyces tsukubensis	Bacteria	tsukubadiene	[1]	tsukubadiene	1
+I3WEW0	1,8-cineole synthase	mono	mono	Lavandula angustifolia	Plantae	1,8-cineole	[18]	1,8-cineole	18
+I6QPS5	(-)-germacrene D synthase	sesq	sesq	Matricaria chamomilla var. recutita 	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+I6QSN0	Germacrene-A synthase	sesq	sesq	Matricaria chamomilla var. recutita	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+I6R4V5	Alpha-isocomene synthase	sesq	sesq	Matricaria chamomilla var. recutita	Plantae	(−)-α-isocomene	[1]	(−)-α-isocomene	1
+I6RAQ6	(-)-beta-caryophyllene synthase	sesq	sesq	Matricaria chamomilla var. recutita 	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+I6RE61	(E)-beta-ocimene synthase	mono	mono	Matricaria chamomilla var. recutita	Plantae	(E)-β-ocimene; (Z)-β-ocimene	[27, 15]	(Z)-β-ocimene	15
+I7GPX8	Sesquiterpene synthase 1	mono	mono	Toona sinensis	Plantae	(4R)-limonene; β-pinene; β-myrcene; terpinolene	[11, 12, 58, 40]	(4R)-limonene	11
+I7H727	Sesquiterpene synthase	sesq	sesq	Toona sinensis	Plantae	β-elemene; (−)-β-caryophyllene; (1E,4E,8E)-α-humulene; germacrene D; α-selinene; δ-cadinene	[2, 64, 35, 7, 10, 37]	β-elemene	2
+IIIS	IIIS	sesq	sesq	Irpex lacteus	Fungi	iltremulanol A	[1]	iltremulanol A	1
+J3MQP7	Sesquiterpene synthase	sesq	sesq	Oryza brachyantha	Plantae	ent-zingiberene; β-sesquiphellandrene; β-bisabolene	[1, 11, 16]	ent-zingiberene	1
+J7LH11	(+)-epi-alpha-bisabolol synthase	sesq	sesq	Phyla dulcis	Plantae	(+)-epi-α-bisabolol	[3]	(+)-epi-α-bisabolol	3
+J7LJN5	Beta-caryophyllene synthase	sesq	sesq	Phyla dulcis	Plantae	(+)-β-caryophyllene	[3]	(+)-β-caryophyllene	3
+J7LMP2	Bicyclogermacrene synthase	sesq	sesq	Phyla dulcis	Plantae	bicyclogermacrene	[8]	bicyclogermacrene	8
+J7LP58	Bifunctional sesquiterpene synthase 1	sesq	sesq	Phyla dulci	Plantae	α-copaene; δ-cadinene	[13, 37]	α-copaene	13
+J7LQ09	Trans-alpha-bergamotene synthase	sesq	sesq	Phyla dulcis	Plantae	(−)-exo-α-bergamotene	[14]	(−)-exo-α-bergamotene	14
+J9QS23	Copalyl diphosphate synthase 1	di-int	di	Selaginella moellendorffii	Plantae	(+)-copalyl diphosphate	[6]	(+)-copalyl diphosphate	6
+J9QS25	(E)-2-epi-beta-caryophyllene synthase	sesq	sesq	Selaginella moellendorffii	Plantae	(E)-2-epi-β-caryophyllene	[5]	(E)-2-epi-β-caryophyllene	5
+J9R1J8	Microbial Terpene synthase-like protein 1	sesq	sesq	Selaginella moellendorffii	Plantae	(−)-β-elemene; α-copaene; γ-cadinene; δ-cadinene; (6E)-nerolidol	[26, 13, 7, 37, 16]	γ-cadinene	7
+J9R388	Copalyl diphosphate synthase 2	di-int	di	Selaginella moellendorffii	Plantae	(+)-copalyl diphosphate	[6]	(+)-copalyl diphosphate	6
+J9R5V4	Valerena-4,7(11)-diene synthase	sesq	sesq	Valeriana officinalis	Plantae	valerena-1,10-diene	[2]	valerena-1,10-diene	2
+J9RLZ7	Germacrene C/D synthase	sesq	sesq	Valeriana officinalis	Plantae	δ-elemene; germacrene C; (−)-germacrene D; (1E,4E)-germacrene B	[4, 5, 24, 9]	δ-elemene	4
+K0K750	(-)-beta-caryophyllene synthase	sesq	sesq	Saccharothrix espanaensi	Bacteria	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+K2SUY0	Geranylgeranyl diphosphate synthase	tri-int; tri	mixed	Macrophomina phaseolina	Fungi	all-trans-hexaprenyl diphosphate(3−); all-trans-hexaprenyl diphosphate(3−); all-trans-hexaprenyl diphosphate(3−); all-trans-hexaprenyl diphosphate(3−); macrophomene	[6, 6, 6, 6, 1]	macrophomene	1
+K4L9M2	Sesquiterpene synthase 1	sesq	sesq	Thapsia garganica	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+K4LMW2	Sesquiterpene synthase 2	sesq	sesq	Thapsia garganica	Plantae	kunzeaol	[1]	kunzeaol	1
+K7NBZ9	Cucurbitadienol synthase	tri	tri	Siraitia grosvenorii	Plantae	cucurbitadienol	[2]	cucurbitadienol	2
+K7PRF2	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(−)-β-caryophyllene; (1E,4E,8E)-α-humulene	[64, 35]	(1E,4E,8E)-α-humulene	35
+K7TKS3	Alpha-humulene/(-)-(E)-beta-caryophyllene synthase	sesq	sesq	Zea mays	Plantae	(1E,4E,8E)-α-humulene; (−)-β-caryophyllene	[35, 64]	(1E,4E,8E)-α-humulene	35
+K7TR87	Ent-copalyl diphosphate synthase	di-int	di	Zea mays	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+K7WTQ7	Santalene synthase	sesq	sesq	Santalum album	Plantae	(+)-α-santalene	[6]	(+)-α-santalene	6
+KUL85185.1		tri-int; tri	mixed	Talaromyces verruculosus	Fungi	all-trans-hexaprenyl diphosphate(3−); all-trans-hexaprenyl diphosphate(3−); talaropentaene	[6, 6, 1]	talaropentaene	1
+L0HAM7	Sabinene hydrate synthase, chloroplastic	mono	mono	Thymus vulgaris	Plantae	(E)-sabinene hydrate; (E)-sabienene hydrate; α-pinene	[2, 1, 20]	(E)-sabienene hydrate	1
+L0HB77	(E)-sabinene hydrate synthase, chloroplastic	mono	mono	Thymus vulgaris	Plantae	(E)-sabinene hydrate; (Z)-sabinene hydrate; limonene; α-terpineol; α-pinene	[2, 1, 33, 14, 20]	(Z)-sabinene hydrate	1
+L0HLH2	Sesquiterpene synthase 7	sesq	sesq	Valeriana officinalis	Plantae	germacrene C	[5]	germacrene C	5
+L0HP52	Sesquiterpene synthase 1	sesq	sesq	Valeriana officinalis	Plantae	valerena-1,10-diene	[2]	valerena-1,10-diene	2
+L0I517	Germacrene-D synthase	sesq	sesq	Malus domestica	Plantae	(−)-germacrene D; (−)-β-caryophyllene	[24, 64]	(−)-germacrene D	24
+L0I7F9	Beta-caryophyllene synthase	sesq	sesq	Malus domestica	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+L7XCQ7	Germacrene A synthase	sesq	sesq	Achillea millefolium	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+LcIMS1	Isomultiflorenol synthase	tri	tri	Luffa cylindrica	Plantae	isomultiflorenol	[3]	isomultiflorenol	3
+LdSTS1	Sesquiterpene synthase	sesq	sesq	Lactarius deliciosus	Fungi	δ-cadinene; Di-epi-1,10-cubenol	[37, 1]	Di-epi-1,10-cubenol	1
+LdSTS11	Sesquiterpene synthase	sesq	sesq	Lactarius deliciosus	Fungi	rel-(1S,2S,5R,6′R)-2′,6,6,6′-Tetramethylspiro[bicyclo[3.1.0]hexane-2,1′-cyclohexan]-2′-ene; 1-aristolene; 9-aristolene	[2, 2, 2]	rel-(1S,2S,5R,6′R)-2′,6,6,6′-Tetramethylspiro[bicyclo[3.1.0]hexane-2,1′-cyclohexan]-2′-ene	2
+LdSTS3	Sesquiterpene synthase	sesq	sesq	Lactarius deliciosus	Fungi	δ-cadinene; β-myrcene; trans-β-ocimene; β-cubebene; α-cubebene	[37, 58, 1, 6, 1]	trans-β-ocimene	1
+LdSTS6	Sesquiterpene synthase	sesq	sesq	Lactarius deliciosus	Fungi	α-murrolene	[1]	α-murrolene	1
+LdSTS7	Sesquiterpene synthase	sesq	sesq	Lactarius deliciosus	Fungi	rel-(1S,2S,5R,6′R)-2′,6,6,6′-Tetramethylspiro[bicyclo[3.1.0]hexane-2,1′-cyclohexan]-2′-ene; 1-aristolene; 9-aristolene	[2, 2, 2]	rel-(1S,2S,5R,6′R)-2′,6,6,6′-Tetramethylspiro[bicyclo[3.1.0]hexane-2,1′-cyclohexan]-2′-ene	2
+M1V9Q0	Diterpene cyclase DtcycA	di	di	Streptomyces sp.	Bacteria	cembrene C; (R)-nephthenol	[3, 2]	(R)-nephthenol	2
+M1VDX3	Diterpene cyclase DtcycB	di	di	Streptomyces sp.	Bacteria	(R)-nephthenol	[2]	(R)-nephthenol	2
+M2U578	Preterpestacin I synthase tpcA	sester	sester	Cochliobolus heterostrophus	Fungi	preterpestacin I	[3]	preterpestacin I	3
+M2V8C1	Ophiobolin F synthase oblA	sester	sester	Cochliobolus heterostrophus	Fungi	ophiobolin F	[6]	ophiobolin F	6
+M4GGS0	Amorpha-4,11-diene synthase	sesq	sesq	Artemisia annua	Plantae	amorpha-4,11-diene	[3]	amorpha-4,11-diene	3
+M4GGS1	Amorpha-4,11-diene synthase	sesq	sesq	Artemisia annua	Plantae	amorpha-4,11-diene	[3]	amorpha-4,11-diene	3
+M4HXU6	Bifunctional levopimaradiene synthase	di; di-int	mixed	Pinus banksiana	Plantae	levopimaradiene; 5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-7,13-diene; abieta-8(14),12-diene; neoabietadiene	[2, 16, 4, 7, 6]	levopimaradiene	2
+M4HXW5	Monofunctional isopimaradiene synthase	di	di	Pinus banksiana	Plantae	isopimara-7,15-diene	[4]	isopimara-7,15-diene	4
+M4HY05	Bifunctional levopimaradiene synthase	di-int; di	mixed	Pinus contorta 	Plantae	levopimaradiene; 5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-8(14),12-diene; neoabietadiene	[2, 16, 7, 6]	levopimaradiene	2
+M4HY08	Monofunctional pimaradiene synthase	di	di	Pinus banksiana	Plantae	pimara-8(14),15-diene	[2]	pimara-8(14),15-diene	2
+M4HYC6	Bifunctional levopimaradiene synthase	di-int; di	mixed	Pinus contorta 	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-7,13-diene; abieta-8(14),12-diene; neoabietadiene	[16, 4, 7, 6]	abieta-7,13-diene	4
+M4HYC8	Monofunctional pimaradiene synthase	di	di	Pinus contorta	Plantae	pimara-8(14),15-diene	[2]	pimara-8(14),15-diene	2
+M4HYP3	Monofunctional isopimaradiene synthase	di	di	Pinus contorta	Plantae	isopimara-7,15-diene	[4]	isopimara-7,15-diene	4
+M4HZ33	Alpha-bisabolol synthase	sesq	sesq	Artemisia annua	Plantae	α-bisabolol	[3]	α-bisabolol	3
+M5AW86	Trifunctional sesterterpene/triterpene/sesquarterpene synthase	sester; tri; sesquar	mixed	Alkalihalobacillus clausii	Bacteria	β-geranylfarnesene; β-hexaprene; β-heptaprene	[3, 1, 1]	β-hexaprene	1
+MW446505.1		sester	sester	Fusarium oxysporum	Fungi	fusoxypene A; fusoxypene B; fusoxypene C; (−)-astellatene	[1, 1, 1, 1]	fusoxypene A	1
+N4V6D4	Sesterterpene synthase btcA	sester	sester	Colletotrichum orbiculare	Fungi	betaestacin I	[6]	betaestacin I	6
+O04408	Ent-copalyl diphosphate synthase	di-int	di	Pisum sativum	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+O04806	Limonene cyclase	mono	mono	Perilla frutescens var. acuta	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+O06728	Farnesyl diphosphate phosphatase YisP	sesq	sesq	Bacillus subtilis	Bacteria	(2-trans,6-trans)-farnesol	[7]	(2-trans,6-trans)-farnesol	7
+O07854	4,4'-diapophytoene synthase	tri	tri	Staphylococcus aureus	Bacteria	15-cis-4,4'-diapophytoene	[2]	15-cis-4,4'-diapophytoene	2
+O13284	Ent-kaur-16-ene synthase	di	di	Phaeosphaeria sp.	Fungi	ent-kaurene	[31]	ent-kaurene	31
+O13489	Trichodiene synthase	sesq	sesq	Paramyrothecium roridum 	Fungi	trichodiene	[18]	trichodiene	18
+O22340	Limonene synthase	mono	mono	Abies grandis	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+O23390	Baruol synthase	tri	tri	Arabidopsis thaliana 	Plantae	baruol	[1]	baruol	1
+O23909	Terpene cyclase/mutase family member	tri	tri	Pisum sativum	Plantae	β-amyrin	[41]	β-amyrin	41
+O23945	(-)-alpha-pinene synthase	mono	mono	Fragaria vesca	Plantae	(−)-α-pinene; β-pinene; sabinene; β-myrcene; α-phellandrene; β-phellandrene	[26, 12, 13, 58, 14, 13]	β-pinene	12
+O24474	Myrcene synthase	mono	mono	Abies grandis	Plantae	β-myrcene	[58]	β-myrcene	58
+O24475	Pinene synthase	mono	mono	Abies grandis	Plantae	(−)-α-pinene; (−)-α-pinene	[26, 26]	(−)-α-pinene	26
+O48666	Squalene synthase 1	tri	tri	Panax ginseng	Plantae	squalene	[19]	squalene	19
+O48935	Beta-farnesene synthase	sesq; mono	mixed	Mentha piperita	Plantae	trans-β-farnesene; cis-β-farnesene; δ-cadinene; limonene; terpinolene; β-myrcene; γ-terpinene; (Z)-β-ocimene; (E)-β-ocimene; sabinene	[24, 1, 37, 33, 40, 58, 22, 15, 27, 13]	cis-β-farnesene	1
+O49853	(+)-delta-cadinene synthase isozyme C2	sesq	sesq	Gossypium arboreum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+O50406	Type B diterpene cyclase	di-int	di	Mycobacterium tuberculosis	Bacteria	tuberculosinyl diphosphate(3−)	[1]	tuberculosinyl diphosphate(3−)	1
+O59947	Trichodiene synthase	sesq	sesq	Stachybotrys chartarum	Fungi	trichodiene	[18]	trichodiene	18
+O64404	Delta-selinene synthase	sesq	sesq	Abies grandis 	Plantae	(1E,4E)-germacrene B; (+)-δ-selinene; (+)-guaia-6,9-diene	[9, 1, 1]	(+)-δ-selinene	1
+O64405	Gamma-humulene synthase	sesq	sesq	Abies grandis	Plantae	(1E,6E)-γ-humulene; sibirene; longifolene; β-himachalene; γ-himachalene; α-himachalene	[1, 1, 5, 1, 3, 1]	(1E,6E)-γ-humulene	1
+O64961	Germacrene C synthase	sesq; mono	mixed	Solanum lycopersicum	Plantae	germacrene C; (1E,4E,8E)-α-humulene; germacrene A; β-bisabolene; (1E,4E)-germacrene B; germacrene D; β-myrcene; limonene; terpinolene; α-pinene; delta-2-carene; α-terpinene	[5, 35, 6, 16, 9, 7, 58, 33, 40, 20, 4, 7]	delta-2-carene	4
+O65323	5-epiaristolochene synthase	sesq	sesq	Capsicum annuum	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+O65435	Terpenoid synthase 8	di	di	Arabidopsis thaliana	Plantae	rhizathalene A	[1]	rhizathalene A	1
+O74165	Squalene synthase	tri	tri	Cyberlindnera jadinii	Fungi	squalene	[19]	squalene	19
+O81086	Alpha-bisabolene synthase	sesq	sesq	Abies grandis	Plantae	(E,R)-α-bisabolene	[4]	(E,R)-α-bisabolene	4
+O81191	1,8-cineole synthase	mono	mono	Salvia officinalis	Plantae	1,8-cineole	[18]	1,8-cineole	18
+O81192	(+)-bornyl diphosphate synthase	mono	mono	Salvia officinalis	Plantae	(+)-bornyl diphosphate; (+)-camphene; (+)-α-pinene	[2, 1, 10]	(+)-camphene	1
+O81193	(+)-sabinene synthase	mono	mono	Salvia officinalis 	Plantae	(+)-sabinene	[9]	(+)-sabinene	9
+O81923	5-epi-aristolochene synthase	sesq	sesq	Capsicum annuum	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+O82139	Cycloartenol Synthase	tri	tri	Panax ginseng	Plantae	cycloartenol	[22]	cycloartenol	22
+O82140	Beta-amyrin synthase 1	tri	tri	Panax ginseng 	Plantae	β-amyrin	[41]	β-amyrin	41
+O82141	Terpene cyclase	tri	tri	Panax ginseng 	Plantae	lanosterol	[16]	lanosterol	16
+O82146	Beta-amyrin synthase 2	tri	tri	Panax ginseng 	Plantae	β-amyrin	[41]	β-amyrin	41
+P08196	Phytoene synthase 1, chloroplastic	tetra	tetra	Solanum lycopersicum	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+P0C565	Bifunctional chrysanthemol synthase	mono-int; mono	mixed	Tanacetum cinerariifolium	Plantae	(R,R)-chrysanthemyl diphosphate(3−); (R,R)-chrysanthemol; (R)-lavandulol	[3, 1, 1]	(R,R)-chrysanthemol	1
+P0C8Y0	Camelliol C synthase	tri	tri	Arabidopsis thaliana	Plantae	camelliol C; achilleol A	[1, 1]	camelliol C	1
+P0CJ43	(E)-beta-ocimene synthase	sesq	sesq	Arabidopsis thaliana	Plantae	(E,E)-α-farnesene	[9]	(E,E)-α-farnesene	9
+P0CV94	(3S,6E)-nerolidol synthase 1	sesq; mono	mixed	Fragaria ananassa	Plantae	(3S,6E)-nerolidol; (S)-linalool	[5, 10]	(3S,6E)-nerolidol	5
+P0CV95	(3S,6E)-nerolidol synthase 2, chloroplastic/mitochondrial	sesq; mono	mixed	Fragaria ananassa	Plantae	(3S,6E)-nerolidol; (S)-linalool	[5, 10]	(3S,6E)-nerolidol	5
+P0CV96	(3S,6E)-nerolidol synthase 1, chloroplastic	sesq; mono	mixed	Fragaria vesca	Plantae	(3S,6E)-nerolidol; linalool	[5, 27]	(3S,6E)-nerolidol	5
+P0DI76	1,8-cineole synthase 1	mono	mono	Arabidopsis thaliana	Plantae	1,8-cineole; sabinene; β-myrcene; (−)-β-pinene; (4S)-limonene; (E)-β-ocimene; α-terpineol; (−)-α-pinene; terpinolene; (+)-α-thujene	[18, 13, 58, 21, 18, 27, 14, 26, 40, 2]	(+)-α-thujene	2
+P0DI77	1,8-cineole synthase 2	mono	mono	Arabidopsis thaliana	Plantae	1,8-cineole; sabinene; β-myrcene; (−)-β-pinene; (4S)-limonene; (E)-β-ocimene; α-terpineol; (−)-α-pinene; terpinolene; (+)-α-thujene	[18, 13, 58, 21, 18, 27, 14, 26, 40, 2]	(+)-α-thujene	2
+P0DL13	Delta(6)-protoilludene synthase	sesq	sesq	Armillaria gallica	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+P0DPK6	Spiroviolene synthase	di	di	Streptomyces violens	Bacteria	(−)-spiroviolene	[2]	(−)-spiroviolene	2
+P13513	Trichodiene synthase	sesq	sesq	Fusarium sporotrichioides	Fungi	trichodiene	[18]	trichodiene	18
+P21683	"15-cis-phytoene synthase
+"	tetra	tetra	Pantoea ananas	Bacteria	15-cis-phytoene	[15]	15-cis-phytoene	15
+P21684	Geranylgeranyl diphosphate synthase	tetra	tetra	Pantoea ananas	Bacteria	phytoene	[2]	phytoene	2
+P27679	Trichodiene synthase	sesq	sesq	Gibberella pulicaris	Fungi	trichodiene	[18]	trichodiene	18
+P29704	Squalene synthase	tri	tri	Saccharomyces cerevisiae	Fungi	squalene	[19]	squalene	19
+P33247	Squalene--hopene cyclase	tri	tri	Alicyclobacillus acidocaldarius subsp. acidocaldarius	Bacteria	hop-22(29)-ene; hopan-22-ol	[4, 4]	hop-22(29)-ene	4
+P33990	Squalene--hopene cyclase	tri	tri	Zymomonas mobilis subsp. mobilis 	Bacteria	hop-22(29)-ene; hopan-22-ol	[4, 4]	hop-22(29)-ene	4
+P36596	Squalene synthase	tri	tri	Schizosaccharomyces pombe	Fungi	squalene	[19]	squalene	19
+P37268	Squalene synthase	tri; tri-int	mixed	Homo sapiens 	Animalia	squalene; presqualene diphosphate(3−)	[19, 4]	presqualene diphosphate(3−)	4
+P37269	15-cis-phytoene synthase	tetra-int; tetra	mixed	Synechococcus elongatus	Bacteria	prephytoene diphosphate; 15-cis-phytoene	[3, 15]	prephytoene diphosphate	3
+P37271	Phytoene synthase, chloroplastic	tetra	tetra	Arabidopsis thaliana	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+P37272	Bifunctional 15-cis-phytoene synthase, chromoplastic	tetra-int; tetra	mixed	Capsicum annuum	Plantae	prephytoene diphosphate; 15-cis-phytoene	[3, 15]	prephytoene diphosphate	3
+P37294	15-cis-phytoene synthase	tetra	tetra	Synechocystis sp.	Bacteria	15-cis-phytoene	[15]	15-cis-phytoene	15
+P37295	Bifunctional lycopene cyclase/phytoene synthase	tetra	tetra	Neurospora crassa	Fungi	15-cis-phytoene	[15]	15-cis-phytoene	15
+P38604	Lanosterol synthase	tri	tri	Saccharomyces cerevisiae	Fungi	lanosterol	[16]	lanosterol	16
+P38605	Cycloartenol synthase	tri	tri	Arabidopsis thaliana	Plantae	cycloartenol	[22]	cycloartenol	22
+P48449	Lanosterol synthase	tri	tri	Homo sapiens	Animalia	lanosterol	[16]	lanosterol	16
+P48450	Lanosterol synthase	tri	tri	Rattus norvegicus 	Animalia	lanosterol	[16]	lanosterol	16
+P49085	Phytoene synthase 1, chloroplastic	tetra	tetra	Zea mays	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+P53797	Phytoene synthase, chloroplastic	tetra	tetra	Narcissus pseudonarcissus	Plantae	phytoene	[2]	phytoene	2
+P53798	Squalene synthase	tri	tri	Mus musculus	Animalia	squalene	[19]	squalene	19
+P53799	Squalene synthase 1	tri	tri	Arabidopsis thaliana	Plantae	squalene	[19]	squalene	19
+P53800	Squalene synthase	tri	tri	Nicotiana benthamiana	Plantae	squalene	[19]	squalene	19
+P54924	"Squalene--hopene cyclase
+"	tri	tri	Bradyrhizobium diazoefficiens	Bacteria	hop-22(29)-ene; hopan-22-ol	[4, 4]	hop-22(29)-ene	4
+P54975	15-cis-phytoene synthase	tetra	tetra	Paracoccus sp.	Bacteria	15-cis-phytoene	[15]	15-cis-phytoene	15
+P59287	Casbene synthase	di	di	Ricinus communis	Plantae	casbene	[2]	casbene	2
+P84466	Lanosterol synthase	tri	tri	Bos taurus	Animalia	lanosterol	[16]	lanosterol	16
+P93665	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+P9WEP0	Aspergildiene synthase	sester	sester	Aspergillus ustus	Fungi	aspergiltriene A; aspergildiene A; aspergildiene B; aspergildiene C; aspergildiene D	[1, 1, 1, 1, 1]	aspergiltriene A	1
+P9WEV2	Preaspterpenacid I synthase sttA	sester	sester	Aspergillus terreus 	Fungi	preaspterpenacid acid I	[1]	preaspterpenacid acid I	1
+P9WEV6	Phomopsene synthase	di	di	Phomopsis amygdali	Fungi	phomopsene	[2]	phomopsene	2
+P9WEV7	Dolasta-1(15),8-diene synthase	di	di	Colletotrichum gloeosporioides	Fungi	(5R,12R,14S)-dolasta-1(15),8-diene; delta-araneosene	[1, 2]	(5R,12R,14S)-dolasta-1(15),8-diene	1
+P9WEW0	Delta(6)-protoilludene synthase	sesq	sesq	Stereum hirsutum	Fungi	Δ6-protoilludene; Δ6-protoilludene; (−)-β-elemene; (−)-β-caryophyllene; (+)-β-selinene; α-selinene	[20, 20, 26, 64, 8, 10]	(+)-β-selinene	8
+P9WEW1	Delta(6)-protoilludene synthase	sesq	sesq	Stereum hirsutum	Fungi	Δ6-protoilludene; (−)-β-elemene; Δ6-protoilludene; (−)-β-elemene; (−)-β-caryophyllene; (+)-β-selinene; α-selinene	[20, 26, 20, 26, 64, 8, 10]	(+)-β-selinene	8
+P9WEW2	Delta(6)-protoilludene synthase	sesq	sesq	Stereum hirsutum	Fungi	Δ6-protoilludene; (−)-β-elemene; Δ6-protoilludene; (−)-β-elemene; (−)-β-caryophyllene; (+)-β-selinene; α-selinene	[20, 26, 20, 26, 64, 8, 10]	(+)-β-selinene	8
+P9WEY4	Terpene synthase 4	mono; sesq	mixed	Physarum polycephalum	Amoebozoa	β-myrcene; α-muurolene; (−)-β-caryophyllene	[58, 18, 64]	α-muurolene	18
+P9WEY7	Terpene synthase 1	sesq; mono	mixed	Physarum polycephalum	Amoebozoa	γ-muurolene; α-muurolene; (−)-β-caryophyllene; β-myrcene; linalool; (E)-β-ocimene; (Z)-β-ocimene; limonene	[12, 18, 64, 58, 27, 27, 15, 33]	γ-muurolene	12
+P9WJ61	Tuberculosinyl adenosine transferase	di	di	Mycobacterium tuberculosis	Bacteria	(+)-copalol; manool; 13-epi-manool; (−)-ent-copalol; ent-manool; syn-copalol; (13S)-vitexifolin A	[1, 1, 1, 1, 1, 1, 2]	(+)-copalol	1
+PbTC-1		di; sesq; mono	mixed	Paramuricea biscaya	Coral	elisabethatriene; nephthene; geraniol	[2, 4, 21]	elisabethatriene	2
+PhTS-1	Germacrene D synthase	sesq; mono	mixed	Phakellia ventilabrum	Animalia	(-)-germacrene D; β-myricene; (E)-β-ocimene; α-phellandrene; β-terpinene; sylvestrene	[2, 5, 27, 14, 1, 1]	β-terpinene	1
+Q00835	Trichodiene synthase	sesq	sesq	Fusarium poae	Fungi	trichodiene	[18]	trichodiene	18
+Q00909	Trichodiene synthase	sesq	sesq	Gibberella zeae	Fungi	trichodiene	[18]	trichodiene	18
+Q00G37	Ent-cassa-12,15-diene synthase	di	di	Oryza sativa subsp. indica	Plantae	ent-cassa-12,15-diene	[2]	ent-cassa-12,15-diene	2
+Q02769	Squalene synthase	tri; tri-int	mixed	Rattus norvegicus 	Animalia	squalene; presqualene diphosphate(3−)	[19, 4]	presqualene diphosphate(3−)	4
+Q03471	Aristolochene synthase	sesq	sesq	Penicillium roqueforti	Bacteria	(+)-aristolochene	[4]	(+)-aristolochene	4
+Q04782	Lanosterol synthase	tri	tri	Candida albicans 	Fungi	lanosterol	[16]	lanosterol	16
+Q08IT1	Dammarenediol II synthase	tri	tri	Panax ginseng	Plantae	dammarenediol-II	[1]	dammarenediol-II	1
+Q0E088	Ent-cassa-12,15-diene synthase	di	di	Oryza sativa subsp. japonica	Plantae	ent-cassa-12,15-diene	[2]	ent-cassa-12,15-diene	2
+Q0JA82	Ent-kaur-16-ene synthase	di	di	Oryza sativa subsp. japonica	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q0JEZ8	9-beta-pimara-7,15-diene synthase	di	di	Oryza sativa subsp. japonica	Plantae	9β-pimara-7,15-diene	[2]	9β-pimara-7,15-diene	2
+Q0JF02	Syn-copalyl diphosphate synthase	di-int	di	Oryza sativa subsp. japonica	Plantae	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[4]	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	4
+Q0VHD6	(+)-germacrene D synthase	sesq	sesq	Zingiber officinale	Plantae	(+)-germacrene D	[6]	(+)-germacrene D	6
+Q10231	Lanosterol synthase	tri	tri	Schizosaccharomyces pombe	Fungi	lanosterol	[16]	lanosterol	16
+Q1AHB2	Stemod-13(17)-ene synthase	di	di	Oryza sativa subsp. indica	Plantae	stemod-13(17)-ene	[1]	stemod-13(17)-ene	1
+Q1EG72	(S)-beta-macrocarpene synthase	sesq; mono	mixed	Zea mays	Plantae	(S)-β-bisabolene; (S)-β-macrocarpene; trans-β-farnesene; (4S)-limonene; β-myrcene; terpinolene; (S)-linalool; β-phellandrene	[16, 3, 24, 18, 58, 40, 10, 13]	(S)-β-macrocarpene	3
+Q1ERD3	Terpene cyclase	tri	tri	Lotus japonicus	Plantae	lanosterol	[16]	lanosterol	16
+Q1G1A4	Lanosterol synthase	tri	tri	Arabidopsis thaliana	Plantae	lanosterol	[16]	lanosterol	16
+Q1PDD2	Germacrene A synthase	sesq	sesq	Artemisia annua	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+Q1XBU4	Beta-phellandrene synthase	mono	mono	Solanum lycopersicum	Plantae	β-phellandrene	[13]	β-phellandrene	13
+Q1XBU5	(R)-linalool synthase TPS5	sesq; mono	mixed	Solanum lycopersicum	Plantae	(R)-linalool; (6E)-nerolidol	[11, 16]	(R)-linalool	11
+Q20HU7	(-)-limonene synthase	mono	mono	Picea sitchensis	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+Q29VN2	Terpene synthase 2	sesq; di; mono	mixed	Zea mays	Plantae	(3S,6E)-nerolidol; geranyllinalool; (S)-linalool	[5, 7, 10]	(3S,6E)-nerolidol	5
+Q29VN3	Alpha-copaene synthase	sesq	sesq	Zea mays	Plantae	α-copaene; (+)-germacrene D; (−)-β-caryophyllene; δ-cadinene	[13, 6, 64, 37]	(+)-germacrene D	6
+Q2FV59	4,4'-diapophytoene synthase	tri	tri	Staphylococcus aureus	Bacteria	15-cis-4,4'-diapophytoene	[2]	15-cis-4,4'-diapophytoene	2
+Q2NM15	(E)-beta-farnesene synthase	sesq	sesq	Zea mays	Plantae	trans-β-farnesene; α-copaene; (−)-exo-α-bergamotene; (−)-β-caryophyllene; δ-cadinene; (+)-germacrene D; zingiberene; α-muurolene; (S)-β-bisabolene; β-sesquiphellandrene; sesquisabinene A	[24, 13, 14, 64, 37, 6, 9, 18, 16, 11, 2]	sesquisabinene A	2
+Q2QLV9	Phytoene synthase 2, chloroplastic	tetra	tetra	Oryza sativa subsp. japonica	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+Q2QQJ5	Ent-sandaracopimara-8(14),15-diene synthase	di	di	Oryza sativa subsp. japonica	Plantae	ent-sandaracopimara-8(14),15-diene; (12E)-9α-labda-8(17),12,14-triene	[1, 1]	ent-sandaracopimara-8(14),15-diene	1
+Q2R712	Achilleol B synthase	tri	tri	Oryza sativa subsp. japonica 	Plantae	achilleol B	[1]	achilleol B	1
+Q2WGL6	Terpene cyclase/mutase family member	tri	tri	Lotus japonicus	Plantae	cycloartenol	[22]	cycloartenol	22
+Q2WGL7	Terpene cyclase	tri	tri	Lotus japonicus	Plantae	lupeol	[14]	lupeol	14
+Q2WGL8	Terpene cyclase/mutase family member	tri	tri	Lotus japonicus	Plantae	β-amyrin	[41]	β-amyrin	41
+Q2XPU6	Cycloartenol synthase	tri	tri	Ricinus communis 	Plantae	cycloartenol	[22]	cycloartenol	22
+Q2XPU7	Lupeol synthase	tri	tri	Ricinus communis	Plantae	lupeol	[14]	lupeol	14
+Q2XSC4	Exo-alpha-bergamotene synthase	sesq	sesq	Lavandula angustifolia	Plantae	(−)-exo-α-bergamotene	[14]	(−)-exo-α-bergamotene	14
+Q2XSC5	R-linalool synthase	mono	mono	Lavandula angustifolia	Plantae	(R)-linalool	[11]	(R)-linalool	11
+Q2XSC6	(R)-limonene synthase	mono	mono	Lavandula angustifolia	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q308N0	Geraniol synthase, chloroplastic	mono	mono	Perilla frutescens	Plantae	geraniol	[21]	geraniol	21
+Q32W37	Valerianol synthase	sesq	sesq	Actinidia deliciosa	Plantae	(+)-germacrene D	[6]	(+)-germacrene D	6
+Q38710	Bifunctional abietadiene synthase	di-int; di	mixed	Abies grandis	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-7,13-diene; neoabietadiene	[16, 4, 6]	abieta-7,13-diene	4
+Q38802	Ent-copalyl diphosphate synthase	di-int	di	Arabidopsis thaliana	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q39548	Ent-kaur-16-ene synthase	di	di	Cucurbita maxima 	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q39760	(+)-delta-cadinene synthase isozyme XC14	sesq	sesq	Gossypium arboreum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q39761	(+)-delta-cadinene synthase isozyme XC1	sesq	sesq	Gossypium arboreum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q39978	Vetispiradiene synthase 1	sesq	sesq	Hyoscyamus muticus	Plantae	premnaspirodiene	[2]	premnaspirodiene	2
+Q401R5	Terpene cyclase/mutase family member	tri	tri	Euphorbia tirucalli	Plantae	β-amyrin	[41]	β-amyrin	41
+Q401R6	Terpene cyclase	tri	tri	Euphorbia tirucalli	Plantae	β-amyrin	[41]	β-amyrin	41
+Q40322	4S-limonene synthase	mono	mono	Mentha spicata	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+Q40577	5-epi-aristolochene synthase	sesq	sesq	Nicotiana tabacum	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+Q41594	Taxadiene synthase	di	di	Taxus brevifolia	Plantae	taxa-4,11-diene	[6]	taxa-4,11-diene	6
+Q41771	Ent-copalyl diphosphate synthase AN1	di-int	di	Zea mays 	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q43714	(+)-delta-cadinene synthase isozyme A	sesq	sesq	Gossypium arboreum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q49SP3	Patchoulol synthase	sesq	sesq	Pogostemon cablin	Plantae	patchoulol; α-guaiene; δ-guaiene	[1, 5, 8]	patchoulol	1
+Q49SP4	Germacrene D synthase 1	sesq	sesq	Pogostemon cablin	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q49SP5	Germacrene A synthase	sesq	sesq	Pogostemon cablin	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+Q49SP6	Germacrene D synthase 2	sesq	sesq	Pogostemon cablin	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q49SP7	Gamma-curcumene synthase	sesq	sesq	Pogostemon cablin 	Plantae	γ-curcumene	[8]	γ-curcumene	8
+Q4JHG3	Geraniol synthase	mono	mono	Perilla citriodora	Plantae	geraniol	[21]	geraniol	21
+Q4KSH9	Alpha-barbatene synthase	sesq	sesq	Arabidopsis thaliana	Plantae	(+)-α-barbatene; (+)-thujopsene; (+)-β-chamigrene	[1, 1, 1]	(+)-α-barbatene	1
+Q4QSN3	(-)-alpha-pinene/(-)-camphene synthase	mono	mono	Pseudotsuga menziesii	Plantae	(−)-α-pinene; (−)-camphene	[26, 5]	(−)-camphene	5
+Q4QSN4	(E)-gamma-bisabolene synthase	sesq	sesq	Pseudotsuga menziesii	Plantae	(E)-γ-bisabolene	[3]	(E)-γ-bisabolene	3
+Q4QSN6	Terpinolene synthase	mono	mono	Pseudotsuga menziesii	Plantae	terpinolene	[40]	terpinolene	40
+Q4U3F6	Alpha-copaene synthase	sesq	sesq	Helianthus annuus	Plantae	α-copaene; α-muurolene; (1E,4E,8E)-α-humulene	[13, 18, 35]	α-copaene	13
+Q4U3F7	Germacrene A synthase 1	sesq	sesq	Helianthus annuus	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+Q4VP11	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q4VP12	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q4WR16	Protostadienol synthase helA	tri	tri	Neosartorya fumigata	Fungi	(17Z)-protosta-17(20),24-dien-3β-ol	[4]	(17Z)-protosta-17(20),24-dien-3β-ol	4
+Q50EK2	Bifunctional levopimaradiene synthase	di-int; di	mixed	Pinus taeda	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-8(14),12-diene; neoabietadiene	[16, 7, 6]	neoabietadiene	6
+Q50L36	Isoprene synthase	hemi	hemi	Populus alba	Plantae	isoprene	[4]	isoprene	4
+Q54BE5	Terpene synthase 8	sesq	sesq	Dictyostelium discoideum	Amoebozoa	discoidol	[1]	discoidol	1
+Q54DR1	Squalene synthase	tri	tri	Dictyostelium discoideum	Amoebozoa	squalene	[19]	squalene	19
+Q55012	Pentalenene synthase	sesq	sesq	Streptomyces exfoliatus	Bacteria	pentalenene	[4]	pentalenene	4
+Q55D85	Cycloartenol synthase	tri	tri	Dictyostelium discoideum	Amoebozoa	cycloartenol	[22]	cycloartenol	22
+Q58GE8	Geranyl diphosphate synthase	mono	mono	Ips pini	Insecta	β-myrcene	[58]	β-myrcene	58
+Q5CD82	Monoterpene synthase	mono	mono	Citrus unshiu 	Plantae	1,8-cineole	[18]	1,8-cineole	18
+Q5D7Q8	Terpene cyclase/mutase family member	tri	tri	Aster sedifolius	Plantae	β-amyrin	[41]	β-amyrin	41
+Q5GJ59	Tau-cadinol synthase	sesq	sesq	Zea mays	Plantae	τ-cadinol	[4]	τ-cadinol	4
+Q5GJ60	(S)-beta-macrocarpene synthase	sesq; mono	mixed	Zea mays	Plantae	(S)-β-bisabolene; (E)-β-farnesene; (S)-β-macrocarpene; terpinolene; (4S)-limonene; β-myrcene; (S)-linalool	[16, 4, 3, 40, 18, 58, 10]	(S)-β-macrocarpene	3
+Q5KSN4	Ent-pimara-9(11),15-diene synthase	di	di	Streptomyces sp. 	Bacteria	ent-pimara-9(11),15-diene	[1]	ent-pimara-9(11),15-diene	1
+Q5KSN5	Ent-copalyl diphosphate synthase	di-int	di	Streptomyces sp.	Bacteria	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q5MQ85	Ent-copalyl diphosphate synthase 2	di-int	di	Oryza sativa subsp. indica	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q5NP67	Hydroxysqualene synthase	hsqs	hsqs	Zymomonas mobilis subsp. mobilis	Bacteria	(R)-12-hydroxysqualene	[2]	(R)-12-hydroxysqualene	2
+Q5SBP0	Terpinolene synthase	mono	mono	Ocimum basilicum	Plantae	terpinolene	[40]	terpinolene	40
+Q5SBP1	Beta-myrcene synthase	mono	mono	Ocimum basilicum	Plantae	β-myrcene	[58]	β-myrcene	58
+Q5SBP2	(-)-endo-fenchol synthase	mono	mono	Ocimum basilicum	Plantae	(−)-endo-fenchol	[4]	(−)-endo-fenchol	4
+Q5SBP3	R-linalool synthase	mono	mono	Ocimum basilicum	Plantae	(R)-linalool	[11]	(R)-linalool	11
+Q5SBP4	Alpha-zingiberene synthase	sesq	sesq	Ocimum basilicum	Plantae	zingiberene	[9]	zingiberene	9
+Q5SBP5	Gamma-cadinene synthase	sesq	sesq	Ocimum basilicum	Plantae	(+)-γ-cadinene	[3]	(+)-γ-cadinene	3
+Q5SBP6	Germacrene-D synthase	sesq	sesq	Ocimum basilicum	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q5SBP7	Selinene synthase	sesq	sesq	Ocimum basilicum	Plantae	(+)-β-selinene; α-selinene	[8, 10]	(+)-β-selinene	8
+Q5UB07	Tricyclene synthase TPS4	mono	mono	Medicago truncatula	Plantae	tricyclene	[9]	tricyclene	9
+Q5W283	Cis-muuroladiene synthase	sesq	sesq	Mentha piperita	Plantae	cis-muurola-3,5-diene; cis-muurola-4(14),5-diene	[2, 1]	cis-muurola-4(14),5-diene	1
+Q64K29	(-)-germacrene D synthase	sesq	sesq	Populus trichocarpa	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q66PX8	Beta-caryophyllene synthase	sesq	sesq	Cucumis sativus	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+Q66QH3	9-beta-pimara-7,15-diene synthase	di	di	Oryza sativa subsp. indica	Plantae	9β-pimara-7,15-diene	[2]	9β-pimara-7,15-diene	2
+Q672F7	Tricyclene synthase EBOS	mono	mono	Lotus japonicus	Plantae	tricyclene; (E)-β-ocimene	[9, 27]	tricyclene	9
+Q673F9	Ent-kaurene synthase-like protein 1	di	di	Hordeum vulgare subsp. vulgare	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q675L0	Longifolene synthase	sesq	sesq	Picea abies	Plantae	longifolene	[5]	longifolene	5
+Q675L1	(-)-limonene synthase	mono	mono	Picea abies	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+Q675L4	Bifunctional levopimaradiene synthase	di-int; di	mixed	Picea abies 	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-8(14),12-diene	[16, 7]	abieta-8(14),12-diene	7
+Q675L5	Bifunctional isopimaradiene synthase	di-int; di	mixed	Picea abies	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); isopimara-7,15-diene	[16, 4]	isopimara-7,15-diene	4
+Q675L6	E-alpha-bisabolene synthase	sesq	sesq	Picea abies	Plantae	(E)-α-bisabolene	[6]	(E)-α-bisabolene	6
+Q67DX4	Taxa-4(5),11(12)-diene synthase	di	di	Taxus canadensis	Plantae	taxa-4,11-diene	[6]	taxa-4,11-diene	6
+Q6A1B7	Trichodiene synthase	sesq	sesq	Trichoderma harzianum	Fungi	trichodiene	[18]	trichodiene	18
+Q6BDZ9	Stemar-13-ene synthase	di	di	Oryza sativa subsp. japonica	Plantae	stemar-13-ene	[1]	stemar-13-ene	1
+Q6BE24	Cucurbitadienol synthase	tri	tri	Cucurbita pepo	Plantae	cucurbitadienol	[2]	cucurbitadienol	2
+Q6BE25	Cycloartenol synthase	tri	tri	Cucurbita pepo	Plantae	cycloartenol	[22]	cycloartenol	22
+Q6E7D7	Syn-copalyl diphosphate synthase	di-int	di	Oryza sativa subsp. indica	Plantae	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[4]	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	4
+Q6EI12	Phytoene synthase 2, chloroplastic	tetra	tetra	Zea mays	Plantae	15-cis-phytoene	[15]	15-cis-phytoene	15
+Q6EJ97	Isoprene synthase, chloroplastic	hemi	hemi	Pueraria montana var. lobata	Plantae	isoprene	[4]	isoprene	4
+Q6ET36	Ent-copalyl diphosphate synthase 1	di-int	di	Oryza sativa subsp. japonica 	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q6F5G9	Beta-pinene synthase	mono	mono	Citrus unshiu	Plantae	(−)-β-pinene	[21]	(−)-β-pinene	21
+Q6F5H0	Gamma-terpinene synthase	mono	mono	Citrus unshiu	Plantae	γ-terpinene	[22]	γ-terpinene	22
+Q6F5H1	Gamma-terpinene synthase	mono	mono	Citrus unshiu	Plantae	γ-terpinene	[22]	γ-terpinene	22
+Q6F5H2	D-limonene synthase	mono	mono	Citrus unshiu	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q6F5H3	D-limonene synthase	mono	mono	Citrus unshiu	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q6IW97	Terpene cyclase/mutase family member	tri	tri	Avena ventricosa	Plantae	β-amyrin	[41]	β-amyrin	41
+Q6IWA3	Terpene cyclase/mutase family member	tri	tri	Avena ventricosa	Plantae	β-amyrin	[41]	β-amyrin	41
+Q6JD70	Sesquithujene synthase A	sesq	sesq	Zea mays	Plantae	sesquithujene; (S)-β-bisabolene; (−)-endo-α-bergamotene; (−)-β-curcumene; γ-curcumene; sesquisabinene B	[1, 16, 4, 3, 8, 5]	sesquithujene	1
+Q6JD73	7-epi-sesquithujene synthase	sesq	sesq	Zea mays	Plantae	7-epi-sesquithujene; (−)-exo-α-bergamotene; (S)-β-bisabolene; γ-curcumene; sesquisabinene A; (−)-β-curcumene	[1, 14, 16, 8, 2, 3]	7-epi-sesquithujene	1
+Q6N3F1	Hydroxysqualene synthase	hsqs	hsqs	Rhodopseudomonas palustris	Bacteria	(R)-12-hydroxysqualene	[2]	(R)-12-hydroxysqualene	2
+Q6N3F2	Presqualene diphosphate synthase	tri-int	tri	Rhodopseudomonas palustris	Bacteria	presqualene diphosphate(3−)	[4]	presqualene diphosphate(3−)	4
+Q6PWU2	(-)-alpha-terpineol synthase	mono	mono	Vitis vinifera	Plantae	(S)-(−)-α-terpineol	[14]	(S)-(−)-α-terpineol	14
+Q6Q3H2	Valencene synthase	sesq	sesq	Vitis vinifera	Plantae	(+)-valencene; (-)-7-epi-α-selinene; β-caryophyllene; germacrene D; α-humulene; aristolochene	[7, 1, 1, 7, 2, 1]	(-)-7-epi-α-selinene	1
+Q6Q3H3	(-)-germacrene D synthase	sesq	sesq	Vitis vinifera	Plantae	(1E,4S,5E,7R)-germacra-1(10),5-dien-11-ol; (−)-germacrene D	[2, 24]	(1E,4S,5E,7R)-germacra-1(10),5-dien-11-ol	2
+Q6QZW7	Terpene cyclase/mutase family member	tri	tri	Centella asiatica	Plantae	cycloartenol	[22]	cycloartenol	22
+Q6QZW8	Terpene cyclase/mutase family member	tri	tri	Centella asiatica	Plantae	β-amyrin	[41]	β-amyrin	41
+Q6SA60	Taxadiene synthase	di	di	Taxus x media	Plantae	taxa-4,11-diene	[6]	taxa-4,11-diene	6
+Q6TBY0	Taxadiene synthase	di	di	Taxus baccata	Plantae	taxa-4,11-diene	[6]	taxa-4,11-diene	6
+Q6TH91	(-)-germacrene D synthase	sesq	sesq	Solidago canadensis	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q6TH92	(+)-germacrene D synthase	sesq	sesq	Solidago canadensis	Plantae	(+)-germacrene D	[6]	(+)-germacrene D	6
+Q6USK1	Geraniol synthase	mono	mono	Ocimum basilicum	Plantae	geraniol	[21]	geraniol	21
+Q6WP50	Presilphiperfolan-8-beta-ol synthase	sesq	sesq	Botryotinia fuckeliana	Fungi	presilphiperfolan-8β-ol	[1]	presilphiperfolan-8β-ol	1
+Q6XDB5	Pinene synthase	mono	mono	Picea sitchensis 	Plantae	(−)-α-pinene; (−)-β-pinene	[26, 21]	(−)-β-pinene	21
+Q6YN71	Guaiadiene synthase	sesq	sesq	Ixeris dentata	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+Q6Z2X6	Cycloartenol synthase	tri	tri	Oryza sativa subsp. japonica	Plantae	cycloartenol	[22]	cycloartenol	22
+Q6Z5I0	Ent-copalyl diphosphate synthase 2, chloroplastic	di-int	di	Oryza sativa subsp. japonica	Plantae	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	[21]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q6Z5J6	Ent-pimara-8(14),15-diene synthase	di	di	Oryza sativa subsp. japonica	Plantae	ent-pimara-8(14),15-diene	[2]	ent-pimara-8(14),15-diene	2
+Q6ZH94	S-(+)-linalool synthase, chloroplastic	mono	mono	Oryza sativa subsp. japonica	Plantae	(S)-linalool	[10]	(S)-linalool	10
+Q6ZJL3	(E)-beta-caryophyllene/beta-elemene synthase	sesq	sesq	Oryza sativa	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+Q70EZ6	Germacrene D synthase	sesq	sesq	Solidago canadensis	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q70EZ7	Germacrene D synthase	sesq	sesq	Solidago canadensis	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q71MJ3	Valencene synthase	sesq	sesq	Citrus sinensis	Plantae	(+)-valencene	[7]	(+)-valencene	7
+Q75WN1	Limonene/borneol synthase	mono	mono	Chamaecyparis obtusa	Plantae	limonene	[33]	limonene	33
+Q764T8	Lupeol synthase	tri	tri	Glycyrrhiza glabra 	Plantae	lupeol	[14]	lupeol	14
+Q796C3	Sporulenol synthase	sesquar	sesquar	Bacillus subtilis	Bacteria	sporulenol	[1]	sporulenol	1
+Q7LJF8	Trichodiene synthase	sesq	sesq	"Fusarium cortaderiae
+"	Fungi	trichodiene	[18]	trichodiene	18
+Q7LJR6	Trichodiene synthase	sesq	sesq	"Fusarium acaciae-mearnsii
+"	Fungi	trichodiene	[18]	trichodiene	18
+Q7X9A3	Epi-arisotolchene synthase 110	sesq	sesq	Nicotiana tabacum	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+Q7XAS7	Isoprene synthase, chloroplastic	hemi	hemi	Populus tremuloides	Plantae	isoprene	[4]	isoprene	4
+Q7XYS8	Monoterpene synthase FDS-5, chloroplastic	mono	mono	Artemisia spiciformis	Plantae	(R,R)-chrysanthemyl diphosphate(3−); (R)-lavandulyl diphosphate(3−); (R,R)-chrysanthemyl diphosphate(3−); (R)-lavandulyl diphosphate(3−)	[3, 2, 3, 2]	(R)-lavandulyl diphosphate(3−)	2
+Q7Z859	Bifunctional lycopene cyclase/phytoene synthase	tetra; tetra-int	mixed	Phaffia rhodozyma	Fungi	15-cis-phytoene; γ-carotene; β-carotene	[15, 1, 1]	γ-carotene	1
+Q82IY4	Pentalenene synthase	sesq	sesq	Streptomyces avermitilis	Bacteria	pentalenene	[4]	pentalenene	4
+Q82RR7	Avermitilol synthase	sesq	sesq	Streptomyces avermitilis 	Bacteria	avermitilol	[1]	avermitilol	1
+Q84KL3	(+)-alpha-pinene synthase	mono	mono	Pinus taeda	Plantae	(+)-α-pinene	[10]	(+)-α-pinene	10
+Q84KL4	(-)-alpha-terpineol synthase	mono	mono	Pinus taeda	Plantae	(S)-(−)-α-terpineol	[14]	(S)-(−)-α-terpineol	14
+Q84KL5	Alpha-farnesene synthase	sesq	sesq	Pinus taeda	Plantae	(E,E)-α-farnesene	[9]	(E,E)-α-farnesene	9
+Q84KL6	(-)-alpha-pinene synthase	mono	mono	Pinus taeda	Plantae	(−)-α-pinene	[26]	(−)-α-pinene	26
+Q84LB2	(E,E)-alpha-farnesene synthase	sesq; mono	mixed	Malus domestica	Plantae	(Z,E)-α-farnesene; (E,E)-α-farnesene; (E)-β-ocimene; geraniol; (R)-linalool; (S)-linalool	[1, 9, 27, 21, 11, 10]	(Z,E)-α-farnesene	1
+Q84LF0	5-epi-aristolochene synthase 2	sesq	sesq	Nicotiana attenuata	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+Q84LF1	5-epi-aristolochene synthase 1	sesq	sesq	Nicotiana attenuata	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+Q84LF2	5-epi-aristolochene synthase 3	sesq	sesq	Nicotiana attenuata 	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+Q84LG0	Probable 5-epi-aristolochene synthase 4	sesq	sesq	Nicotiana attenuata 	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+Q84NC8	Tricyclene synthase 0e23	mono	mono	Antirrhinum majus 	Plantae	tricyclene	[9]	tricyclene	9
+Q84NC9	Tricyclene synthase 1e20	mono	mono	Antirrhinum majus 	Plantae	tricyclene	[9]	tricyclene	9
+Q84ND0	Tricyclene synthase Oc15	mono	mono	Antirrhinum majus	Plantae	tricyclene	[9]	tricyclene	9
+Q84PE1	Terpene cyclase/mutase family member	tri	tri	Lotus japonicus	Plantae	β-amyrin; lupeol	[41, 14]	lupeol	14
+Q84PE3	Terpene cyclase/mutase family member	tri	tri	Medicago truncatula	Plantae	β-amyrin	[41]	β-amyrin	41
+Q84SM8	Carene synthase	mono	mono	Picea abies	Plantae	(+)-car-3-ene	[11]	(+)-car-3-ene	11
+Q84UU4	Alpha-humulene/(-)-(E)-beta-caryophyllene synthase	sesq	sesq	Arabidopsis thaliana	Plantae	(1E,4E,8E)-α-humulene; (−)-β-caryophyllene	[35, 64]	(1E,4E,8E)-α-humulene	35
+Q84UU9	Dolabella-3,7-dien-18-ol synthase TPS06	di	di	Arabidopsis thaliana	Plantae	(3E,7E)-dolabella-3,7-dien-18-ol	[2]	(3E,7E)-dolabella-3,7-dien-18-ol	2
+Q84UV0	S-(+)-linalool synthase	mono	mono	Arabidopsis thaliana	Plantae	(S)-linalool	[10]	(S)-linalool	10
+Q84ZW8	Acyclic sesquiterpene synthase	di; sesq; mono	mixed	Zea mays	Plantae	ent-kaurene; trans-β-farnesene; (3R,6E)-nerolidol; (2-trans,6-trans)-farnesol; geraniol; (R)-linalool	[31, 24, 1, 7, 21, 11]	(3R,6E)-nerolidol	1
+Q8BLN5	Lanosterol synthase	tri	tri	Mus musculus 	Animalia	lanosterol	[16]	lanosterol	16
+Q8GSL7	Terpene cyclase/mutase family member	tri	tri	Medicago truncatula	Plantae	β-amyrin	[41]	β-amyrin	41
+Q8GUE4	Geraniol synthase	mono	mono	Cinnamomum tenuipile 	Plantae	geraniol	[21]	geraniol	21
+Q8H2B4	R-linalool synthase	mono	mono	Mentha aquatica	Plantae	(R)-linalool	[11]	(R)-linalool	11
+Q8L5J7	3-carene synthase	mono	mono	Salvia stenophylla	Plantae	(+)-car-3-ene	[11]	(+)-car-3-ene	11
+Q8L5K1	(+)-limonene synthase 2	mono	mono	Citrus limon 	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q8L5K2	(-)-beta-pinene synthase	mono	mono	Citrus limon	Plantae	(−)-β-pinene	[21]	(−)-β-pinene	21
+Q8L5K3	(R)-limonene synthase 1	mono	mono	Citrus limon 	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q8L5K4	Gamma-terpinene synthase, chloroplastic	mono	mono	Citrus limon	Plantae	γ-terpinene; limonene; α-pinene; β-pinene; terpinolene; α-thujene; α-terpinene; β-myrcene; sabinene	[22, 33, 20, 12, 40, 7, 7, 58, 13]	α-thujene	7
+Q8LSC2	Germacrene A synthase short form	sesq	sesq	Cichorium intybus (Chicory)	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+Q8LSC3	Germacrene A synthase long form	sesq	sesq	Cichorium intybus 	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+Q8NIC1	Trichodiene synthase	sesq	sesq	Fusarium cerealis	Fungi	trichodiene	[18]	trichodiene	18
+Q8NIC8	Trichodiene synthase	sesq	sesq	Fusarium meridionale	Fungi	trichodiene	[18]	trichodiene	18
+Q8NID7	Trichodiene synthase	sesq	sesq	Fusarium pseudograminearum	Fungi	trichodiene	[18]	trichodiene	18
+Q8NIG9	Trichodiene synthase	sesq	sesq	Fusarium culmorum	Fungi	trichodiene	[18]	trichodiene	18
+Q8NIH0	Trichodiene synthase	sesq	sesq	Fusarium austroamericanum	Fungi	trichodiene	[18]	trichodiene	18
+Q8NIH3	Trichodiene synthase	sesq	sesq	Fusarium boothii	Fungi	trichodiene	[18]	trichodiene	18
+Q8NIH6	Trichodiene synthase	sesq	sesq	Fusarium asiaticum	Fungi	trichodiene	[18]	trichodiene	18
+Q8NJA1	Trichodiene synthase	sesq	sesq	"Fusarium mesoamericanum
+"	Fungi	trichodiene	[18]	trichodiene	18
+Q8RWT0	Amyrin synthase LUP2	tri	tri	Arabidopsis thaliana	Plantae	β-amyrin; α-amyrin; lupeol	[41, 4, 14]	α-amyrin	4
+Q8S3A5	Germacrene A synthase LTC2	sesq	sesq	Lactuca sativa	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+Q8S3A6	Germacrene A synthase LTC1	sesq	sesq	Lactuca sativa	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+Q8SA63	Beta-caryophyllene synthase	sesq	sesq	Artemisia annua	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+Q8VWY3	Terpene cyclase/mutase family member	tri	tri	Hellenia speciosa	Plantae	lupeol; germanicol; β-amyrin	[14, 3, 41]	germanicol	3
+Q8VWY4	Terpene cyclase	tri	tri	Hellenia speciosa	Plantae	cycloartenol	[22]	cycloartenol	22
+Q8W1D0	Sesquiterpene cyclase	mono	mono	Zea mays	Plantae	(S)-(−)-α-terpineol	[14]	(S)-(−)-α-terpineol	14
+Q8W3Z0	Terpene cyclase/mutase family member	tri	tri	Betula platyphylla	Plantae	β-amyrin	[41]	β-amyrin	41
+Q8W3Z1	Beta-amyrin synthase	tri	tri	Betula platyphylla 	Plantae	β-amyrin	[41]	β-amyrin	41
+Q8W3Z2	Lupeol synthase	tri	tri	Betula platyphylla	Plantae	lupeol	[14]	lupeol	14
+Q8W3Z3	Cycloartenol synthase 2	tri	tri	Betula platyphylla	Plantae	cycloartenol	[22]	cycloartenol	22
+Q8W3Z4	Cycloartenol synthase	tri	tri	Betula platyphylla	Plantae	cycloartenol	[22]	cycloartenol	22
+Q8YN85	Terpene synthase	sesq	sesq	Nostoc sp.	Bacteria	(−)-germacrene A	[24]	(−)-germacrene A	24
+Q93WU1	Terpene cyclase/mutase family member	tri	tri	Avena strigosa	Plantae	β-amyrin	[41]	β-amyrin	41
+Q93X23	Myrcene synthase	mono	mono	Quercus ilex	Plantae	β-myrcene; limonene; α-pinene; sabinene; β-pinene	[58, 33, 20, 13, 12]	β-pinene	12
+Q93YA3	Taxadiene synthase	di	di	Taxus baccata	Plantae	taxa-4,11-diene	[6]	taxa-4,11-diene	6
+Q93YV0	(E,E)-geranyllinalool synthase	di	di	Arabidopsis thaliana	Plantae	geranyllinalool	[7]	geranyllinalool	7
+Q940E7	D-limonene synthase	mono	mono	Agastache rugosa	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q941S0	Terpene cyclase	tri	tri	Avena strigosa 	Plantae	cycloartenol	[22]	cycloartenol	22
+Q947C4	Bifunctional levopimaradiene synthase	di-int; di	mixed	Ginkgo biloba 	Plantae	5α,9α,10β-labda-8(20),13-dien-15-yl diphosphate(3−); abieta-8(14),12-diene	[16, 7]	abieta-8(14),12-diene	7
+Q948R6	Isomultiflorenol synthase	tri	tri	Luffa aegyptiaca	Plantae	isomultiflorenol	[3]	isomultiflorenol	3
+Q948Z0	Camphene synthase	mono	mono	Abies grandis	Plantae	(−)-camphene	[5]	(−)-camphene	5
+Q94G53	(-)-beta-pinene synthase	mono	mono	Artemisia annua	Plantae	(−)-β-pinene	[21]	(−)-β-pinene	21
+Q94JS8	(E)-beta-farnesene synthase	sesq	sesq	Citrus junos	Plantae	trans-β-farnesene	[24]	trans-β-farnesene	24
+Q96376	S-linalool synthase	mono	mono	Clarkia breweri	Plantae	(S)-linalool	[10]	(S)-linalool	10
+Q96WJ0	Lanosterol synthase	tri	tri	Pneumocystis carinii	Fungi	lanosterol	[16]	lanosterol	16
+Q96WT2	Aphidicolan-16-beta-ol synthase	di-int; di	mixed	Pleospora betae	Fungi	5α,9β,10α-labda-8(20),13-dien-15-yl diphosphate(3−); aphidicolan-16β-ol	[4, 1]	aphidicolan-16β-ol	1
+Q9AJE3	Terpentetriene synthase	di	di	Kitasatospora griseola	Bacteria	terpentetriene	[1]	terpentetriene	1
+Q9AJE4	Terpentedienyl-diphosphate synthase	di-int	di	Kitasatospora griseola	Bacteria	terpentedienyl diphosphate(3−)	[1]	terpentedienyl diphosphate(3−)	1
+Q9AR04	Amorpha-4,11-diene synthase	sesq	sesq	Artemisia annua	Plantae	amorpha-4,11-diene	[3]	amorpha-4,11-diene	3
+Q9AR67	Germacrene A synthase	sesq	sesq	Solidago canadensis	Plantae	(+)-(R)-germacrene A	[12]	(+)-(R)-germacrene A	12
+Q9AR86	Isoprene synthase, chloroplastic	hemi	hemi	Populus canescens	Plantae	isoprene	[4]	isoprene	4
+Q9AXM7	Limonene synthase	mono	mono	Perilla frutescens var. frutescens	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+Q9C5M3	Lupeol synthase 1	tri	tri	Arabidopsis thaliana 	Plantae	lupan-3β,20-diol; lupeol	[1, 14]	lupan-3β,20-diol	1
+Q9C748	Terpenoid synthase 28	sesq	sesq	Arabidopsis thaliana	Plantae	(2Z,6E)-hedycaryol	[2]	(2Z,6E)-hedycaryol	2
+Q9F1V8	"2-methylisoborneol synthase
+"	mono	mono	"Streptomyces griseus
+"	Bacteria	2-methylisoborneol	[5]	2-methylisoborneol	5
+Q9F1Y6	2-methylisoborneol synthase	mono	mono	Streptomyces coelicolor	Bacteria	2-methylisoborneol	[5]	2-methylisoborneol	5
+Q9FI37	Thalianol synthase 1	tri	tri	Arabidopsis thaliana	Plantae	thalianol	[1]	thalianol	1
+Q9FJV8	Marneral synthase	tri	tri	Arabidopsis thaliana 	Plantae	marneral	[1]	marneral	1
+Q9FQ26	Sesquiterpene synthase 2	sesq	sesq	Solanum habrochaites	Plantae	(−)-germacrene D	[24]	(−)-germacrene D	24
+Q9FQ27	(E,E)-germacrene B synthase	sesq	sesq	Solanum habrochaites	Plantae	(1E,4E)-germacrene B	[9]	(1E,4E)-germacrene B	9
+Q9FQM1	Terpene cyclase	tri	tri	Abies magnifica 	Plantae	cycloartenol	[22]	cycloartenol	22
+Q9FR95	Arabidiol synthase	tri	tri	Arabidopsis thaliana 	Plantae	arabidiol	[1]	arabidiol	1
+Q9FT37	Taxadiene synthase	di	di	Taxus wallichiana var. chinensis	Plantae	taxa-4,11-diene	[6]	taxa-4,11-diene	6
+Q9FUW5	(+)-4R-limonene synthase	mono	mono	Schizonepeta tenuifolia	Plantae	(4R)-limonene	[11]	(4R)-limonene	11
+Q9FV72	Limonene synthase	mono	mono	Perilla frutescens	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+Q9FXV8	Ent-kaurene synthase No1	di	di	Lactuca sativa	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q9FXY7	(E)-beta-farnesene synthase	sesq	sesq	Artemisia annua	Plantae	trans-β-farnesene	[24]	trans-β-farnesene	24
+Q9FZI2	Lupeol synthase 5	tri	tri	Arabidopsis thaliana	Plantae	tirucalla-7,24-dien-3β-ol	[4]	tirucalla-7,24-dien-3β-ol	4
+Q9HGZ6	Squalene synthase	tri	tri	Candida glabrata	Fungi	squalene	[19]	squalene	19
+Q9K499	Epi-isozizaene synthase	sesq	sesq	Streptomyces coelicolor	Bacteria	(+)-epi-isozizaene	[1]	(+)-epi-isozizaene	1
+Q9LLR9	Epi-cedrol synthase	sesq	sesq	Artemisia annua 	Plantae	epi-cedrol	[1]	epi-cedrol	1
+Q9LRH7	Mixed-amyrin synthase	tri	tri	Pisum sativum	Plantae	β-amyrin; α-amyrin	[41, 4]	α-amyrin	4
+Q9LRH8	Beta-amyrin synthase	tri	tri	Pisum sativum	Plantae	β-amyrin	[41]	β-amyrin	41
+Q9LRR2	Terpenoid synthase 17	sester	sester	Arabidopsis thaliana	Plantae	quiannulatene	[2]	quiannulatene	2
+Q9LRZ6	(E)-beta-ocimene synthase 2	mono	mono	Arabidopsis thaliana	Plantae	sabinene; β-pinene	[13, 12]	β-pinene	12
+Q9LUE0	Terpenoid synthase 19	sester	sester	Arabidopsis thaliana	Plantae	(−)-retigeranin B	[1]	(−)-retigeranin B	1
+Q9LUE2	Terpenoid synthase 18	sester	sester	Arabidopsis thaliana	Plantae	(+)-thalianatriene	[1]	(+)-thalianatriene	1
+Q9LVP7	Putative terpenoid synthase 16	sesq	sesq	Arabidopsis thaliana	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q9LVY2	Tirucalladienol synthase	tri	tri	Arabidopsis thaliana 	Plantae	tirucalla-7,24-dien-3β-ol	[4]	tirucalla-7,24-dien-3β-ol	4
+Q9M7C9	Limonene/alpha-pinene synthase	mono	mono	Abies grandis	Plantae	(4S)-limonene; (−)-α-pinene	[18, 26]	(4S)-limonene	18
+Q9M7D0	Terpinolene synthase	mono	mono	Abies grandis	Plantae	terpinolene	[40]	terpinolene	40
+Q9M7D1	Beta-phellandrene synthase	mono	mono	Abies grandis	Plantae	(−)-β-phellandrene	[9]	(−)-β-phellandrene	9
+Q9MB42	Beta-amyrin synthase	tri	tri	Glycyrrhiza glabra	Plantae	β-amyrin	[41]	β-amyrin	41
+Q9SAK2	Ent-kaur-16-ene synthase	di	di	Arabidopsis thaliana	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q9SDW9	Squalene synthase BSS	tri	tri	Botryococcus braunii	Plantae	squalene	[19]	squalene	19
+Q9SLP9	Cycloartenol synthase	tri	tri	Luffa aegyptiaca 	Plantae	cycloartenol	[22]	cycloartenol	22
+Q9SLW0	Terpene cyclase/mutase family member	tri	tri	Taraxacum officinale	Plantae	lanosterol	[16]	lanosterol	16
+Q9SLW1	Terpene cyclase/mutase family member	tri	tri	Taraxacum officinale	Plantae	lupeol; β-amyrin; lanosterol	[14, 41, 16]	lupeol	14
+Q9SLW3	Terpene cyclase/mutase family member	tri	tri	Olea europaea	Plantae	β-amyrin; lupeol	[41, 14]	lupeol	14
+Q9SPN1	R-linalool synthase QH5	mono	mono	Artemisia annua	Plantae	(R)-linalool	[11]	(R)-linalool	11
+Q9SSU5	Terpene cyclase/mutase family member	tri	tri	Luffa aegyptiaca	Plantae	β-amyrin	[41]	β-amyrin	41
+Q9SSZ2	Terpene cyclase/mutase family member	tri	tri	Allium macrostemon	Plantae	cycloartenol	[22]	cycloartenol	22
+Q9SW76	Limonene synthase	mono	mono	Mentha longifolia	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+Q9SW77	(+)-delta-cadinene synthase	sesq	sesq	Gossypium arboreum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+Q9SXV6	Cycloartenol synthase	tri	tri	Glycyrrhiza glabra	Plantae	cycloartenol	[22]	cycloartenol	22
+Q9SYN1	Seco-amyrin synthase	tri	tri	Arabidopsis thaliana	Plantae	α-seco-amyrin; β-seco-amyrin; taraxasterol; isomultiflorenol	[1, 1, 1, 3]	α-seco-amyrin	1
+Q9T0J9	(Z)-gamma-bisabolene synthase 1	sesq	sesq	Arabidopsis thaliana 	Plantae	(Z)-γ-bisabolene	[9]	(Z)-γ-bisabolene	9
+Q9T0K1	(Z)-gamma-bisabolene synthase 2	sesq	sesq	Arabidopsis thaliana	Plantae	(Z)-γ-bisabolene	[9]	(Z)-γ-bisabolene	9
+Q9UR08	Aristolochene synthase	sesq	sesq	Aspergillus terreus	Fungi	(+)-aristolochene	[4]	(+)-aristolochene	4
+Q9UVY5	Ent-kaur-16-ene synthase	di-int; di	mixed	Gibberella fujikuroi	Fungi	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−); ent-kaurene	[21, 31]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+Q9X839	Germacradienol/geosmin synthase	sesq	sesq	Streptomyces coelicolor 	Bacteria	(1E,4S,5E,7R)-germacra-1(10),5-dien-11-ol; (−)-germacrene D; geosmin	[2, 24, 1]	geosmin	1
+Q9XEH9	Kaurene synthase	di	di	Stevia rebaudiana	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q9XEI0	Ent-kaurene synthase 2	di	di	Stevia rebaudiana	Plantae	ent-kaurene	[31]	ent-kaurene	31
+Q9XJ32	Vetispiradiene synthase 1	sesq	sesq	Solanum tuberosum 	Plantae	premnaspirodiene	[2]	premnaspirodiene	2
+Q9Y753	Squalene synthase	tri	tri	Yarrowia lipolytica	Fungi	squalene	[19]	squalene	19
+Q9ZTN8	Copalyl diphosphate synthase 1	di-int	di	Cucurbita maxima	Plantae	(+)-copalyl diphosphate	[6]	(+)-copalyl diphosphate	6
+Q9ZUH4	Tricyclene synthase	mono	mono	Arabidopsis thaliana	Plantae	tricyclene	[9]	tricyclene	9
+R4HEK6	Nerol synthase	mono	mono	Glycine max	Plantae	nerol	[2]	nerol	2
+R4I3I0	5-epi-aristolochene synthase	sesq	sesq	Nicotiana tabacum	Plantae	(+)-5-epi-aristolochene	[9]	(+)-5-epi-aristolochene	9
+R4JGL8	Gamma-terpinene synthase, chloroplastic	mono	mono	Thymus caespititius	Plantae	γ-terpinene; geraniol; geranial	[22, 21, 2]	geranial	2
+R4JGM2	Gamma-terpinene	mono	mono	Thymus caespititius	Plantae	γ-terpinene	[22]	γ-terpinene	22
+R4JHV6	Gamma-terpinene	mono	mono	Thymus caespititius	Plantae	γ-terpinene	[22]	γ-terpinene	22
+R4JHV9	Alpha-terpineol	mono	mono	Thymus caespititius	Plantae	α-terpineol	[14]	α-terpineol	14
+R4JJJ1	Alpha-terpineol	mono	mono	Thymus caespititius	Plantae	α-terpineol	[14]	α-terpineol	14
+R4JJJ6	Gamma-terpinene	mono	mono	Thymus caespititius	Plantae	γ-terpinene	[22]	γ-terpinene	22
+R4JND2	Alpha-terpineol synthase	mono	mono	Thymus caespititius	Plantae	α-terpineol	[14]	α-terpineol	14
+R4JND9	Gamma-terpinene	mono	mono	Thymus caespititius	Plantae	γ-terpinene	[22]	γ-terpinene	22
+R4JQS2	Alpha-terpineol synthase, chloroplastic	mono	mono	Thymus caespititius	Plantae	(S)-(−)-α-terpineol; limonene; sabinene; β-myrcene	[14, 33, 13, 58]	sabinene	13
+R4JQS8	Alpha-terpineol	mono	mono	Thymus caespititius	Plantae	α-terpineol	[14]	α-terpineol	14
+R4JQT5	Gamma-terpinene synthase, chloroplastic	mono	mono	Thymus caespititius	Plantae	γ-terpinene; geraniol; geranial	[22, 21, 2]	geranial	2
+R4YVJ5	Limonene synthase	mono	mono	Coffea arabica	Plantae	limonene	[33]	limonene	33
+R4YXW8	(-)-alpha-terpineol synthase-like	mono	mono	Coffea arabica	Plantae	linalool; β-myrcene; (Z)-β-ocimene; (E)-β-ocimene	[27, 58, 15, 27]	(Z)-β-ocimene	15
+R4YZC3	Linalool/myrcene synthase	mono	mono	Coffea arabica	Plantae	linalool; β-myrcene; (Z)-β-ocimene; (E)-β-ocimene	[27, 58, 15, 27]	(Z)-β-ocimene	15
+R9QMQ9	(-)-beta-pinene synthase	mono	mono	Pinus contorta	Plantae	(−)-β-pinene; (−)-α-pinene	[21, 26]	(−)-β-pinene	21
+R9QMR0	(-)-beta-pinene synthase	mono	mono	Pinus banksiana	Plantae	(−)-β-pinene; (−)-α-pinene	[21, 26]	(−)-β-pinene	21
+R9QMR1	(+)-alpha pinene synthase	mono	mono	Pinus banksiana	Plantae	(+)-α-pinene	[10]	(+)-α-pinene	10
+R9QMR3	(-)-alpha pinene synthase	mono	mono	Pinus contorta	Plantae	(−)-α-pinene; (−)-β-pinene	[26, 21]	(−)-β-pinene	21
+R9QMR4	(-)-beta-phellandrene synthase	mono	mono	Pinus contorta	Plantae	(−)-β-phellandrene; (−)-α-phellandrene	[9, 1]	(−)-α-phellandrene	1
+R9QMR5	Alpha terpineol synthase	mono	mono	Pinus banksiana	Plantae	α-terpineol; limonene; terpinolene; 4-terpineol; (S)-(−)-α-terpineol; geraniol	[14, 33, 40, 4, 14, 21]	4-terpineol	4
+R9QMR6	(+)-3-carene synthase 2, chloroplastic 	mono	mono	Pinus banksiana	Plantae	(+)-car-3-ene; terpinolene; (S)-(−)-α-terpineol	[11, 40, 14]	(+)-car-3-ene	11
+R9QMW1	(-)-alpha/beta-pinene synthase	mono	mono	Pinus banksiana	Plantae	(−)-α-pinene; (−)-β-pinene	[26, 21]	(−)-β-pinene	21
+R9QMW2	(+)-alpha pinene synthase	mono	mono	Pinus contorta	Plantae	(+)-α-pinene	[10]	(+)-α-pinene	10
+R9QMW3	(-)-beta-phellandrene synthase	mono	mono	Pinus contorta	Plantae	(−)-β-phellandrene	[9]	(−)-β-phellandrene	9
+R9QMW4	(+)-3-carene synthase	mono	mono	Pinus banksiana	Plantae	(+)-car-3-ene; terpinolene; α-terpineol; (S)-(−)-α-terpineol	[11, 40, 14, 14]	(+)-car-3-ene	11
+R9QMW5	(-)-beta-pinene synthase	mono	mono	Pinus banksiana	Plantae	(−)-β-pinene; (−)-α-pinene	[21, 26]	(−)-β-pinene	21
+R9QMW7	(-)-beta-phellandrene synthase	mono	mono	Pinus banksiana	Plantae	(−)-β-phellandrene	[9]	(−)-β-phellandrene	9
+R9QMW8	(+)-3-carene synthase	mono	mono	Pinus contorta	Plantae	(+)-car-3-ene; terpinolene; (S)-(−)-α-terpineol	[11, 40, 14]	(+)-car-3-ene	11
+R9QMY8	(-)-camphene / (+)-alpha-pinene synthase	mono	mono	Pinus contorta	Plantae	(−)-camphene; (+)-α-pinene; tricyclene; (−)-α-pinene; (−)-β-pinene; β-myrcene	[5, 10, 9, 26, 21, 58]	(−)-camphene	5
+R9QMY9	(-)-alpha pinene synthase	mono	mono	Pinus banksiana	Plantae	(−)-α-pinene; (−)-β-pinene	[26, 21]	(−)-β-pinene	21
+R9QMZ0	Alpha terpineol /1,8-cineole synthase	mono	mono	Pinus contorta	Plantae	1,8-cineole; (S)-(−)-α-terpineol; (−)-sabinene; β-myrcene	[18, 14, 1, 58]	(−)-sabinene	1
+R9UM72	Manoyl oxide synthase	di	di	Grindelia hirsutula	Plantae	(13R)-Manoyl oxide	[3]	(13R)-Manoyl oxide	3
+R9UPX6	Ent-kaurene synthase	di	di	Euphorbia peplus	Plantae	ent-kaurene	[31]	ent-kaurene	31
+R9UPX9	Labda-13-en-8-ol diphosphate synthase	di	di	Grindelia hirsutula	Plantae	labd-13-en-8,15-diol	[2]	labd-13-en-8,15-diol	2
+R9W377	Limonene synthase	mono	mono	Mentha spicata	Plantae	(4S)-limonene	[18]	(4S)-limonene	18
+R9WSX5	Germacrene A synthase	sesq	sesq	Tanacetum cinerariifolium	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+RmTC-1		di; sesq; mono	mixed	Renilla muelleri	Coral	cembrene C; (2-trans,6-trans)-farnesol; geraniol	[3, 7, 21]	cembrene C	3
+S0DX56	(+)-eremophilene synthase	sesq	sesq	Gibberella fujikuroi	Fungi	(+)-eremophilene	[2]	(+)-eremophilene	2
+S0EA85	Bifunctional ent-kaurene synthase	di-int; di	mixed	Gibberella fujikuroi	Fungi	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−); ent-kaurene	[21, 31]	5β,9α,10α-labda-8(20),13-dien-15-yl diphosphate(3−)	21
+S0ECT9	Terpene cyclase 4	sesq	sesq	Gibberella fujikuroi 	Fungi	koraiol	[1]	koraiol	1
+S0EGZ9	Terpene cyclase 6	sesq	sesq	Gibberella fujikuroi	Fungi	(−)-α-acorenol	[1]	(−)-α-acorenol	1
+SRA.SRR18681978 (AgTS-1)	Alloaromadendrene synthase	sesq; mono	mixed	Agelas clathrodes	Animalia	(+)-alloaromadendrene; β-myricene; (E)-β-ocimene	[1, 5, 27]	(+)-alloaromadendrene	1
+SptA	SptA	sesq	sesq	Spiromastix sp.	Fungi	guaia-1(5),6-diene	[1]	guaia-1(5),6-diene	1
+T1RR71	Alpha pinene	mono	mono	Lavandula pedunculata subsp. lusitanica	Plantae	α-pinene; limonene; α-phellandrene; terpinolene	[20, 33, 14, 40]	α-phellandrene	14
+T1RR72	Alpha fenchol	mono	mono	Lavandula viridis	Plantae	(−)-endo-fenchol; limonene; α-pinene; terpinolene; α-phellandrene; β-myrcene	[4, 33, 20, 40, 14, 58]	(−)-endo-fenchol	4
+T1RRI5	Germacrene A	sesq	sesq	Lavandula pedunculata	Plantae	(−)-germacrene A; (−)-β-elemene	[24, 26]	(−)-germacrene A	24
+T1RRI8	Alpha pinene synthase, chloroplastic	mono	mono	Lavandula viridis	Plantae	α-pinene; limonene; α-phellandrene; terpinolene	[20, 33, 14, 40]	α-phellandrene	14
+T1RRJ4	Alpha fenchol	mono	mono	Lavandula stoechas	Plantae	(−)-endo-fenchol; limonene; α-pinene; terpinolene; α-phellandrene; β-myrcene	[4, 33, 20, 40, 14, 58]	(−)-endo-fenchol	4
+T1RRJ6	Germacrene A	sesq	sesq	Lavandula viridis	Plantae	(−)-germacrene A; (−)-β-elemene	[24, 26]	(−)-germacrene A	24
+T1RRR9	(-)-endo-fenchol synthase, chloroplastic	mono	mono	Lavandula pedunculata subsp. lusitanica	Plantae	α-pinene; limonene; terpinolene; β-myrcene; α-phellandrene; (−)-endo-fenchol	[20, 33, 40, 58, 14, 4]	(−)-endo-fenchol	4
+T1RRS0	Germacrene A	sesq	sesq	Lavandula stoechas	Plantae	(−)-germacrene A; (−)-β-elemene	[24, 26]	(−)-germacrene A	24
+T1WGD9	9-epi-caryophyllene synthase	sesq	sesq	Lavandula x intermedia	Plantae	(E)-2-epi-β-caryophyllene	[5]	(E)-2-epi-β-caryophyllene	5
+T2HPZ3	Beta-caryophyllene synthase	sesq	sesq	Artemisia absinthium	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+TmTC-1		di; sesq; mono	mixed	Tubipora musica	Coral	cembrene A; (6E)-nerolidol; linalool	[4, 16, 27]	cembrene A	4
+TmTC-2		sesq	sesq	Tubipora musica	Coral	α-muuroladiene	[1]	α-muuroladiene	1
+U3KYL2	(-)-drimenol synthase	sesq	sesq	Valeriana officinalis	Plantae	drimenol	[3]	drimenol	3
+U3LVL5	Germacrene D synthase	sesq	sesq	Lavandula angustifolia	Plantae	(−)-germacrene D; bicyclogermacrene	[24, 8]	bicyclogermacrene	8
+U3LVZ7	B-caryophyllene synthase	sesq	sesq	Lavandula angustifolia	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+U3LW50	Tau-cadinol synthase	sesq	sesq	Lavandula angustifolia	Plantae	τ-cadinol; (+)-γ-cadinene	[4, 3]	(+)-γ-cadinene	3
+U5N0S4	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	(+)-δ-cadinene	[20]	(+)-δ-cadinene	20
+U5N1F1	(+)-delta-cadinene synthase	sesq	sesq	Gossypium hirsutum	Plantae	guaia-1(10),11-diene	[3]	guaia-1(10),11-diene	3
+U5PZT6	Monoterpene synthase 8, chloroplastic	mono; sesq	mixed	Hedychium coronarium	Plantae	linalool; β-myrcene; limonene; (Z)-β-ocimene; β-sesquiphellandrene; α-bergamotene; (Z)-α-bisabolene; trans-β-farnesene; (S)-β-bisabolene; α-curcumene	[27, 58, 33, 15, 11, 1, 5, 24, 16, 1]	α-bergamotene	1
+U5Y4T6	Beta-caryophyllene synthase	sesq	sesq	Achillea millefolium	Plantae	(−)-β-caryophyllene	[64]	(−)-β-caryophyllene	64
+UPI41561.1	EcTPS1	di	di	Erythropodium caribaeorum	Coral	klysimplexin R	[2]	klysimplexin R	2
+UPI41567.1	EcTPS6	di	di	Erythropodium caribaeorum	Coral	cembrene C	[3]	cembrene C	3
+UTU07506	AaOSC2  (AaTS)	tri	tri	Ailanthus altissimus	Plantae	tirucalla-7,24-dien-3β-ol	[4]	tirucalla-7,24-dien-3β-ol	4
+UTU07507	AaOSC3	tri	tri	Ailanthus altissimus	Plantae	lupeol	[14]	lupeol	14
+W0FFD7	(-)-drimenol synthase	sesq	sesq	Persicaria hydropiper	Plantae	drimenol	[3]	drimenol	3
+W4JX79	Delta(6)-protoilludene synthase	sesq	sesq	Heterobasidion irregulare	Fungi	Δ6-protoilludene	[20]	Δ6-protoilludene	20
+W6HUT3	Chloroplast monoterpene synthase	mono	mono	Hedychium coronarium	Plantae	sabinene; α-thujene; α-pinene; β-pinene; β-myrcene; α-phellandrene; α-terpinene; β-phellandrene; γ-terpinene; terpinolene	[13, 7, 20, 12, 58, 14, 7, 13, 22, 40]	α-thujene	7
+W6Q4Q9	Aristolochene synthase	sesq	sesq	Penicillium roqueforti	Fungi	(+)-aristolochene	[4]	(+)-aristolochene	4
+W6QAE7	Conidiogenone synthase	di	di	Penicillium roqueforti	Fungi	penichrysol	[4]	penichrysol	4
+W8NXF3	Patchoulol synthase variant 1	sesq	sesq	Pogostemon cablin	Plantae	(−)-germacrene A	[24]	(−)-germacrene A	24
+W8QEG7	Kaurene synthase-like 2	di	di	Rosmarinus officinalis 	Plantae	miltiradiene	[9]	miltiradiene	9
+W8QMF8	Kaurene synthase-like 1	di	di	Rosmarinus officinalis	Plantae	miltiradiene	[9]	miltiradiene	9
+WDE20676.1	Bicyclogermacrene synthase	sesq	sesq	Bubarida sp.	Animalia	(+)-bicyclogermacrene	[2]	(+)-bicyclogermacrene	2
+WDE20677.1	Germacrene D synthase	sesq; mono	mixed	Bubarida sp.	Animalia	(-)-germacrene D; β-myricene; (E)-β-ocimene; (Z)-β-ocimene	[2, 5, 27, 15]	(-)-germacrene D	2
+WDE20678.1	Bicyclogermacrene synthase	sesq; mono	mixed	Bubarida sp.	Animalia	(+)-bicyclogermacrene; β-myricene; (E)-β-ocimene	[2, 5, 27]	(+)-bicyclogermacrene	2
+WDE20679.1	Sesquiterpene synthase	sesq; mono	mixed	Bubarida sp.	Animalia	mixed sesquiterpenes; β-myricene; (E)-β-ocimene; (Z)-β-ocimene	[2, 5, 27, 15]	mixed sesquiterpenes	2
+WDE20680.1	Sesquiterpene synthase	sesq	sesq	Bubarida sp.	Animalia	mixed sesquiterpenes	[2]	mixed sesquiterpenes	2
+WP_089795910.1		di	di	Chryseobacterium wanjuense	Bacteria	ent-bonnadiene; wanjudiene	[1, 1]	ent-bonnadiene	1
+WP_092528762.1	Diterpene synthase	di	di	Amycolatopis arida	Bacteria	(Z)-eunicellane benditerpe-2,6,15-triene; (R)-(–)-cembrene A	[1, 1]	(Z)-eunicellane benditerpe-2,6,15-triene	1
+X4ZWN5	Diterpene synthase TPS2	di-int	di	Plectranthus barbatus (C. forskohlii)	Plantae	copal-8-ol diphosphate(3−)	[8]	copal-8-ol diphosphate(3−)	8
+X5A2Z7	Diterpene synthase TPS3	di	di	Plectranthus barbatus (C. forskohlii)	Plantae	(13R)-Manoyl oxide	[3]	(13R)-Manoyl oxide	3
+X5A4D6	Diterpene synthase TPS1	di-int	di	Plectranthus barbatus (C. forskohlii)	Plantae	(+)-copalyl diphosphate	[6]	(+)-copalyl diphosphate	6
+X5AHD9	Diterpene synthase TPS4	di	di	Plectranthus barbatus (C. forskohlii)	Plantae	miltiradiene	[9]	miltiradiene	9
+XsTC-1		di; sesq	mixed	Xenia sp. 	Coral	xeniaphyllene; (+)-β-caryophyllene; elemol	[1, 3, 5]	xeniaphyllene	1
