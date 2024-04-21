@@ -1,0 +1,1273 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# Load libraries
+library(dplyr)
+library(ggplot2)
+library(ggridges)
+library(tidyr)
+```
+
+```{r}
+# Load the data
+db_file <- "../data/tps_db_v1.csv"
+df <- data.frame(read.csv(db_file, header = T, sep = ","))
+```
+
+
+```{r}
+# Color maps
+type_color_map <-  c('mono'='#FF4D6F','sesqui'='#F9C000','di'='#7E1A2F','sester'='#DF7713','tri'='#579EA4','sesquar'='#C8350D','tetra'='#86AD34','mixed'='#BD777A')
+kingdom_color_map = c('Plantae'='#BEDF7C', 'Animalia'='#94CCFC', 'Animalia (Marine Sponge)'='#FF4D6F', 'Animalia (Coral)'='#FFAFF8','Bacteria'='#995FBC', 'Fungi'='#FF9481', 'Animalia (Insecta)'='#FFBD45','Amoebozoa'='#83D4C9', 'Red algae'='#E0E000')
+pfam_color_map <- c('PF00494.22'='#C70E7B','PF01397.24'='#FC6882','PF03936.19'='#007BC3','PF06330.14'='#54BCD1','PF13243.9'='#EF7C12','PF13249.9'='#F4B95A','PF19086.3'='#009F3F')
+supfam_color_map <- c('X0041184'='#8FDA04','X0053354'='#172869','X0053355'='#F5D000','X0048261'='#831818','X0048806'='#C62320','X0046340'='#9F5691','X0047573'='#633372')
+```
+
+# Kingdoms
+```{r}
+kingdoms_df <- df %>% 
+  select('id','kingdom') %>%
+  unique()
+```
+
+
+```{r}
+
+kingdoms=data.frame(sort(table(kingdoms_df$kingdom)))
+colnames(kingdoms) <- c('kingdom','count')
+kingdoms
+```
+
+```{r}
+kingdoms <- kingdoms %>%
+  arrange(desc(count))
+
+kingdoms$kingdom <- factor(kingdoms$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+
+```{r}
+ggplot(kingdoms, aes(x = kingdom, y = count, fill = kingdom)) + 
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  geom_text(aes(label = count), hjust = 0, size = 7) +
+  ggtitle('Distribution of kingdoms') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  theme(legend.position = "none", text = element_text(size = 26))
+ggsave('plots/kingdoms_geom_bar4.png', width=10, height=6)
+ggsave('plots/kingdoms_geom_bar4.svg', width=10, height=6)
+```
+# Types
+
+```{r}
+types_df <- df %>% 
+  select('id','type') %>%
+  unique()
+```
+
+
+```{r}
+types=data.frame(sort(table(types_df$type)))
+colnames(types) <- c('type','count')
+types
+```
+
+```{r}
+types <- types %>%
+  arrange(desc(count))
+
+types$type <- factor(types$type, levels=rev(c("sesqui", "mono", "di", "tri", "sester", "tetra", "sesquar")), ordered = TRUE)
+```
+
+```{r}
+ggplot(types, aes(x = type, y = count, fill = type)) + 
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  geom_text(aes(label = count), hjust = 0,  size = 7) +
+  ggtitle('Distribution of TPS types') + 
+  scale_fill_manual(values = type_color_map) +
+  theme(legend.position = "none", text = element_text(size = 26))
+ggsave('plots/types_geom_bar3.png', width=8, height=6)
+ggsave('plots/types_geom_bar3.svg', width=8, height=6)
+```
+
+# Lengths
+```{r}
+lengths_df = df %>%
+  select('id','length') %>%
+  unique()
+```
+
+```{r}
+lengths_df %>% 
+  filter(length<420) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+```{r}
+ggplot(lengths_df, aes(x = length)) +
+  geom_density(alpha=0.6, fill='steelblue1', color = NA) +
+  theme_ridges() + 
+  ggtitle('Length distribution') +
+  theme(legend.position = "none", 
+        text = element_text(size = 26),
+        plot.title = element_text(size = 30,  hjust = 0.4),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_blank()
+        ) +
+  scale_x_continuous(breaks = c(200, 350, 565, 760, 1000))
+ggsave('plots/length_density2.png', width=8, height=6)
+ggsave('plots/length_density2.svg', width=8, height=6)
+```
+
+
+## Kingdoms
+```{r}
+kingdoms_df = df %>%
+  select('id','kingdom','length') %>%
+  unique()
+kingdoms_df$kingdom <- factor(kingdoms_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+
+```{r}
+ggplot(kingdoms_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6,bandwidth = 40,  color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 26),
+        plot.title = element_text(size = 30,  hjust = 0),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20)
+        ) +
+  ggtitle('Length distribution') + 
+  scale_fill_manual(values = kingdom_color_map)
+ggsave('plots/length_density_kingdoms2.png', width=10, height=6)
+ggsave('plots/length_density_kingdoms2.svg', width=10, height=6)
+```
+
+## Types
+```{r}
+types_df = df %>%
+  select('id','type','length') %>%
+  unique()
+types_df$type <- factor(types_df$type, levels=rev(c("mono", "sesqui", "di", "sester", "tri", "sesquar", "tetra")), ordered = TRUE)
+```
+
+```{r}
+types_df
+```
+
+
+```{r}
+ggplot(types_df, aes(x = length,y=type, fill=type)) +
+  geom_density_ridges(alpha=0.6,bandwidth = 40,  color = NA, scale=0.8) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0.45)) +
+  ggtitle('Length distribution') + 
+  geom_point(data=subset(types_df, type=='sesquar'), aes(color='#C8350D'))+
+  scale_fill_manual(values = type_color_map)
+ggsave('plots/length_density_types.png', width=10, height=6)
+ggsave('plots/length_density_types.svg', width=10, height=6)
+```
+
+```{r}
+df$type <- factor(df$type, levels=rev(c("mono", "sesqui", "di", "sester", "tri", "sesquar", "tetra")), ordered = TRUE)
+df$kingdom <- factor(df$kingdom, levels=(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(df, aes(x = length,y=type, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6,bandwidth = 40,  color = NA, scale=0.8) +
+  theme_ridges() + 
+  theme(#legend.position  = "None", 
+        text = element_text(size = 26),
+        plot.title = element_text(size = 30,  hjust = 0),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20)
+        ) +
+  ggtitle('Length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  #geom_point(data=subset(df, type=='sesquar'), aes(color='#995FBC')) +
+  scale_color_identity()
+ggsave('plots/length_density_types_and_kingdoms4.png', width=15, height=6)
+ggsave('plots/length_density_types_and_kingdoms4.svg', width=15, height=6)
+```
+# MonoTPS
+
+```{r}
+mono_df = df %>%
+  filter(type=='mono') %>%
+  select('id','kingdom','length') %>%
+  unique()
+mono_df$kingdom <- factor(mono_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(mono_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=0.55) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('MonoTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(mono_df, kingdom=='Animalia'), aes(color='#94CCFC'))+
+  geom_point(data=subset(mono_df, kingdom=='Amoebozoa'), aes(color='#83D4C9'))+
+  geom_point(data=subset(mono_df, kingdom=='Fungi'), aes(color='#FF9481'))+
+  geom_point(data=subset(mono_df, kingdom=='Red algae'), aes(color='#E0E000')) +
+  scale_color_identity()
+ggsave('plots/mono_kingdoms.png', width=10, height=6)
+ggsave('plots/mono_kingdoms.svg', width=10, height=6)
+```
+# SesquiTPS
+
+```{r}
+sesqui_df = df %>%
+  filter(type=='sesqui') %>%
+  select('id','kingdom','length') %>%
+  unique()
+sesqui_df$kingdom <- factor(sesqui_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(sesqui_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=0.55) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('SesquiTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(sesqui_df, kingdom=='Animalia'), aes(color='#94CCFC'))+
+  scale_color_identity()
+ggsave('plots/sesqui_kingdoms.png', width=10, height=6)
+ggsave('plots/sesqui_kingdoms.svg', width=10, height=6)
+```
+
+```{r}
+di_df = df %>%
+  filter(type=='di') %>%
+  select('id','kingdom','length') %>%
+  unique()
+di_df$kingdom <- factor(di_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(di_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('DiTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(di_df, kingdom=='Animalia'), aes(color='#94CCFC'))+
+  geom_point(data=subset(di_df, kingdom=='Amoebozoa'), aes(color='#83D4C9'))+
+  geom_point(data=subset(di_df, kingdom=='Red algae'), aes(color='#E0E000')) +
+  geom_point(data=subset(di_df, kingdom=='Animalia (Insecta)'), aes(color='#FFBD45'))+
+  scale_color_identity()
+ggsave('plots/di_kingdoms.png', width=10, height=6)
+ggsave('plots/di_kingdoms.svg', width=10, height=6)
+```
+```{r}
+sester_df = df %>%
+  filter(type=='sester') %>%
+  select('id','kingdom','length') %>%
+  unique()
+sester_df$kingdom <- factor(sester_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(sester_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('SesterTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(sester_df, kingdom=='Bacteria'), aes(color='#995FBC'))+
+  scale_color_identity()
+ggsave('plots/sester_kingdoms.png', width=10, height=6)
+ggsave('plots/sester_kingdoms.svg', width=10, height=6)
+```
+```{r}
+tri_df = df %>%
+  filter(type=='tri') %>%
+  select('id','kingdom','length') %>%
+  unique()
+tri_df$kingdom <- factor(tri_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(tri_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('TriTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(tri_df, kingdom=='Amoebozoa'), aes(color='#83D4C9'))+
+  scale_color_identity()
+ggsave('plots/tri_kingdoms.png', width=10, height=6)
+ggsave('plots/tri_kingdoms.svg', width=10, height=6)
+```
+```{r}
+sesquar_df = df %>%
+  filter(type=='sesquar') %>%
+  select('id','kingdom','length') %>%
+  unique()
+sesquar_df$kingdom <- factor(sesquar_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(sesquar_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('SesquarTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(sesquar_df, kingdom=='Bacteria'), aes(color='#995FBC'))+
+  scale_color_identity()
+ggsave('plots/sesquar_kingdoms.png', width=10, height=6)
+ggsave('plots/sesquar_kingdoms.svg', width=10, height=6)
+```
+```{r}
+tetra_df = df %>%
+  filter(type=='tetra') %>%
+  select('id','kingdom','length') %>%
+  unique()
+tetra_df$kingdom <- factor(tetra_df$kingdom, levels=rev(c("Plantae", "Fungi", "Bacteria", "Animalia (Coral)", "Amoebozoa", "Animalia", "Animalia (Insecta)", "Animalia (Marine Sponge)", "Red algae")), ordered = TRUE)
+```
+
+```{r}
+ggplot(tetra_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6, bandwidth=20, color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('TetraTPS length distribution') + 
+  scale_fill_manual(values = kingdom_color_map) +
+  geom_point(data=subset(tetra_df, kingdom=='Fungi'), aes(color='#FF9481'))+
+  scale_color_identity()
+ggsave('plots/tetra_kingdoms.png', width=10, height=6)
+ggsave('plots/tetra_kingdoms.svg', width=10, height=6)
+```
+
+# Pfam domains and lengths
+```{r}
+pfam_df = df %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(pfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+melted_df$variable <- factor(melted_df$variable, levels = rev(c('PF01397.24', 'PF03936.19','PF19086.3','PF06330.14','PF13243.9','PF13249.9','PF00494.22')))
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Length distribution by Pfam domains') +
+  scale_fill_manual(values = pfam_color_map) +
+  ylab("Pfam domains") +  
+  xlab("Length")
+ggsave('plots/pfam_lengths3.png', width=10, height=10)
+ggsave('plots/pfam_lengths3.svg', width=10, height=10)
+```
+## Plants
+```{r}
+plant_df = df %>%
+  filter(kingdom=='Plantae') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(plant_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Plant TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map)
+ggsave('plots/plants_pfam_lengths.png', width=10, height=6)
+ggsave('plots/plants_pfam_lengths.svg', width=10, height=6)
+```
+## Fungi
+
+```{r}
+fungi_df = df %>%
+  filter(kingdom=='Fungi') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(fungi_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Fungi TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map)
+ggsave('plots/fungi_pfam_lengths.png', width=10, height=6)
+ggsave('plots/fungi_pfam_lengths.svg', width=10, height=6)
+```
+## Bacteria
+```{r}
+bacteria_df = df %>%
+  filter(kingdom=='Bacteria') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(bacteria_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Bacteria TPSs length distribution by Pfam domains') +
+  geom_point(data=subset(tetra_df, kingdom=='Fungi'), aes(color='#FF9481'))
+  scale_fill_manual(values =pfam_color_map)
+ggsave('plots/bacteria_pfam_lengths.png', width=10, height=6)
+ggsave('plots/bacteria_pfam_lengths.svg', width=10, height=6)
+```
+## Animalia (Coral)
+```{r}
+coral_df = df %>%
+  filter(kingdom=='Animalia (Coral)') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(coral_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Coral TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map)
+ggsave('plots/coral_pfam_lengths.png', width=10, height=6)
+ggsave('plots/coral_pfam_lengths.svg', width=10, height=6)
+```
+## Amoebozoa
+```{r}
+amoebozoa_df = df %>%
+  filter(kingdom=='Amoebozoa') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(amoebozoa_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=0.3) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Amoebozoa TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map) +
+  geom_point(data=subset(melted_df, variable=='PF13249.9'), aes(color='#F4B95A')) +
+  geom_point(data=subset(melted_df, variable=='PF13243.9'), aes(color='#EF7C12')) +
+  geom_point(data=subset(melted_df, variable=='PF00494.22'), aes(color='#C70E7B')) +
+  scale_color_identity()
+ggsave('plots/amoebozoa_pfam_lengths.png', width=10, height=6)
+ggsave('plots/amoebozoa_pfam_lengths.svg', width=10, height=6)
+```
+## Animalia
+```{r}
+animalia_df = df %>%
+  filter(kingdom=='Animalia') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(animalia_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Animalia TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map) +
+  geom_point(data=subset(melted_df, variable=='PF19086.3'), aes(color='#009F3F')) +
+  scale_color_identity()
+ggsave('plots/animalia_pfam_lengths.png', width=10, height=6)
+ggsave('plots/animalia_pfam_lengths.svg', width=10, height=6)
+```
+## Animalia (Insecta)
+```{r}
+insecta_df = df %>%
+  filter(kingdom=='Animalia (Insecta)') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(insecta_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Insecta TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map) +
+  geom_point(data=subset(melted_df, variable=='PF19086.3'), aes(color='#009F3F')) +
+  scale_color_identity()
+#ggsave('plots/animalia_pfam_lengths.png', width=10, height=6)
+#ggsave('plots/animalia_pfam_lengths.svg', width=10, height=6)
+```
+## Animalia (Marine Sponge)
+```{r}
+sponge_df = df %>%
+  filter(kingdom=='Animalia (Marine Sponge)') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(sponge_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 10,  color = NA, scale=5) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Marine Sponge TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map) +
+  scale_color_identity()
+ggsave('plots/sponge_pfam_lengths.png', width=10, height=6)
+ggsave('plots/sponge_pfam_lengths.svg', width=10, height=6)
+```
+
+## Red alage
+
+```{r}
+ralgae_df = df %>%
+  filter(kingdom=='Red algae') %>%
+  select('id','length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>%
+  unique() %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(ralgae_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 10,  color = NA, scale=10) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Red algae TPSs length distribution by Pfam domains') +
+  scale_fill_manual(values =pfam_color_map) +
+  scale_color_identity()
+ggsave('plots/red_algae_pfam_lengths.png', width=10, height=6)
+ggsave('plots/red_algae_pfam_lengths.svg', width=10, height=6)
+```
+# Supfam domains and lengths
+```{r}
+supfam_df = df %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(supfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+melted_df$variable <- factor(melted_df$variable, levels = rev(c('X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')))
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map) +
+  xlab('Length') + 
+  ylab('SUPERFAMILY domains')
+ggsave('plots/supfam_lengths3.png', width=10, height=10)
+ggsave('plots/supfam_lengths3.svg', width=10, height=10)
+```
+
+
+## Plants
+```{r}
+plant_df = df %>%
+  filter(kingdom=='Plantae') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(plant_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Plant TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/plants_supfam_lengths.png', width=10, height=6)
+ggsave('plots/plants_supfam_lengths.svg', width=10, height=6)
+```
+## Fungi
+```{r}
+fungi_df = df %>%
+  filter(kingdom=='Fungi') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(fungi_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Fungi TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/fungi_supfam_lengths.png', width=10, height=6)
+ggsave('plots/fungi_supfam_lengths.svg', width=10, height=6)
+```
+
+## Bacteria
+```{r}
+bacteria_df = df %>%
+  filter(kingdom=='Bacteria') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(bacteria_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Bacteria TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/bacteria_supfam_lengths.png', width=10, height=6)
+ggsave('plots/bacteria_supfam_lengths.svg', width=10, height=6)
+```
+
+## Animalia (Coral)
+```{r}
+coral_df = df %>%
+  filter(kingdom=='Animalia (Coral)') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(coral_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Coral TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/coral_supfam_lengths.png', width=10, height=6)
+ggsave('plots/coral_supfam_lengths.svg', width=10, height=6)
+```
+
+## Amoebozoa
+```{r}
+amoebozoa_df = df %>%
+  filter(kingdom=='Amoebozoa') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(amoebozoa_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Amoebozoa TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/amoebozoa_supfam_lengths.png', width=10, height=6)
+ggsave('plots/amoebozoa_supfam_lengths.svg', width=10, height=6)
+```
+
+## Animalia
+```{r}
+animalia_df = df %>%
+  filter(kingdom=='Animalia') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(animalia_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Animalia TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/animalia_supfam_lengths.png', width=10, height=6)
+ggsave('plots/animalia_supfam_lengths.svg', width=10, height=6)
+```
+## Animalia (Insecta)
+```{r}
+animalia_df = df %>%
+  filter(kingdom=='Animalia (Insecta)') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(insecta_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Insecta TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/insecta_supfam_lengths.png', width=10, height=6)
+ggsave('plots/insecta_supfam_lengths.svg', width=10, height=6)
+```
+## Animalia (Marine Sponge)
+```{r}
+sponge_df = df %>%
+  filter(kingdom=='Animalia (Marine Sponge)') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(sponge_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Marine Sponge TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/sponge_supfam_lengths.png', width=10, height=6)
+ggsave('plots/sponge_supfam_lengths.svg', width=10, height=6)
+```
+## Red Algae
+```{r}
+ralgae_df = df %>%
+  filter(kingdom=='Red algae') %>%
+  select('id','length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573') %>%
+  unique() %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(ralgae_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 16),
+        plot.title = element_text(size = 22,  hjust = 0)) +
+  ggtitle('Red algae TPSs length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map)
+ggsave('plots/red_algae_supfam_lengths.png', width=10, height=6)
+```
+
+# Pfam architectures
+```{r}
+# Load the data
+pfam_counts_file <- "data/clean_data/pfam_architectures_count.csv"
+pfam_counts <- data.frame(read.csv(pfam_counts_file, header = T, sep = ","))
+pfam_counts$pfam_architecture <- factor(pfam_counts$pfam_architecture, levels = pfam_counts$pfam_architecture[order(pfam_counts$count, decreasing = FALSE)])
+
+```
+
+```{r}
+ggplot(pfam_counts, aes(x = count, y = pfam_architecture)) +
+  geom_bar(stat = "identity", fill = "black") +
+  theme_minimal() +
+  labs(
+    title = "Pfam architectures",
+    x = "Count",
+    y = "Pfam architecture"
+  ) +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    text = element_text(size = 16),
+    plot.title = element_text(size = 22,  hjust = 0)
+  )
+ggsave('plots/pfam_archs.png', width=14, height=6)
+ggsave('plots/pfam_archs.svg', width=14, height=6)
+```
+# Supfam architectures
+```{r}
+# Load the data
+supfam_counts_file <- "data/clean_data/supfam_architectures_count.csv"
+supfam_counts <- data.frame(read.csv(supfam_counts_file, header = T, sep = ","))
+supfam_counts$supfam_architecture <- factor(supfam_counts$supfam_architecture, levels = supfam_counts$supfam_architecture[order(supfam_counts$count, decreasing = FALSE)])
+
+```
+
+```{r}
+ggplot(supfam_counts, aes(x = count, y = supfam_architecture)) +
+  geom_bar(stat = "identity", fill = "black") +
+  theme_minimal() +
+  labs(
+    title = "SUPERFAMILY architectures",
+    x = "Count",
+    y = "SUPERFAMILY architecture"
+  ) +
+  theme(
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    text = element_text(size = 16),
+    plot.title = element_text(size = 22,  hjust = 0)
+  )
+ggsave('plots/supfam_archs.png', width=14, height=6)
+ggsave('plots/supfam_archs.svg', width=14, height=6)
+```
+# Explanation of peaks
+```{r}
+# Load the data
+archs_file <- "data/clean_data/tps_db_architectures.csv"
+archs <- data.frame(read.csv(archs_file, header = T, sep = ","))
+#supfam_counts$supfam_architecture <- factor(supfam_counts$supfam_architecture, levels = supfam_counts$supfam_architecture[order(supfam_counts$count, decreasing = FALSE)])
+```
+
+```{r}
+test <- left_join(archs, df %>% select(id, kingdom, type, length) %>% unique(), by = 'id')
+```
+
+```{r}
+test %>% 
+  filter(pfam_architecture_2=="['PF06330']") %>%
+  group_by(kingdom, type) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+## MonoTPS
+
+### Plants
+
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Plantae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Plantae') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+
+### Bacteria
+
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Bacteria') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Bacteria') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+### Animalia (Coral)
+
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Animalia (Coral)') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Animalia (Coral)') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+### Animalia (Sponge)
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Animalia (Marine Sponge)') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='mono', kingdom=='Animalia (Marine Sponge)') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+## SesquiTPS
+### Plantae
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Plantae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Plantae') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Fungi
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Fungi') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+### Animalia (Coral)
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Animalia (Coral)') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Animalia (Coral)') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Bacteria
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Bacteria') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Bacteria') %>%
+  group_by(supfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Animalia (Marine sponge)
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Animalia (Marine Sponge)') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+
+### Red algae
+```{r}
+test %>% 
+  filter(type=='sesqui', kingdom=='Red algae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+
+```{r}
+ggplot(test %>% filter(type=='sesqui'), aes(x = length, y=kingdom, fill=pfam_architecture_2)) +
+  geom_density_ridges(alpha=0.6, stat='binline') +
+  theme_ridges() + 
+  #theme(legend.position  = "None") +
+  ggtitle('TPS db length distribution for plants') #+ 
+  #scale_fill_manual(values = kingdom_color_map)
+```
+## DiTPS
+```{r}
+ggplot(test %>% filter(type=='di'), aes(x = length, y=kingdom, fill=pfam_architecture_2)) +
+  geom_density_ridges(alpha=0.6, stat='binline') +
+  theme_ridges() + 
+  #theme(legend.position  = "None") +
+  ggtitle('TPS db length distribution for plants') #+ 
+  #scale_fill_manual(values = kingdom_color_map)
+```
+### Plantae
+```{r}
+test %>% 
+  filter(type=='di', kingdom=='Plantae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Fungi
+```{r}
+test %>% 
+  filter(type=='di', kingdom=='Fungi') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Bacteria
+```{r}
+test %>% 
+  filter(type=='di', kingdom=='Bacteria') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+### Animalia (Coral)
+```{r}
+test %>% 
+  filter(type=='di', kingdom=='Animalia (Coral)') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+## Sester
+### Plantae
+```{r}
+test %>% 
+  filter(type=='sester', kingdom=='Plantae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Fungi
+```{r}
+test %>% 
+  filter(type=='sester', kingdom=='Fungi') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+## TriTPS
+### Plantae
+```{r}
+test %>% 
+  filter(type=='tri', kingdom=='Plantae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Fungi
+```{r}
+test %>% 
+  filter(type=='tri', kingdom=='Fungi') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Bacteria
+```{r}
+test %>% 
+  filter(type=='tri', kingdom=='Bacteria') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Animalia
+```{r}
+test %>% 
+  filter(type=='tri', kingdom=='Animalia') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+## Sesquar
+```{r}
+test %>% 
+  filter(type=='sesquar') %>%
+  group_by(pfam_architecture_2, kingdom) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+
+## TetraTPS
+
+### Plantae
+```{r}
+test %>% 
+  filter(type=='tetra', kingdom=='Plantae') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+### Bacteria
+```{r}
+test %>% 
+  filter(type=='tetra', kingdom=='Bacteria') %>%
+  group_by(pfam_architecture_2) %>%
+  summarize(count = n(), average = mean(length, na.rm = TRUE))
+```
+

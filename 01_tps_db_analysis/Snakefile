@@ -1,0 +1,527 @@
+import os
+import Bio
+from Bio import SeqIO
+import requests
+import pandas as pd
+from hmmer_utils import *
+
+MOTIFS = ['DXDD','DDXXD','DDXX[DE]','[ND]DXX[ST]XXXE','[ND]D[LIV]X[ST]XXXE','[ND][DE]XX[ST]XX[NKR][DE]']
+
+###################
+## PREPROCESSING ##
+###################
+
+rule db_to_fasta:
+    """
+    Convert the whole TPS db excel database to fasta file.
+    """
+    input:
+        TPS_db = 'data/TPS-database.xlsx'
+    output:
+        tsv = 'data/TPS-database_unique.tsv',
+        fasta = 'data/TPS-database_unique.fasta'
+    log:
+        'logs/db_to_fasta'
+    params:
+        memory='2'
+    threads:
+        1
+    run:
+        df = pd.read_excel(input.TPS_db)
+        df[['Uniprot ID', 'Amino acid sequence']].drop_duplicates().to_csv(output.tsv, sep='\t', index=False, header=False)
+        with open(output.tsv) as in_handle:
+            records = list(SeqIO.parse(in_handle, "tab"))
+
+        with open(output.fasta, "w") as out_handle:
+            SeqIO.write(records, out_handle, "fasta")
+
+rule filter_tps_db:
+    """
+    Filters the TPS db - exclude prenyltransferases, not experimentally characterized,
+    negative data, incomplete entries and fragmented sequences.
+    """
+    input:
+        TPS_db = 'data/TPS-database.xlsx'
+    output:
+        TPS_db_filtered='data/TPS-database_filtered.tsv',
+        TPS_db_filtered_id_seq='data/TPS-database_filtered_id_seq.tsv'
+    log:
+        'logs/filter_tps_db.log'
+    params:
+        memory='2'
+    threads:
+        1
+    run:
+        df = pd.read_excel(input.TPS_db)
+
+        # For the amino acid sequence, remove newlines and spaces
+        df['Amino acid sequence'] = df['Amino acid sequence'].str.replace('\n', '')
+        df['Amino acid sequence'] = df['Amino acid sequence'].str.replace(' ', '')
+
+        characterized = df['Experimentally characterized'] == 'yes'
+        not_fragment = df['Fragment'] != 'yes'
+        not_pts = ~df['Type (mono, sesq, di, …)'].isin(['ggpps', 'fpps', 'gpps', 'gfpps'])
+        not_negative = df['Type (mono, sesq, di, …)'] != 'Negative'
+        not_missing_sequence = ~df['Amino acid sequence'].isna() == True
+        not_missing_species = ~df['Species'].isna() == True
+        not_missing_kingdom = ~df['Kingdom (plant, fungi, bacteria)'].isna()
+        not_missing_type = ~df['Type (mono, sesq, di, …)'].isna()
+
+        df_filtered = df[characterized & not_fragment & not_pts & not_negative & not_missing_sequence & not_missing_species & not_missing_kingdom & not_missing_type]
+
+        df_filtered.to_csv(output.TPS_db_filtered, sep='\t', index=False)
+        df_filtered[['Uniprot ID', 'Amino acid sequence']].drop_duplicates().to_csv(output.TPS_db_filtered_id_seq, sep='\t', index=False, header=False)
+
+
+rule convert_to_fasta:
+    """
+    Converts the filtered TPS database to a fasta file.
+    """
+    input:
+        tsv='data/TPS-database_filtered_id_seq.tsv'
+    output:
+        fasta='data/TPS-database_filtered.fasta'
+    log:
+        'logs/convert_to_fasta.log'
+    params:
+        memory='2'
+    threads:
+        1
+    run:
+        with open(input.tsv) as in_handle:
+            records = list(SeqIO.parse(in_handle, 'tab'))
+
+        with open(output.fasta, 'w') as out_handle:
+            SeqIO.write(records, out_handle, 'fasta')
+
+################
+## MOTIF SCAN ##
+################
+
+rule scan_motif:
+    """
+    Scans the database to find motifs.
+    """
+    input:
+        fasta='data/TPS-database_filtered.fasta',
+        motif='motifs/motif_{motif}.txt'
+    output:
+        motif_results='motifs/result_{motif}.out'
+    log:
+        'logs/scan_motif_{motif}.log'
+    params:
+        memory='2'
+    threads:
+        1
+    shell:
+        """
+        fuzzpro -sequence {input.fasta} -pattern {wildcards.motif} -outfile {output.motif_results} 2> {log}
+        """
+
+rule parse_motif_results:
+    """
+    Gets information about the motifs.
+    """
+    input:
+        expand('motifs/result_{motif}.out', motif=MOTIFS)
+    output:
+        out1 = 'motifs/motifs_info.txt',
+        out2 = 'motifs/motifs_info_summary.txt'
+    log:
+        'logs/parse_motif_results.log'
+    params:
+        memory="2"
+    threads:
+        1
+    run:
+        motif_DXDD = ['DXDD']
+        motif_DDXXD = ['DDXXD','DDXX[DE]']
+        motif_NSE_DTE = ['[ND]DXX[ST]XXXE','[ND]D[LIV]X[ST]XXXE','[ND][DE]XX[ST]XX[NKR][DE]']
+
+        motifs = motif_DXDD + motif_DDXXD + motif_NSE_DTE
+
+        motifs_dict = {}
+
+        for motif in motifs:
+            file_name = f'motifs/result_{motif}.out'
+            out_file_name = f'motifs/result_{motif}_sequence_ids.txt'
+            with open(file_name, 'r') as in_file, open(out_file_name, 'w') as out_file:
+                motif_sequences = []
+                lines = in_file.readlines()
+                for line in lines:
+                    if line.startswith('# Sequence:'):
+                        seq_name = line.split()[2]
+                        out_file.write(seq_name + '\n')
+                        motif_sequences.append(seq_name)
+                motifs_dict[motif] = motif_sequences
+
+        all_sequences = []
+        for sequence_l in motifs_dict.values():
+            all_sequences += sequence_l
+        all_sequences = list(set(all_sequences))
+
+        sequences_dict = {}
+        for sequence in all_sequences:
+            motif_l = []
+            for motif, sequence_l in motifs_dict.items():
+                if sequence in sequence_l:
+                    motif_l.append(motif)
+            sequences_dict[sequence] = motif_l
+
+        with open(output.out1, 'w') as out1_file, open(output.out2, 'w') as out2_file:
+            for sequence, motif_l in sequences_dict.items():
+                out1_file.write(f'{sequence}: {motif_l}\n')
+                motif_set = set()
+                for motif in motif_l:
+                    if motif in motif_NSE_DTE:
+                        motif_set.add('NSE/DTE')
+                    elif motif in motif_DXDD:
+                        motif_set.add('DXDD')
+                    elif motif in motif_DDXXD:
+                        motif_set.add('DDXXD')
+                out2_file.write(f'{sequence}: {motif_set}\n')
+
+##########################
+## PFAM AND SUPFAM SCAN ##
+##########################
+
+rule pfam_hmmscan:
+    """
+    Run hmmscan on TPS db with models from TPS Pfam db.
+    """
+    input:
+        fasta='data/TPS-database_filtered.fasta',
+        tps_pfam='pfam_profiles/tps_pfam.hmm'
+    output:
+        out='pfam_results/hmmscan.out',
+        tsv='pfam_results/hmmscan.tsv'
+    log:
+        'logs/pfam_hmmscan'
+    params:
+        memory='4'
+    threads:
+        4
+    shell:
+        """
+        hmmscan -o {output.out} --domtblout {output.tsv} --cpu {threads} {input.tps_pfam} {input.fasta} 2> {log}
+        """
+
+rule supfam_hmmscan:
+    """
+    Run hmmscan on TPS db with models from TPS SUPERFAMILY (supfam) db.
+    """
+    input:
+        fasta='data/TPS-database_filtered.fasta',
+        tps_pfam='supfam_profiles/tps_supfam.hmm'
+    output:
+        out='supfam_results/hmmscan.out',
+        tsv='supfam_results/hmmscan.tsv'
+    log:
+        'logs/supfam_hmmscan'
+    params:
+        memory='4'
+    threads:
+        4
+    shell:
+        """
+        hmmscan -o {output.out} --domtblout {output.tsv} --cpu {threads} {input.tps_pfam} {input.fasta} 2> {log}
+        """
+
+#########################
+## DOMAIN ARCHITECTURE ##
+#########################
+
+rule get_pfam_architectures:
+    """
+    Get Pfam domain architecture from the hmmscan results.
+    """
+    input:
+        tsv='pfam_results/hmmscan.tsv'
+    output:
+        architecture='architectures/pfam_architecture.tsv'
+    log:
+        'logs/get_pfam_architectures'
+    params:
+        memory='4'
+    threads:
+        1
+    run:
+        # Load the hmmscan results and parse all the hits
+        with open(input.tsv, 'r') as in_file:
+            domain_hits = []
+            for line in in_file.readlines():
+                if line.startswith('#'):
+                    continue
+                line_list = line.split()
+                description = " ".join(line_list[22:])
+                domain_hit = DomainHit(line_list[:22] + [description])
+                domain_hits.append(domain_hit)
+
+        # Initialize dictionary with list of hits for every sequence
+        sequences = [domain_hit.sequence_name for domain_hit in domain_hits]
+        sequences = set(sequences)
+        init_lists = [[] for i in range(len(sequences))]
+        results = dict(zip(sequences, init_lists))
+
+        # Put every hit to corresponding sequence
+        for domain_hit in domain_hits:
+            results[domain_hit.sequence_name].append(domain_hit)
+
+        # Get the architectures
+        results_architectures = dict(zip(sequences, init_lists))
+
+        for seq, hits in results.items():
+            
+            # Sort the domain hits based on start in the sequence
+            sorted_hits = sorted(hits, key=lambda x: x.envelope_start, reverse=False)
+
+            # Get the architectures using default criterion
+            default_arch = reduce_hits(sorted_hits, criterion='default')
+            results_architectures[seq] = default_arch
+
+        # Simplify the architectures to list of the domain names in the order of occurance
+        short_partial_default_archs = dict(zip(sequences, init_lists)) # When domain is covered by less than 50%, put suffix 'partial'
+
+        # Use the default architecture criterion
+        for seq, default_arch in results_architectures.items():
+            short_partial_default_archs[seq] = [hit.domain_accession if hit.domain_coverage > 0.5 else hit.domain_accession+'_partial' for hit in default_arch]
+
+        # Create a df with the architectures as strings
+        for seq, arch_list in short_partial_default_archs.items():
+            short_partial_default_archs[seq] = str(arch_list)
+        pfam_df = pd.DataFrame.from_dict(short_partial_default_archs, orient='index').reset_index()
+        pfam_df.columns = ['id', 'pfam_architecture']
+
+        # Export them to file
+        pfam_df.to_csv(output.architecture, sep='\t')
+
+    rule get_supfam_architectures:
+    """
+    Get SUPERFAMILY domain architecture from the hmmscan results.
+    """
+    input:
+        tsv='supfam_results/hmmscan.tsv'
+    output:
+        architecture='architectures/supfam_architecture.tsv'
+    log:
+        'logs/get_supfam_architectures'
+    params:
+        memory='4'
+    threads:
+        1
+    run:
+        # Load the hmmscan results and parse all the hits
+        with open(input.tsv, 'r') as in_file:
+            domain_hits = []
+            for line in in_file.readlines():
+                if line.startswith('#'):
+                    continue
+                line_list = line.split()
+                description = " ".join(line_list[22:])
+                domain_hit = DomainHit(line_list[:22] + [description])
+                domain_hits.append(domain_hit)
+
+        # Initialize dictionary with list of hits for every sequence
+        sequences = [domain_hit.sequence_name for domain_hit in domain_hits]
+        sequences = set(sequences)
+        init_lists = [[] for i in range(len(sequences))]
+        results = dict(zip(sequences, init_lists))
+
+        # Put every hit to corresponding sequence
+        for domain_hit in domain_hits:
+            results[domain_hit.sequence_name].append(domain_hit)
+
+        # Get the architectures
+        results_architectures = dict(zip(sequences, init_lists))
+
+        for seq, hits in results.items():
+
+            # Sort the domain hits based on start in the sequence
+            sorted_hits = sorted(hits, key=lambda x: x.envelope_start, reverse=False)
+
+            # Get the architectures using default criterion
+            default_arch = reduce_hits(sorted_hits, criterion='default')
+            results_architectures[seq] = default_arch
+
+        # Simplify the architectures to list of the domain names in the order of occurance
+        short_partial_default_archs = dict(zip(sequences, init_lists)) # When domain is covered by less than 50%, put suffix 'partial'
+
+        # Use the default architecture criterion
+        for seq, default_arch in results_architectures.items():
+            short_partial_default_archs[seq] = [hit.domain_name if hit.domain_coverage > 0.5 else hit.domain_name+'_partial' for hit in default_arch]
+
+        # Create a df with the architectures as strings
+        for seq, arch_list in short_partial_default_archs.items():
+            short_partial_default_archs[seq] = str(arch_list)
+        supfam_df = pd.DataFrame.from_dict(short_partial_default_archs, orient='index').reset_index()
+        supfam_df.columns = ['id', 'supfam_architecture']
+        
+        # Export them to file
+        supfam_df.to_csv(output.architecture, sep='\t')
+
+#############################
+## PTS SIMILARITY ANALYSIS ##
+#############################
+
+rule all_vs_all_blast:
+    """
+    Runs all by all blast to get similarities between the PTS.
+    """
+    input:
+        fasta = 'data/TPS-database_unique.fasta'
+    output:
+        fasta_db = 'blast/tps_db.psq',
+        ssn = 'blast/tps_db.txt'
+    log:
+        "logs/ssn_blast_50.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p blast
+        makeblastdb -in {input.fasta} -dbtype prot -out blast/tps_db  2> {log}
+        blastp -db blast/tps_db -query {input.fasta} -outfmt 6 -out {output.ssn} -num_threads {threads} 2>> {log}
+        """
+
+# Rest of this analysis is in a jupyter notebook `notebooks/PTS_analysis.ipynb`
+
+################
+## EMBEDDINGS ##
+################
+
+rule get_embeddings:
+    """
+    Use ESM2 to get protein embeddings
+    """
+    input:
+        fasta = 'data/TPS-database_filtered.fasta'
+    output:
+        directory('embeddings')
+    log:
+        "logs/get_embeddings.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        python extract.py esm2_t6_8M_UR50D {input.fasta} embeddings --include mean
+        """
+
+# Rest of this analysis is in a jupyter notebook `notebooks/embeddings_visualization.ipynb`
+
+#############################
+## COMBINE THE INFORMATION ##
+#############################
+
+rule annotate:
+    """
+    Add all annotations into one file
+    """
+    input:
+        tps_db = 'data/TPS-database_filtered.tsv',
+        motifs = 'motifs/motifs_info_summary.txt',
+        pfam_hmm = 'pfam_results/hmmscan.tsv',
+        supfam_hmm = 'supfam_results/hmmscan.tsv',
+        pfam_arch = 'architectures/pfam_architecture.tsv',
+        supfam_arch = 'architectures/supfam_architecture.tsv'
+    output:
+        annotated = 'data/TPS-database_filtered_annotated.tsv'
+    params:
+        memory="1"
+    threads:
+        1
+    run:
+        tps_db = pd.read_csv(input.tps_db, sep='\t')
+
+        cols = {'Uniprot ID': 'id', 
+        'Name': 'name', 
+        'Amino acid sequence': 'sequence', 
+        'Species': 'species',
+        'Kingdom (plant, fungi, bacteria)': 'kingdom', 
+        'Type (mono, sesq, di, …)': 'type'}
+
+        tps_db = tps_db[cols.keys()]
+        tps_db = tps_db.rename(columns=cols)
+
+        # 1) add architectures
+        pfam_arch = pd.read_csv(input.pfam_arch, index_col=0, sep='\t')
+        supfam_arch = pd.read_csv(input.supfam_arch, index_col=0, sep='\t')
+        tps_db = tps_db.merge(pfam_arch, how='left', on='id')
+        tps_db = tps_db.merge(supfam_arch, how='left', on='id')
+        
+        # 2) add domain presence
+
+        pfam_hits = get_domain_hit_list(input.pfam_hmm)
+        domain_hits = pfam_hits
+        sequences = {domain_hit.sequence_name for domain_hit in domain_hits}
+        init_lists = [[] for i in range(len(sequences))]
+        results = dict(zip(sequences, init_lists))
+        for domain_hit in domain_hits:
+            results[domain_hit.sequence_name].append(domain_hit)
+        
+        for seq_name, doms_list in results.items():
+            results[seq_name] = list({d.domain_accession for d in doms_list})
+        
+        all_pfam_ids = ['PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9']
+
+        pfam_domain_df = pd.DataFrame(index=results.keys(), columns=all_pfam_ids)
+                
+        for sequence, pfam_ids in results.items():
+            pfam_domain_df.loc[sequence] = [pfam_id_column in pfam_ids for pfam_id_column in pfam_domain_df.columns]
+        
+        pfam_domain_df = pfam_domain_df.astype(int)
+        pfam_domain_df = pfam_domain_df.reset_index()
+        pfam_domain_df.rename(columns={'index': 'id'}, inplace=True)
+
+        # Superfamily
+        supfam_hits = get_domain_hit_list(input.supfam_hmm)
+        domain_hits = supfam_hits
+        sequences = {domain_hit.sequence_name for domain_hit in domain_hits}
+        init_lists = [[] for i in range(len(sequences))]
+        results = dict(zip(sequences, init_lists))
+        for domain_hit in domain_hits:
+            results[domain_hit.sequence_name].append(domain_hit)
+
+        for seq_name, doms_list in results.items():
+            results[seq_name] = list({d.domain_name for d in doms_list})
+
+        all_supfam_ids = ['0041184','0053354','0053355','0048261','0048806','0046340','0047573']
+
+        supfam_domain_df = pd.DataFrame(index=results.keys(), columns=all_supfam_ids)
+
+        for sequence, supfam_ids in results.items():
+            supfam_domain_df.loc[sequence] = [supfam_id_column in supfam_ids for supfam_id_column in supfam_domain_df.columns]
+
+        supfam_domain_df = supfam_domain_df.astype(int)
+        supfam_domain_df = supfam_domain_df.reset_index()
+        supfam_domain_df.rename(columns={'index': 'id'}, inplace=True)
+
+        tps_db = tps_db.merge(pfam_domain_df, how='left', on='id')
+        tps_db = tps_db.merge(supfam_domain_df, how='left', on='id')
+
+        # 3) add motifs
+
+        # Load the motifs
+        motifs_dict = dict()
+        with open(input.motifs, 'r') as in_file:
+            for line in in_file.readlines():
+                seq_name, motifs = line.split(':')
+                motifs = motifs.strip()
+                motifs_dict[seq_name] = motifs
+
+        # Create a df with the motifs
+        motifs_df = pd.DataFrame.from_dict(motifs_dict, orient='index').reset_index()
+        motifs_df.columns = ['id','motifs']
+
+        motifs_df['DDXXD'] = motifs_df['motifs'].apply(lambda x: 'DDXXD' in x)
+        motifs_df['NSE/DTE'] = motifs_df['motifs'].apply(lambda x: 'NSE/DTE' in x)
+        motifs_df['DXDD'] = motifs_df['motifs'].apply(lambda x: 'DXDD' in x)
+
+        tps_db = tps_db.merge(motifs_df, how='left', left_on='Uniprot ID', right_on='id')
+        
+        # 4) add length
+
+        tps_db['length'] = tps_db['sequence'].apply(lambda x: len(x))

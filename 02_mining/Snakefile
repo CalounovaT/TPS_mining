@@ -1,0 +1,2327 @@
+import os
+import Bio
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from Bio import Phylo
+import requests
+import pandas as pd
+import pathlib
+
+
+#os.environ['TMPDIR']=os.environ['SCRATCHDIR']
+
+MOTIFS = ['DXDD','DDXXD','DDXX[DE]','[ND]DXX[ST]XXXE','[ND]D[LIV]X[ST]XXXE','[ND][DE]XX[ST]XX[NKR][DE]']
+#DATABASES=['onekp','tsa','phytozome','uniparc','mgnify_new','bfd']
+DATABASES=['onekp','tsa','phytozome','uniprot','mgnify_new','bfd']
+
+
+
+rule all:
+  """
+  List of target files to be generated
+  """   
+  input:
+    #"mgnify_new.out",
+    #"databases/mgnify_new_bigger_chunks_filtered_done.txt",
+    expand("results/motifs/{database}_pfam_supfam_pool_unique_length_filtered_wrong_family_filtered_motif_{motif}.out", motif=MOTIFS, database=DATABASES)
+
+
+##########################################################
+## DOWNLOAD THE PFAM HMM PROFILES AND CREATE A DATABASE ##
+##########################################################
+
+rule download_pfam_profiles:
+    """
+    Downloads Pfam profile HMMs.
+    """
+    output:
+        terpene_synth="pfam_profiles/PF01397.gz", # Terpene_synth (PF01397)
+        terpene_synth_C="pfam_profiles/PF03936.gz", # Family: Terpene_synth_C (PF03936)
+        terpene_synth_C2="pfam_profiles/PF19086.gz", # Family: Terpene_syn_C_2 (PF19086)
+        sqhop_cycl_C="pfam_profiles/PF13243.gz", # Squalene-hopene cyclase C-terminal domain
+        sqhop_cycl_N="pfam_profiles/PF13249.gz", # Squalene-hopene cyclase N-terminal domain
+        sqps_synth="pfam_profiles/PF00494.gz", # Squalene/phytoene synthase 
+        tri_synth="pfam_profiles/PF06330.gz" # Trichodiene synthase (TRI5)
+    log:
+        "logs/download_pfam_profiles.log"
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        wget -O pfam_profiles/PF01397.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF01397?annotation=hmm" &> {log}
+        wget -O pfam_profiles/PF03936.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF03936?annotation=hmm" &>> {log}
+        wget -O pfam_profiles/PF19086.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF19086?annotation=hmm" &>> {log}
+        wget -O pfam_profiles/PF13243.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF13243?annotation=hmm" &>> {log}
+        wget -O pfam_profiles/PF13249.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF13249?annotation=hmm" &>> {log}
+        wget -O pfam_profiles/PF00494.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF00494?annotation=hmm" &>> {log}
+        wget -O pfam_profiles/PF06330.gz "https://www.ebi.ac.uk/interpro/wwwapi//entry/pfam/PF06330?annotation=hmm" &>> {log}
+        """
+
+rule gunzip_pfam_profiles:
+    """
+    Gunzips Pfam profile HMMs.
+    """
+    input:
+        "pfam_profiles/{profile}.gz"
+    output:
+        "pfam_profiles/{profile}.hmm"
+    log:
+        "logs/gunzip_pfam_profiles_{profile}.log"
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        gunzip -c {input} > {output} 2> {log}
+        """
+
+rule create_pfam_hmm_db:
+    """
+    Creates a TPS Pfam HMM database.
+    """
+    input:
+        hmm1 = "pfam_profiles/PF01397.hmm",
+        hmm2 = "pfam_profiles/PF03936.hmm",
+        hmm3 = "pfam_profiles/PF19086.hmm",
+        hmm4 = "pfam_profiles/PF13243.hmm",
+        hmm5 = "pfam_profiles/PF13249.hmm",
+        hmm6 = "pfam_profiles/PF00494.hmm",
+        hmm7 = "pfam_profiles/PF06330.hmm"
+    output:
+        "pfam_profiles/tps_pfam.hmm"
+    log:
+        "logs/create_pfam_hmm_db.log"
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        cat {input.hmm1} {input.hmm2} {input.hmm3} {input.hmm4} {input.hmm5} {input.hmm6} {input.hmm7} > {output} 2> {log}
+        """
+
+rule hmmpress_pfam_hmm_db:
+    """
+    Compress and index the TPS Pfam HMM database.
+    """
+    input:
+        "pfam_profiles/tps_pfam.hmm"
+    output:
+        "pfam_profiles/tps_pfam.hmm.h3f",
+        "pfam_profiles/tps_pfam.hmm.h3i",
+        "pfam_profiles/tps_pfam.hmm.h3m",
+        "pfam_profiles/tps_pfam.hmm.h3p"
+    conda:
+        "tps_env"
+    log:
+        "logs/hmmpress_pfam_hmm_db.log"
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        hmmpress {input} &> {log}
+        """
+
+
+#################################################################
+## DOWNLOAD THE SUPERFAMILY HMM PROFILES AND CREATE A DATABASE ##
+#################################################################
+
+# Supfam db can only be downloaded after obtaining a licence, therefore the db was downloaded manually and selected models were fetched using hmmfetch.
+
+rule create_supfam_hmm_db:
+    """
+    Creates a TPS Supfam HMM database.
+    """
+    input:
+        hmm1 = "supfam_profiles/0041184",
+        hmm2 = "supfam_profiles/0046340",
+        hmm3 = "supfam_profiles/0047573",
+        hmm4 = "supfam_profiles/0048261",
+        hmm5 = "supfam_profiles/0048806",
+        hmm6 = "supfam_profiles/0053354",
+        hmm7 = "supfam_profiles/0053355"
+    output:
+        "supfam_profiles/tps_supfam.hmm"
+    log:
+        "logs/create_supfam_hmm_db.log"
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        cat {input.hmm1} {input.hmm2} {input.hmm3} {input.hmm4} {input.hmm5} {input.hmm6} {input.hmm7} > {output} 2> {log}
+        """
+
+rule hmmpress_supfam_hmm_db:
+    """
+    Compress and index the TPS Supfam HMM database.
+    """
+    input:
+        "supfam_profiles/tps_supfam.hmm"
+    output:
+        "supfam_profiles/tps_supfam.hmm.h3f",
+        "supfam_profiles/tps_supfam.hmm.h3i",
+        "supfam_profiles/tps_supfam.hmm.h3m",
+        "supfam_profiles/tps_supfam.hmm.h3p"
+    log:
+        "logs/hmmpress_supfam_hmm_db.log"
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        hmmpress {input} &> {log}
+        """
+
+##########################################
+## SPLITING AND PREPARING THE DATABASES ##
+##########################################
+
+rule split_database:
+    """
+    Splits the database into chunks of 1,000,000 sequences (initially it was 10,000 - some dbs)
+    """
+    input:
+        "databases/{database}.fasta"
+    output:
+        directory("databases/{database}_chunks")
+    log:
+        "logs/split_database_{database}.log"
+    params:
+        memory="200"
+    threads:
+        6
+    shell:
+        """
+        fasta-splitter --part-size 1000000  --measure count --line-length 200 --out-dir {output} {input} 2> {log} 
+        """
+
+rule length_filter:
+    """
+    Filters out sequences shorter than 20 amino acids and longer than 100,000 amino acids.
+    """
+    input:
+        "databases/{database}_chunks/{database}.part-{chunk}.fasta"
+    output:
+        "databases/{database}_chunks/{database}_{chunk}_filtered.fasta"
+    log:
+        "logs/length_filter_{database}_{chunk}.log"
+    params:
+        memory="30"
+    threads:
+        6
+    shell:
+        """
+        seqkit seq -m 20 -M 100000 {input} -o {output} --threads {threads}  2> {log}
+        """ 
+
+def get_files(wildcards):
+    indeces = glob_wildcards("databases/uniparc_chunks/uniparc.part-{chunk}.fasta").chunk
+    filtered = expand("databases/uniparc_chunks/uniparc_{index}_filtered.fasta",index=indeces)
+    return filtered
+
+
+rule merge_filtered:
+    input:
+        get_files
+    output:
+        "databases/{database}_chunks_filtered_done.txt"
+    log:
+        "logs/merge_filtered_chunks_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+
+rule bfd_split:
+
+
+#######################
+## PFAM HMMER SEARCH ##
+#######################
+
+rule pfam_hmmsearch:
+    """
+    Runs HMMER3 hmmsearch against the TPS Pfam HMM database.
+    """
+    input:
+        fasta_chunk = "databases/{database}_chunks/{database}_{chunk}_filtered.fasta",
+        hmm_db = "pfam_profiles/tps_pfam.hmm"
+    output:
+        pfam_result_chunk = "pfam_results/{database}/{chunk}.tsv",
+        pfam_result_chunk2 = "pfam_results/{database}/{chunk}_dom.tsv"
+    log:
+        "logs/pfam_hmmsearch_{database}_{chunk}.log"
+    params:
+        memory="2"
+    threads:
+        6
+    shell:
+        """
+        hmmsearch --noali --notextw --tblout {output.pfam_result_chunk} --domtblout {output.pfam_result_chunk2} -E 1e-6 --cpu {threads} {input.hmm_db} {input.fasta_chunk} &> {log}
+        """
+
+def aggregate_input(wildcards):
+    indeces = glob_wildcards("databases/uniparc_chunks/uniparc_{chunk}_filtered.fasta").chunk
+    completed = expand("pfam_results/uniparc/{chunk}.tsv",chunk=indeces)
+    return completed
+
+
+rule pfam_hmmsearch_merge:
+    """
+    Merges the results of the HMMER3 search.
+    """
+    input:
+        aggregate_input
+    output:
+        "pfam_results/{database}_pfam_result.tsv"
+    log:
+        "logs/pfam_hmmsearch_merge_{database}.log"
+    params:
+        memory="50"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output[0]} 2> {log}
+        """
+
+rule uniparc_upi_split:
+    """
+    Splits the UPIs which passed Pfam filter into chunks of 100 UPIs.
+    """
+    input:
+        "pfam_results/uniparc_pfam_result.tsv"
+    output:
+        directory("pfam_results/uniparc_upi_chunks")
+    log:
+        "logs/uniparc_upi_split.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        mkdir -p {output}
+        grep -v "#" {input} | cut -d " " -f1 | sort | uniq > pfam_results/uniparc_upi_chunks/upi_list.txt
+        split -l 100 pfam_results/uniparc_upi_chunks/upi_list.txt pfam_results/uniparc_upi_chunks/upi_chunk_
+        """
+
+rule get_pfam_tps_sequences_uniprot:
+    """
+    Given the Uniparc IDs (UPIs), this rule finds corresponding UniProt IDs or IDs from cross-linked databases.
+    It returns a fasta file with information about the IDs, organisms, source databases and sequence.
+    It also returns the same data as a table.
+    """
+    input:
+        ids = "pfam_results/uniparc_upi_chunks/upi_chunk_{chunk}"
+    output:
+        fasta = "pfam_results/uniprot_fasta/{chunk}.fasta",
+        tsv = "pfam_results/uniprot_fasta/{chunk}.tsv"
+    log:
+        "logs/get_pfam_tps_sequences_uniprot_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        # open the file with UPIs and load them
+        with open(input.ids,'r') as in_handle:
+            upis = [line.strip() for line in in_handle.readlines()]
+
+        # uniprot uniparc api url
+        base_url='https://rest.uniprot.org/uniparc/search?fields=accession,organism,database,sequence&format=tsv&query=%22'
+
+        # there is a limit for max 25 entries
+        data=[]
+        for i in range(0,len(upis),25):
+            upis_25 = upis[i:i+25]
+            ids_query = '%22OR%22'.join(upis_25)
+    
+            # creating the url 
+            url = f"{base_url}{ids_query}%22"
+            result = requests.get(url)
+            if result.ok:
+        
+                # getting the data
+                data_25= result.text
+                data.append(data_25)
+            else:
+                print('Something went wrong ', result.status_code)
+                exit(1)
+
+        # since we merge more requests, there are headers on each request
+        # -> skip headers and join back
+        results_string = "".join(['\n'.join(d.split('\n')[1:]) for d in data])
+
+        # creating a fasta file for the entries
+        with open(output.fasta,'w') as out_handle:
+            for result_s in results_string.split('\n'):
+                result_split = result_s.split('\t')
+                if len(result_split) == 4:
+                    uniprot_ids, organisms, databases, sequence = result_split
+        
+                    # some entries are only present in the cross-linked databases and not in UniProt
+                    if uniprot_ids == '':
+                        uniprot_ids = 'NoUniProtID'
+                    fasta = f">{uniprot_ids}\torganism: {organisms}\tdatabases: {databases}\n{sequence}"
+                    out_handle.write(fasta+'\n')
+            
+        # writing the output as a tsv table
+        with open(output.tsv,'w') as out_handle:
+            out_handle.write(results_string)
+    
+
+rule get_pfam_tps_sequences:
+    """
+    Gets sequences which passed Pfam search
+    """
+    input:
+        pfam_chunk = "pfam_results/{database}/{chunk}.tsv",
+        fasta_chunk = "databases/{database}_chunks/{database}_{chunk}_filtered.fasta" # TODO: change accordingly
+    output:
+        pfam_fasta = "pfam_results/{database}_fasta/{chunk}_pfam_filtered.fasta"
+    log:
+        "logs/get_pfam_tps_sequences_{database}_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        outdir = os.path.dirname(output.pfam_fasta)
+        os.makedirs(outdir, exist_ok=True)
+        with open(input.pfam_chunk, 'r') as in_file:
+            lines = [line.strip() for line in in_file.readlines() if not line.startswith('#')]
+            descriptions = []
+            for line in lines:
+                split = line.split()
+                seq_id = split[0]
+                if split[18] == '-':
+                    full_description = seq_id
+                else:
+                    description = " ".join(split[18:])
+                    full_description = f"{seq_id} {description}"
+                descriptions.append(full_description)
+    
+        descriptions = set(descriptions)
+        with open(input.fasta_chunk, 'r') as fasta_file, open(output.pfam_fasta, 'w') as out_file:
+            for record in SeqIO.parse(fasta_file, "fasta"):
+                description = record.description
+                description = " ".join(description.split())
+                #description = " ".join(description.split('\t'))
+                if description in descriptions:
+                    SeqIO.write(record,out_file,"fasta")
+
+def get_pfam_fasta_uniprot(wildcards):
+    indeces = glob_wildcards("pfam_results/uniparc_upi_chunks/upi_chunk_{chunk}").chunk
+    filtered = expand("pfam_results/uniprot_fasta/{chunk}.fasta",chunk=indeces)
+    return filtered
+
+def get_pfam_fasta(wildcards):
+    indeces = glob_wildcards("databases/tsa_chunks/tsa_{chunk}_filtered.fasta").chunk
+    filtered = expand("pfam_results/tsa_fasta/{chunk}_pfam_filtered.fasta",chunk=indeces)
+    return filtered
+
+rule finish_pfam_tps_uniprot_filter:
+    input:
+        get_pfam_fasta_uniprot
+    output:
+        "pfam_results/uniprot_pfam_fasta_filter_done.txt"
+    log:
+        "logs/finish_pfam_tps_filter_uniprot.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+
+
+rule finish_pfam_tps_filter:
+    input:
+        get_pfam_fasta
+    output:
+        "pfam_results/{database}_pfam_fasta_filter_done.txt"
+    log:
+        "logs/finish_pfam_tps_filter_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+
+##################
+## BFD specific ##
+##################
+
+rule split_database:
+    """
+    Splits the database into chunks of 1,000,000 sequences. # before it was 10,000
+    """
+    input:
+        #"databases/{database}.fasta"
+        "databases/{database}/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt_a3m.ffdata"
+    output:
+        directory("databases/{database}_chunks")
+    log:
+        "logs/split_database_{database}.log"
+    params:
+        memory="2000"
+    threads:
+        6
+    shell:
+        """
+        module add conda-modules-py37
+        conda activate /storage/plzen1/home/calounovat/.conda/envs/tps_env
+        # number of files for phytozome:  11 952 181 / 10 000 = 1196
+        #mkdir -p databases/{wildcards.database}_chunks
+        #faSplit sequence {input} 1196 databases/{wildcards.database}_chunks/{wildcards.database}.part_ 2> {log} # this program cuts the headers and also does not create exactly the number of requested files
+        fasta-splitter --part-size 1000000  --measure count --line-length 200 --out-dir {output} {input} 2> {log} 
+        #seqkit split {input} -s 10000 --two-pass -O "{output}" --threads {threads} 2> {log}
+        """
+
+rule filter:
+    """
+    First filters the consensus sequences, 
+    then it puts cluster header on own line and skips those cluster headers.
+    Then it filters out sequences shorter than 20 amino acids and longer than 100,000 amino acids.
+    """
+    input:
+        fasta_chunk = "databases/{database}_chunks/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt_a3m.part-{chunk}.ffdata"
+        #"databases/{database}/{database}_chunks_nonfiltered_bigger/chunk_{chunk}.fasta"
+        #"databases/{database}/{database}_chunks/mgy_proteins_{chunk}.fasta"
+        #"databases/{database}_chunks/{database}.part-{chunk}.fasta"
+    output:
+        consensus_chunk = "databases/{database}_consensus_chunks/{chunk}.fasta",
+        filtered_consensus_chunk = "databases/{database}_consensus_chunks/{chunk}_filtered.fasta"
+    log:
+        "logs/filter_{database}_{chunk}.log"
+    params:
+        memory="30"
+    threads:
+        6
+    shell:
+        r"""
+        module add conda-modules-py37
+        conda activate /storage/plzen1/home/calounovat/.conda/envs/tps_env
+
+        # filter out the consensus sequences
+        seqkit grep -j {threads} -r -p "_consensus" {input.fasta_chunk} -o {output.consensus_chunk} 2> {log}
+
+        # put header on a new line and skip them, save to tmp file
+        tr '\0' '\n' < {output.consensus_chunk} | grep -v '#' > databases/{wildcards.database}_consensus_chunks/{wildcards.chunk}_dummy.fasta 2>> {log}
+
+        # use the tmp file to length filter
+        seqkit seq -m 20 -M 100000 databases/{wildcards.database}_consensus_chunks/{wildcards.chunk}_dummy.fasta -o {output.filtered_consensus_chunk} --threads {threads}  2>> {log}
+
+        # remove the tmp file
+        rm databases/{wildcards.database}_consensus_chunks/{wildcards.chunk}_dummy.fasta
+        """ 
+
+def get_files(wildcards):
+    indeces = glob_wildcards("databases/bfd_chunks/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt_a3m.part-{chunk}.ffdata").chunk
+    filtered = expand("databases/bfd_consensus_chunks/{index}_filtered.fasta",index=indeces)
+    return filtered
+
+rule pfam_hmmsearch:
+    """
+    Runs HMMER3 against the TPS Pfam HMM database.
+    """
+    input:
+        fasta_chunk = "databases/{database}_consensus_chunks/{chunk}_filtered.fasta",
+        #fasta_chunk = "databases/{database}_chunks/chunk_{chunk}.fasta",
+        #dummy = "databases/{database}_bigger_chunks_filtered_done.txt",
+        #fasta_chunk = "databases/{database}_chunks/{database}.part_{chunk}_filtered.fasta",
+        hmm_db = "pfam_profiles/tps_pfam.hmm"
+    output:
+        pfam_result_chunk = "pfam_results/{database}/{chunk}.tsv",
+        pfam_result_chunk2 = "pfam_results/{database}/{chunk}_dom.tsv"
+    log:
+        "logs/pfam_hmmsearch_{database}_{chunk}.log"
+    params:
+        memory="2"
+    threads:
+        6
+    shell:
+        """
+        module add conda-modules-py37
+        conda activate /storage/plzen1/home/calounovat/.conda/envs/tps_env
+        hmmsearch --noali --notextw --tblout {output.pfam_result_chunk} --domtblout {output.pfam_result_chunk2} -E 1e-6 --cpu {threads} {input.hmm_db} {input.fasta_chunk} &> {log}
+        """
+
+def aggregate_input(wildcards):
+    #checkpoint_output = checkpoints.pfam_hmmsearch.get(**wildcards).output[0]
+    #indeces = glob_wildcards("databases/tsa_chunks/chunk_{chunk}.fasta").chunk
+    indeces = glob_wildcards("databases/bfd_consensus_chunks/{chunk}_filtered.fasta").chunk
+    completed = expand("pfam_results/bfd/{chunk}.tsv",chunk=indeces)
+    return completed
+
+
+rule pfam_hmmsearch_merge:
+    """
+    Merges the results of the HMMER3 search.
+    """
+    input:
+        aggregate_input
+    output:
+        "pfam_results/{database}_pfam_result.tsv"
+    log:
+        "logs/pfam_hmmsearch_merge_{database}.log"
+    params:
+        memory="50"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output[0]} 2> {log}
+        """
+
+rule get_bfd_ids:
+    input:
+        "pfam_results/bfd/{chunk}.tsv"
+    output:
+        "pfam_results/bfd_ids/{chunk}_ids.txt"
+    log:
+        "logs/get_bfd_ids_{chunk}.log"  
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        if grep -qv "^#" {input}; then
+            grep -v "#" {input} | cut -d " " -f1 | sort | uniq > {output} 
+        else
+            echo "File contains only # characters"
+            touch {output}
+        fi
+        """
+
+rule get_bfd_clusters:
+    input:
+        ids_chunk = "pfam_results/bfd_ids/{chunk}_ids.txt",
+        fasta_chunk = "databases/bfd_chunks/{chunk}.fasta"
+    output:
+        clusters="pfam_results/bfd_clusters/{chunk}_clusters.txt"
+    log:
+        "logs/get_bfd_clusters_{chunk}.log"
+    params:
+        memory="50"
+    threads:
+        1
+    run:
+
+        outdir = os.path.dirname(output.clusters)
+        os.makedirs(outdir, exist_ok=True)
+
+        # the consensus fasta ids
+        with open(input.ids_chunk, 'r') as ids_handle:
+            consensus_ids = [line.strip() for line in ids_handle.readlines()]
+
+        # exit the program and create empty file if no ids
+        if len(consensus_ids) == 0:
+            with open(output.clusters, 'w') as out_handle:
+                out_handle.write('')
+            return
+        print(consensus_ids)
+
+        # the fasta chunk
+        with open(input.fasta_chunk, 'r') as in_handle:
+            print('file opened')
+            lines = [line.strip() for line in in_handle.readlines()]
+            print('lines parsed')
+        print('lines extracted')
+        # iterate through the file
+        segment_idx = []
+        segment_start = 0
+        segment_end = 0
+        segment_in_mining = False
+        for i, line in enumerate(lines):
+
+            # new cluster start
+            if line.startswith('#'):
+                segment_start = segment_end
+                segment_end = i
+                if segment_in_mining:
+                    segment_idx.append((segment_start, segment_end))
+                    #segment_end = segment_start
+                    #segment_start = i
+                    segment_in_mining = False
+                    print(segment_start, segment_end)
+            else:
+                if line.startswith('>'):
+                    if line[1:].strip() in consensus_ids:
+                        segment_in_mining = True
+
+        print(segment_idx)
+
+        # extract the segments of the file
+        with open(output.clusters, 'w') as out_handle:
+            for (start, end) in segment_idx:
+                lines_subset = lines[start:end]
+                for line in lines_subset:
+                    out_handle.write(line + '\n')
+
+def get_bfd_clusters(wildcards):
+    indeces = glob_wildcards("databases/bfd_chunks/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt_a3m.part-{chunk}.ffdata").chunk
+    completed = expand("pfam_results/bfd_clusters/{chunk}_clusters.txt",chunk=indeces)
+    return completed
+
+rule get_bfd_clusters_merge:
+    input:
+        get_bfd_clusters
+    output:
+        "pfam_results/bfd_clusters_done.txt"
+    log:
+        "logs/get_bfd_clusters_merge.log"
+    params:
+        memory="5"
+    threads:
+        1
+    shell:
+        """
+        touch {output} 2> {log}
+        """
+
+rule reformat_cluster_seqs:
+    input:
+        in_fasta = "pfam_results/bfd_clusters/{chunk}_clusters.txt"
+    output:
+        out_fasta = "pfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta"
+    log:
+        "logs/reformat_cluster_seqs_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        # when ecountering line starting with "#"", ignore the lines until lines starting with ">"
+        hash_found = False
+        with open(input.in_fasta, 'r') as in_handle, open(f"pfam_results/bfd_clusters/{wildcards.chunk}_tmp.fasta", 'w') as out_handle:
+            for line in in_handle.readlines():
+                if line.startswith('#'):
+                    hash_found = True
+                if line.startswith('>') and hash_found:
+                    hash_found = False
+                if not hash_found:
+                    out_handle.write(line)
+
+        # with open(input.in_fasta, 'r') as in_handle, open(f"pfam_results/bfd_clusters/{wildcards.chunk}_tmp.fasta", 'w') as out_handle:
+        #     for line in in_handle.readlines():
+        #         if not line.startswith('#'):
+        #             out_handle.write(line)
+
+        with open(f"pfam_results/bfd_clusters/{wildcards.chunk}_tmp.fasta", 'r') as in_handle, open(output.out_fasta, 'w') as out_handle:
+            for record in SeqIO.parse(in_handle, "fasta"):
+                s = str(record.seq)
+                s = s.replace('-', '')
+                s = s.upper()
+                record.seq = Seq(s)
+                SeqIO.write(record, out_handle, "fasta")
+
+def get_ref_clusters(wildcards):
+    indeces = glob_wildcards("pfam_results/bfd_clusters/{chunk}_clusters.txt").chunk
+    completed = expand("pfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta",chunk=indeces)
+    return completed
+
+rule get_bfd_clusters_ref_merge:
+    input:
+        get_ref_clusters
+    output:
+        "pfam_results/bfd_clusters_reformatted_done.txt"
+    log:
+        "logs/get_bfd_clusters_ref_merge.log"
+    params:
+        memory="5"
+    threads:
+        1
+    shell:
+        """
+        touch {output} 2> {log}
+        """
+
+rule pfam_hmmsearch_clusters:
+    """
+    Runs HMMER3 against the TPS Pfam HMM database.
+    """
+    input:
+        fasta_chunk = "pfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta",
+        #fasta_chunk = "databases/{database}_chunks/chunk_{chunk}.fasta",
+        #dummy = "databases/{database}_bigger_chunks_filtered_done.txt",
+        #fasta_chunk = "databases/{database}_chunks/{database}.part_{chunk}_filtered.fasta",
+        hmm_db = "pfam_profiles/tps_pfam.hmm"
+    output:
+        pfam_result_chunk = "pfam_results/bfd_mined_clusters/{chunk}.tsv",
+        pfam_result_chunk2 = "pfam_results/bfd_mined_clusters/{chunk}_dom.tsv"
+    log:
+        "logs/pfam_hmmsearch_clusters_bfd_{chunk}.log"
+    params:
+        memory="2"
+    threads:
+        6
+    shell:
+        """
+        # check if the file is empty and save only the number of lines
+        n_lines=$(wc -l {input.fasta_chunk} | cut -d ' ' -f1) 
+        echo $n_lines
+        if [ $n_lines -lt 1 ]; then
+            touch {output.pfam_result_chunk}
+            touch {output.pfam_result_chunk2}
+            exit 0
+        fi
+        module add conda-modules-py37
+        conda activate /storage/plzen1/home/calounovat/.conda/envs/tps_env
+        hmmsearch --noali --notextw --tblout {output.pfam_result_chunk} --domtblout {output.pfam_result_chunk2} -E 1e-6 --cpu {threads} {input.hmm_db} {input.fasta_chunk} 2> {log}
+        """
+
+def get_mined_clusters(wildcards):
+    indeces = glob_wildcards("pfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta").chunk
+    completed = expand("pfam_results/bfd_mined_clusters/{chunk}.tsv",chunk=indeces)
+    return completed
+
+rule get_bfd_clusters_mined_merge:
+    input:
+        get_mined_clusters
+    output:
+        "pfam_results/bfd_clusters_mined_done.txt"
+    log:
+        "logs/get_bfd_clusters_mined_merge.log"
+    params:
+        memory="5"
+    threads:
+        1
+    shell:
+        """
+        touch {output} 2> {log}
+        """
+
+rule get_pfam_tps_sequences:
+    """
+    Gets sequences which passed Pfam search
+    """
+    input:
+        pfam_chunk = "pfam_results/bfd_mined_clusters/{chunk}.tsv",
+        fasta_chunk = "pfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta" # TODO: change accordingly
+    output:
+        pfam_fasta = "pfam_results/{database}_mined_clusters_fasta/{chunk}_pfam_filtered.fasta"
+    log:
+        "logs/get_pfam_tps_sequences_{database}_mined_clusters_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        outdir = os.path.dirname(output.pfam_fasta)
+        os.makedirs(outdir, exist_ok=True)
+        with open(input.pfam_chunk, 'r') as in_file:
+            lines = [line.strip() for line in in_file.readlines() if not line.startswith('#')]
+            descriptions = []
+            for line in lines:
+                split = line.split()
+                seq_id = split[0]
+                if split[18] == '-':
+                    full_description = seq_id
+                else:
+                    description = " ".join(split[18:])
+                    full_description = f"{seq_id} {description}"
+                descriptions.append(full_description)
+    
+        descriptions = set(descriptions)
+        with open(input.fasta_chunk, 'r') as fasta_file, open(output.pfam_fasta, 'w') as out_file:
+            for record in SeqIO.parse(fasta_file, "fasta"):
+                description = record.description
+                description = " ".join(description.split())
+                #description = " ".join(description.split('\t'))
+                if description in descriptions:
+                    SeqIO.write(record,out_file,"fasta")
+
+def get_pfam_fasta(wildcards):
+    indeces = glob_wildcards("pfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta").chunk
+    filtered = expand("pfam_results/bfd_mined_clusters_fasta/{chunk}_pfam_filtered.fasta",chunk=indeces)
+    return filtered
+
+rule finish_pfam_tps_filter:
+    input:
+        get_pfam_fasta
+    output:
+        "pfam_results/{database}_pfam_fasta_mined_clusters_filter_done.txt"
+    log:
+        "logs/finish_pfam_tps_filter_mined_clusters_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+
+rule pfam_concat_filtered_fasta:
+    input:
+        get_pfam_fasta
+    output:
+        "pfam_results/{database}_pfam_mined.fasta"
+    log:
+        "logs/pfam_concat_filtered_fasta_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output} 2> {log}
+        """
+
+#########################
+## SUPFAM HMMER SEARCH ##
+#########################
+
+rule supfam_hmmsearch:
+    """
+    Runs HMMER3 against the TPS Sufam HMM database.
+    """
+    input:
+        fasta_chunk = "databases/{database}_chunks/{database}_{chunk}_filtered.fasta",
+        hmm_db = "supfam_profiles/tps_supfam.hmm"
+    output:
+        supfam_result_chunk = "supfam_results/{database}_smaller/{chunk}.tsv",
+        supfam_result_chunk2 = "supfam_results/{database}_smaller/{chunk}_dom.tsv"
+    log:
+        "logs/supfam_hmmsearch_{database}_{chunk}.log"
+    params:
+        memory="2"
+    threads:
+        6
+    shell:
+        """
+        hmmsearch --noali --notextw --tblout {output.supfam_result_chunk} --domtblout {output.supfam_result_chunk2} -E 1e-6 --cpu {threads} {input.hmm_db} {input.fasta_chunk} &> {log}
+        """
+
+def aggregate_input(wildcards):
+    indeces = glob_wildcards("databases/mgnify_new_chunks_smaller/chunk_{chunk}.fasta").chunk
+    completed = expand("supfam_results/mgnify_new_smaller/{chunk}.tsv", chunk=indeces)
+    return completed
+
+
+rule supfam_hmmsearch_merge:
+    """
+    Merges the results of the HMMER3 search.
+    """
+    input:
+        aggregate_input
+    output:
+        "supfam_results/{database}_smaller_supfam_result.tsv"
+    log:
+        "logs/supfam_hmmsearch_merge_{database}_smaller.log"
+    params:
+        memory="50"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output[0]} 2> {log}
+        """
+
+rule supfam_uniparc_upi_split:
+    """
+    Splits the UPIs which passed Supfam filter into chunks of 100 UPIs.
+    """
+    input:
+        "supfam_results/uniparc_supfam_result.tsv"
+    output:
+        directory("supfam_results/uniparc_upi_chunks")
+    log:
+        "logs/supfam_uniparc_upi_split.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        mkdir -p {output}
+        grep -v "#" {input} | cut -d " " -f1 | sort | uniq > supfam_results/uniparc_upi_chunks/upi_list.txt
+        split -l 100 supfam_results/uniparc_upi_chunks/upi_list.txt supfam_results/uniparc_upi_chunks/upi_chunk_
+        """
+
+rule get_supfam_tps_sequences_uniprot:
+    """
+    Given the Uniparc IDs (UPIs), this rule finds corresponding UniProt IDs or IDs from cross-linked databases.
+    It returns a fasta file with information about the IDs, organisms, source databases and sequence.
+    It also returns the same data as a table.
+    """
+    input:
+        ids = "supfam_results/uniparc_upi_chunks/upi_chunk_{chunk}"
+    output:
+        fasta = "supfam_results/uniprot_fasta/{chunk}.fasta",
+        tsv = "supfam_results/uniprot_fasta/{chunk}.tsv"
+    log:
+        "logs/get_supfam_tps_sequences_uniprot_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        # open the file with UPIs and load them
+        with open(input.ids,'r') as in_handle:
+            upis = [line.strip() for line in in_handle.readlines()]
+
+        # uniprot uniparc api url
+        base_url='https://rest.uniprot.org/uniparc/search?fields=accession,organism,database,sequence&format=tsv&query=%22'
+
+        # there is a limit for max 25 entries
+        data=[]
+        for i in range(0,len(upis),25):
+            upis_25 = upis[i:i+25]
+            ids_query = '%22OR%22'.join(upis_25)
+    
+            # creating the url 
+            url = f"{base_url}{ids_query}%22"
+            result = requests.get(url)
+            if result.ok:
+        
+                # getting the data
+                data_25= result.text
+                data.append(data_25)
+            else:
+                print('Something went wrong ', result.status_code)
+                exit(1)
+
+        # since we merge more requests, there are headers on each request
+        # -> skip headers and join back
+        results_string = "".join(['\n'.join(d.split('\n')[1:]) for d in data])
+
+        # creating a fasta file for the entries
+        with open(output.fasta,'w') as out_handle:
+            for result_s in results_string.split('\n'):
+                result_split = result_s.split('\t')
+                if len(result_split) == 4:
+                    uniprot_ids, organisms, databases, sequence = result_split
+        
+                    # some entries are only present in the cross-linked databases and not in UniProt
+                    if uniprot_ids == '':
+                        uniprot_ids = 'NoUniProtID'
+                    fasta = f">{uniprot_ids}\torganism: {organisms}\tdatabases: {databases}\n{sequence}"
+                    out_handle.write(fasta+'\n')
+            
+        # writing the output as a tsv table
+        with open(output.tsv,'w') as out_handle:
+            out_handle.write(results_string)
+    
+def get_supfam_fasta_uniprot(wildcards):
+    indeces = glob_wildcards("supfam_results/uniparc_upi_chunks/upi_chunk_{chunk}").chunk
+    filtered = expand("supfam_results/uniprot_fasta/{chunk}.fasta",chunk=indeces)
+    return filtered
+
+rule finish_supfam_tps_uniprot_filter:
+    input:
+        get_supfam_fasta_uniprot
+    output:
+        "supfam_results/uniprot_supfam_fasta_filter_done.txt"
+    log:
+        "logs/finish_supfam_tps_filter_uniprot.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+
+rule get_supfam_tps_sequences:
+    """
+    Gets sequences which passed Supfam search
+    """
+    input:
+        supfam_chunk = "supfam_results/{database}_smaller/{chunk}.tsv",
+        fasta_chunk = "databases/{database}_chunks_smaller/chunk_{chunk}.fasta"
+        #fasta_chunk = "databases/{database}_chunks/{database}.part_{chunk}_filtered.fasta"
+        #fasta_chunk = "databases/{database}_chunks/{database}_{chunk}_filtered.fasta" # TODO: change accordingly
+    output:
+        supfam_fasta = "supfam_results/{database}_smaller_fasta/{chunk}_supfam_filtered.fasta"
+    log:
+        "logs/get_supfam_tps_sequences_{database}_smaller_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        outdir = os.path.dirname(output.supfam_fasta)
+        os.makedirs(outdir, exist_ok=True)
+        with open(input.supfam_chunk, 'r') as in_file:
+            lines = [line.strip() for line in in_file.readlines() if not line.startswith('#')]
+            descriptions = []
+            for line in lines:
+                split = line.split()
+                seq_id = split[0]
+                if split[18] == '-':
+                    full_description = seq_id
+                else:
+                    description = " ".join(split[18:])
+                    full_description = f"{seq_id} {description}"
+                descriptions.append(full_description)
+    
+        descriptions = set(descriptions)
+        with open(input.fasta_chunk, 'r') as fasta_file, open(output.supfam_fasta, 'w') as out_file:
+            for record in SeqIO.parse(fasta_file, "fasta"):
+                description = record.description
+                description = " ".join(description.split())
+                #description = " ".join(description.split('\t'))
+                if description in descriptions:
+                    SeqIO.write(record,out_file,"fasta")
+
+def get_supfam_fasta(wildcards):
+    indeces = glob_wildcards("databases/onekp_chunks/onekp.part_{chunk}_filtered.fasta").chunk
+    filtered = expand("supfam_results/onekp_fasta/{chunk}_supfam_filtered.fasta",chunk=indeces)
+    return filtered
+
+rule finish_supfam_tps_filter:
+    input:
+        get_supfam_fasta
+    output:
+        "supfam_results/{database}_smaller_supfam_fasta_filter_done.txt"
+    log:
+        "logs/finish_supfam_tps_filter_{database}_smaller.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+##################
+## BFD specific ##
+##################
+rule supfam_hmmsearch:
+    """
+    Runs HMMER3 against the TPS Supfam HMM database.
+    """
+    input:
+        fasta_chunk = "databases/{database}_consensus_chunks/{chunk}_filtered.fasta",
+        #fasta_chunk = "databases/{database}_chunks/chunk_{chunk}.fasta",
+        #dummy = "databases/{database}_bigger_chunks_filtered_done.txt",
+        #fasta_chunk = "databases/{database}_chunks/{database}.part_{chunk}_filtered.fasta",
+        hmm_db = "supfam_profiles/tps_supfam.hmm"
+    output:
+        supfam_result_chunk = "supfam_results/{database}/{chunk}.tsv",
+        supfam_result_chunk2 = "supfam_results/{database}/{chunk}_dom.tsv"
+    log:
+        "logs/supfam_hmmsearch_{database}_{chunk}.log"
+    params:
+        memory="2"
+    threads:
+        6
+    shell:
+        """
+        module add conda-modules-py37
+        conda activate /storage/plzen1/home/calounovat/.conda/envs/tps_env_supfam
+        hmmsearch --noali --notextw --tblout {output.supfam_result_chunk} --domtblout {output.supfam_result_chunk2} -E 1e-6 --cpu {threads} {input.hmm_db} {input.fasta_chunk} &> {log}
+        """
+
+def aggregate_input_supfam(wildcards):
+    #checkpoint_output = checkpoints.pfam_hmmsearch.get(**wildcards).output[0]
+    #indeces = glob_wildcards("databases/tsa_chunks/chunk_{chunk}.fasta").chunk
+    indeces = glob_wildcards("databases/bfd_consensus_chunks/{chunk}_filtered.fasta").chunk
+    completed = expand("supfam_results/bfd/{chunk}.tsv",chunk=indeces)
+    return completed
+
+
+rule supfam_hmmsearch_merge:
+    """
+    Merges the results of the HMMER3 search.
+    """
+    input:
+        aggregate_input_supfam
+    output:
+        "supfam_results/{database}_supfam_result.tsv"
+    log:
+        "logs/supfam_hmmsearch_merge_{database}.log"
+    params:
+        memory="50"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output[0]} 2> {log}
+        """
+
+rule supfam_get_bfd_ids:
+    input:
+        "supfam_results/bfd/{chunk}.tsv"
+    output:
+        "supfam_results/bfd_ids/{chunk}_ids.txt"
+    log:
+        "logs/supfam_get_bfd_ids_{chunk}.log"  
+    params:
+        memory="2"
+    threads:
+        1
+    shell:
+        """
+        if grep -qv "^#" {input}; then
+            grep -v "#" {input} | cut -d " " -f1 | sort | uniq > {output} 
+        else
+            echo "File contains only # characters"
+            touch {output}
+        fi
+        """
+
+rule supfam_get_bfd_clusters:
+    input:
+        ids_chunk = "supfam_results/bfd_ids/{chunk}_ids.txt",
+        fasta_chunk = "databases/bfd_chunks/{chunk}.fasta"
+    output:
+        clusters="supfam_results/bfd_clusters/{chunk}_clusters.txt"
+    log:
+        "logs/supfam_get_bfd_clusters_{chunk}.log"
+    params:
+        memory="50"
+    threads:
+        1
+    run:
+
+        outdir = os.path.dirname(output.clusters)
+        os.makedirs(outdir, exist_ok=True)
+
+        # the consensus fasta ids
+        with open(input.ids_chunk, 'r') as ids_handle:
+            consensus_ids = [line.strip() for line in ids_handle.readlines()]
+
+        # exit the program and create empty file if no ids
+        if len(consensus_ids) == 0:
+            with open(output.clusters, 'w') as out_handle:
+                out_handle.write('')
+            return
+        print(consensus_ids)
+
+        # the fasta chunk
+        with open(input.fasta_chunk, 'r') as in_handle:
+            print('file opened')
+            lines = [line.strip() for line in in_handle.readlines()]
+            print('lines parsed')
+        print('lines extracted')
+        # iterate through the file
+        segment_idx = []
+        segment_start = 0
+        segment_end = 0
+        segment_in_mining = False
+        for i, line in enumerate(lines):
+
+            # new cluster start
+            if line.startswith('#'):
+                segment_start = segment_end
+                segment_end = i
+                if segment_in_mining:
+                    segment_idx.append((segment_start, segment_end))
+                    #segment_end = segment_start
+                    #segment_start = i
+                    segment_in_mining = False
+                    print(segment_start, segment_end)
+            else:
+                if line.startswith('>'):
+                    if line[1:].strip() in consensus_ids:
+                        segment_in_mining = True
+
+        print(segment_idx)
+
+        # extract the segments of the file
+        with open(output.clusters, 'w') as out_handle:
+            for (start, end) in segment_idx:
+                lines_subset = lines[start:end]
+                for line in lines_subset:
+                    out_handle.write(line + '\n')
+
+def supfam_get_bfd_clusters(wildcards):
+    indeces = glob_wildcards("databases/bfd_chunks/{chunk}.fasta").chunk
+    completed = expand("supfam_results/bfd_clusters/{chunk}_clusters.txt",chunk=indeces)
+    return completed
+
+rule supfam_get_bfd_clusters_merge:
+    input:
+        supfam_get_bfd_clusters
+    output:
+        "supfam_results/bfd_clusters_done.txt"
+    log:
+        "logs/supfam_get_bfd_clusters_merge.log"
+    params:
+        memory="5"
+    threads:
+        1
+    shell:
+        """
+        touch {output} 2> {log}
+        """
+
+rule supfam_reformat_cluster_seqs:
+    input:
+        in_fasta = "supfam_results/bfd_clusters/{chunk}_clusters.txt"
+    output:
+        out_fasta = "supfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta"
+    log:
+        "logs/supfam_reformat_cluster_seqs_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        # when ecountering line starting with "#"", ignore the lines until lines starting with ">"
+        hash_found = False
+        with open(input.in_fasta, 'r') as in_handle, open(f"supfam_results/bfd_clusters/{wildcards.chunk}_tmp.fasta", 'w') as out_handle:
+            for line in in_handle.readlines():
+                if line.startswith('#'):
+                    hash_found = True
+                if line.startswith('>') and hash_found:
+                    hash_found = False
+                if not hash_found:
+                    out_handle.write(line)
+
+        with open(f"supfam_results/bfd_clusters/{wildcards.chunk}_tmp.fasta", 'r') as in_handle, open(output.out_fasta, 'w') as out_handle:
+            for record in SeqIO.parse(in_handle, "fasta"):
+                s = str(record.seq)
+                s = s.replace('-', '')
+                s = s.upper()
+                record.seq = Seq(s)
+                SeqIO.write(record, out_handle, "fasta")
+
+def supfam_get_ref_clusters(wildcards):
+    indeces = glob_wildcards("supfam_results/bfd_clusters/{chunk}_clusters.txt").chunk
+    completed = expand("supfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta",chunk=indeces)
+    return completed
+
+rule supfam_get_bfd_clusters_ref_merge:
+    input:
+        supfam_get_ref_clusters
+    output:
+        "supfam_results/bfd_clusters_reformatted_done.txt"
+    log:
+        "logs/supfam_get_bfd_clusters_ref_merge.log"
+    params:
+        memory="5"
+    threads:
+        1
+    shell:
+        """
+        touch {output} 2> {log}
+        """
+
+rule supfam_hmmsearch_clusters:
+    """
+    Runs HMMER3 against the TPS Supfam HMM database.
+    """
+    input:
+        fasta_chunk = "supfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta",
+        #fasta_chunk = "databases/{database}_chunks/chunk_{chunk}.fasta",
+        #dummy = "databases/{database}_bigger_chunks_filtered_done.txt",
+        #fasta_chunk = "databases/{database}_chunks/{database}.part_{chunk}_filtered.fasta",
+        hmm_db = "supfam_profiles/tps_supfam.hmm"
+    output:
+        pfam_result_chunk = "supfam_results/bfd_mined_clusters/{chunk}.tsv",
+        pfam_result_chunk2 = "supfam_results/bfd_mined_clusters/{chunk}_dom.tsv"
+    log:
+        "logs/supfam_hmmsearch_clusters_bfd_{chunk}.log"
+    params:
+        memory="2"
+    threads:
+        6
+    shell:
+        """
+        # check if the file is empty and save only the number of lines
+        n_lines=$(wc -l {input.fasta_chunk} | cut -d ' ' -f1) 
+        echo $n_lines
+        if [ $n_lines -lt 1 ]; then
+            touch {output.pfam_result_chunk}
+            touch {output.pfam_result_chunk2}
+            exit 0
+        fi
+        module add conda-modules-py37
+        conda activate /storage/plzen1/home/calounovat/.conda/envs/tps_env_supfam
+        hmmsearch --noali --notextw --tblout {output.pfam_result_chunk} --domtblout {output.pfam_result_chunk2} -E 1e-6 --cpu {threads} {input.hmm_db} {input.fasta_chunk} 2> {log}
+        """
+
+def supfam_get_mined_clusters(wildcards):
+    indeces = glob_wildcards("supfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta").chunk
+    completed = expand("supfam_results/bfd_mined_clusters/{chunk}.tsv",chunk=indeces)
+    return completed
+
+rule supfam_get_bfd_clusters_mined_merge:
+    input:
+        supfam_get_mined_clusters
+    output:
+        "supfam_results/bfd_clusters_mined_done.txt"
+    log:
+        "logs/supfam_get_bfd_clusters_mined_merge.log"
+    params:
+        memory="5"
+    threads:
+        1
+    shell:
+        """
+        touch {output} 2> {log}
+        """
+
+rule get_supfam_tps_sequences:
+    """
+    Gets sequences which passed Supfam search
+    """
+    input:
+        pfam_chunk = "supfam_results/bfd_mined_clusters/{chunk}.tsv",
+        fasta_chunk = "supfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta" # TODO: change accordingly
+    output:
+        pfam_fasta = "supfam_results/{database}_mined_clusters_fasta/{chunk}_supfam_filtered.fasta"
+    log:
+        "logs/get_supfam_tps_sequences_{database}_mined_clusters_{chunk}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        outdir = os.path.dirname(output.pfam_fasta)
+        os.makedirs(outdir, exist_ok=True)
+        with open(input.pfam_chunk, 'r') as in_file:
+            lines = [line.strip() for line in in_file.readlines() if not line.startswith('#')]
+            descriptions = []
+            for line in lines:
+                split = line.split()
+                seq_id = split[0]
+                if split[18] == '-':
+                    full_description = seq_id
+                else:
+                    description = " ".join(split[18:])
+                    full_description = f"{seq_id} {description}"
+                descriptions.append(full_description)
+    
+        descriptions = set(descriptions)
+        with open(input.fasta_chunk, 'r') as fasta_file, open(output.pfam_fasta, 'w') as out_file:
+            for record in SeqIO.parse(fasta_file, "fasta"):
+                description = record.description
+                description = " ".join(description.split())
+                #description = " ".join(description.split('\t'))
+                if description in descriptions:
+                    SeqIO.write(record,out_file,"fasta")
+
+def get_supfam_fasta(wildcards):
+    indeces = glob_wildcards("supfam_results/bfd_clusters/{chunk}_clusters_formatted.fasta").chunk
+    filtered = expand("supfam_results/bfd_mined_clusters_fasta/{chunk}_supfam_filtered.fasta",chunk=indeces)
+    return filtered
+
+rule finish_supfam_tps_filter:
+    input:
+        get_supfam_fasta
+    output:
+        "supfam_results/{database}_supfam_fasta_mined_clusters_filter_done.txt"
+    log:
+        "logs/finish_supfam_tps_filter_mined_clusters_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        touch {output}
+        """
+
+rule supfam_concat_filtered_fasta:
+    input:
+        get_supfam_fasta
+    output:
+        "supfam_results/{database}_supfam_mined.fasta"
+    log:
+        "logs/supfam_concat_filtered_fasta_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output} 2> {log}
+        """
+
+#####################
+## Count sequences ##
+#####################
+
+rule supfam_fasta_merge:
+    """
+    Merge all Supfam mined fasta files into one
+    """
+    input:
+        get_supfam_fasta
+    output:
+        "supfam_results/{database}_supfam_filtered.fasta"
+    log:
+        "logs/supfam_fasta_merge_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output} 2> {log}
+        """
+
+rule pfam_fasta_merge:
+    """
+    Merge all Pfam mined fasta files into one
+    """
+    input:
+        get_pfam_fasta
+    output:
+        "pfam_results/{database}_pfam_filtered.fasta"
+    log:
+        "logs/pfam_fasta_merge_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output} 2> {log}
+        """
+
+rule keep_unique_sequences:
+    """
+    Keep only unique sequences in the fasta file
+    """
+    input:
+        fasta = "{hmm}_results/{database}_{hmm}_filtered.fasta"
+    output:
+        unique_fasta = "{hmm}_results/{database}_{hmm}_filtered_unique.fasta"
+    log:
+        "logs/keep_unique_sequences_{database}_{hmm}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        seqkit rmdup -s -P {input.fasta} > {output.unique_fasta} 2> {log}
+        """
+
+rule cluster_100:
+    """
+    Cluster sequences with 100% identity
+    """
+    input:
+        fasta = "{hmm}_results/{database}_{hmm}_filtered.fasta"
+    output:
+        clusters = "{hmm}_results/clusters/100_identity/{database}_{hmm}_filtered_unique_100.clstr",
+        representatives = "{hmm}_results/clusters/100_identity/{database}_{hmm}_filtered_unique_100"
+    log:
+        "logs/cluster_100_{database}_{hmm}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p {wildcards.hmm}_results/clusters/100_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 1.0 -T {threads} &> {log}
+        """
+
+rule cluster_95:
+    """
+    Cluster sequences with 95% identity
+    """
+    input:
+        fasta = "{hmm}_results/{database}_{hmm}_filtered.fasta"
+    output:
+        clusters = "{hmm}_results/clusters/95_identity/{database}_{hmm}_filtered_unique_95.clstr",
+        representatives = "{hmm}_results/clusters/95_identity/{database}_{hmm}_filtered_unique_95"
+    log:
+        "logs/cluster_95_{database}_{hmm}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p {wildcards.hmm}_results/clusters/95_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.95 -T {threads} &> {log}
+        """
+
+rule cluster_90:
+    """
+    Cluster sequences with 90% identity
+    """
+    input:
+        fasta = "{hmm}_results/{database}_{hmm}_filtered.fasta"
+    output:
+        clusters = "{hmm}_results/clusters/90_identity/{database}_{hmm}_filtered_unique_90.clstr",
+        representatives = "{hmm}_results/clusters/90_identity/{database}_{hmm}_filtered_unique_90"
+    log:
+        "logs/cluster_90_{database}_{hmm}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p {wildcards.hmm}_results/clusters/90_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.9 -T {threads} &> {log}
+        """
+
+rule pool_pfam_supfam_fasta:
+    """
+    Combines Pfam and Supfam fasta files into one
+    """
+    input:
+        pfam = "pfam_results/{database}_pfam_filtered.fasta",
+        supfam = "supfam_results/{database}_supfam_filtered.fasta"
+    output:
+        "results/{database}_pfam_supfam_pool.fasta"
+    log:
+        "logs/pool_pfam_supfam_fasta_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input.pfam} {input.supfam} > {output} 2> {log}
+        """
+
+rule pool_pfam_supfam_fasta_unique:
+    """
+    Keeps only unique sequences in the combined Pfam and Supfam fasta file
+    """
+    input:
+        fasta = "results/{database}_pfam_supfam_pool.fasta"
+    output:
+        "results/{database}_pfam_supfam_pool_unique.fasta"
+    log:
+        "logs/pool_pfam_supfam_fasta_unique_{database}.log"
+    params:
+        memory="10"
+    threads:    
+        1
+    shell:
+        """
+        seqkit rmdup -s -P {input.fasta} > {output} 2> {log}
+        """
+    
+rule common_pfam_supfam_sequences:
+    """
+    Finds common sequences in Pfam and Supfam fasta files
+    """
+    input:
+        pfam = "pfam_results/{database}_pfam_filtered.fasta",
+        supfam = "supfam_results/{database}_supfam_filtered.fasta"
+    output:
+        "results/{database}_pfam_supfam_common.fasta"
+    log:
+        "logs/common_pfam_supfam_sequences_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        seqkit common -s -P {input.pfam} {input.supfam} > {output} 2> {log}
+        """
+
+rule cluster_100_pool:
+    """
+    Cluster sequences with 100% identity
+    """
+    input:
+        fasta = "results/{database}_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/100_identity/{database}_pfam_supfam_pool_unique_100.clstr",
+        representatives = "results/clusters/100_identity/{database}_pfam_supfam_pool_unique_100"
+    log:
+        "logs/cluster_100_pool_{database}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/100_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 1.0 -T {threads} -M 1000 &> {log}
+        """
+
+rule cluster_95_pool:
+    """
+    Cluster sequences with 95% identity
+    """
+    input:
+        fasta = "results/{database}_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/95_identity/{database}_pfam_supfam_pool_unique_95.clstr",
+        representatives = "results/clusters/95_identity/{database}_pfam_supfam_pool_unique_95"
+    log:
+        "logs/cluster_95_pool_{database}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/95_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.95 -T {threads} -M 1000 &> {log}
+        """
+
+rule cluster_90_pool:
+    """
+    Cluster sequences with 90% identity
+    """
+    input:
+        fasta = "results/{database}_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/90_identity/{database}_pfam_supfam_pool_unique_90.clstr",
+        representatives = "results/clusters/90_identity/{database}_pfam_supfam_pool_unique_90"
+    log:
+        "logs/cluster_90_pool_{database}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/90_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.9 -T {threads} -M 1000 &> {log}
+        """
+
+rule pool_all:
+    """
+    Pools all fasta files into one
+    """
+    input:
+        bfd = "results/bfd_pfam_supfam_pool.fasta",
+        mgnify = "results/mgnify_new_pfam_supfam_pool.fasta",
+        onekp = "results/onekp_pfam_supfam_pool.fasta",
+        phytozome = "results/phytozome_pfam_supfam_pool.fasta",
+        tsa = "results/tsa_pfam_supfam_pool.fasta",
+        uniprot = "results/uniprot_pfam_supfam_pool.fasta"
+    output:
+        "results/all_pfam_supfam_pool.fasta"
+    log:
+        "logs/pool_all.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input.bfd} {input.mgnify} {input.onekp} {input.phytozome} {input.tsa} {input.uniprot} > {output} 2> {log}
+        """
+    
+rule pool_all_unique:
+    """
+    Keeps only unique sequences in the combined Pfam and Supfam fasta file
+    """
+    input:
+        fasta = "results/all_pfam_supfam_pool.fasta"
+    output:
+        "results/all_pfam_supfam_pool_unique.fasta"
+    log:
+        "logs/pool_all_unique.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        seqkit rmdup -s -P {input.fasta} > {output} 2> {log}
+        """
+
+rule cluster_100_all:
+    """
+    Cluster sequences with 100% identity
+    """
+    input:
+        fasta = "results/all_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/100_identity/all_pfam_supfam_pool_unique_100.clstr",
+        representatives = "results/clusters/100_identity/all_pfam_supfam_pool_unique_100"
+    log:
+        "logs/cluster_100_all.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/100_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 1.0 -T {threads} -M 2000 &> {log}
+        """
+
+rule cluster_95_all:
+    """
+    Cluster sequences with 95% identity
+    """
+    input:
+        fasta = "results/all_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/95_identity/all_pfam_supfam_pool_unique_95.clstr",
+        representatives = "results/clusters/95_identity/all_pfam_supfam_pool_unique_95"
+    log:
+        "logs/cluster_95_all.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/100_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.95 -T {threads} -M 2000 &> {log}
+        """
+
+rule cluster_90_all:
+    """
+    Cluster sequences with 90% identity
+    """
+    input:
+        fasta = "results/all_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/90_identity/all_pfam_supfam_pool_unique_90.clstr",
+        representatives = "results/clusters/90_identity/all_pfam_supfam_pool_unique_90"
+    log:
+        "logs/cluster_90_all.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/90_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.90 -T {threads} -M 2000 &> {log}
+        """
+
+rule cluster_50_all:
+    """
+    Cluster sequences with 50% identity
+    """
+    input:
+        fasta = "results/all_pfam_supfam_pool.fasta"
+    output:
+        clusters = "results/clusters/50_identity/all_pfam_supfam_pool_unique_50.clstr",
+        representatives = "results/clusters/50_identity/all_pfam_supfam_pool_unique_50"
+    log:
+        "logs/cluster_50_all.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/clusters/50_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.50 -T {threads} -M 2000 -n 3 &> {log}
+        """
+
+###############
+## FILTERING ##
+###############
+
+#########################
+## 1) length filtering ##
+#########################
+rule filter_length:
+    """
+    Filters sequences by length - min 300 aa, max 1100 aa
+    """
+    input:
+        fasta = "results/{database}_pfam_supfam_pool_unique.fasta"
+    output:
+        filtered = "results/{database}_filtered_1.fasta"
+    log:
+        "logs/filter_length_mined_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        seqkit seq -m 300 -M 1100 {input.fasta} > {output.filtered} 2> {log}
+        """
+
+
+#####################################
+## 2) stronger hit in other family ##
+#####################################
+
+rule all_supfam_hmmsearch:
+    """
+    Runs HMMER3 against the Supfam HMM database to see if there are hits of other families which are stronger.
+    """
+    input:
+        filtered_seq_db = "results/{database}_filtered_1.fasta",
+        supfam = "supfam/hmmlib_1.75"
+    output:
+        supfam_result_chunk = "results/supfam/{database}_all_supfam.tsv",
+        supfam_result_chunk2 = "results/supfam/{database}_all_supfam_dom.tsv"
+    log:
+        "logs/all_supfam_hmmsearch_{database}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        hmmsearch --noali --notextw --tblout {output.supfam_result_chunk} --domtblout {output.supfam_result_chunk2} -E 1e-6 --cpu {threads} {input.supfam} {input.filtered_seq_db} &> {log}
+        """
+
+rule all_pfam_hmmsearch:
+    """
+    Runs HMMER3 against the Pfam HMM database to see if there are hits of other families which are stronger.
+    """
+    input:
+        filtered_seq_db = "results/{database}_filtered_1.fasta",
+        pfam = "pfam/Pfam-A.hmm"
+    output:
+        pfam_result_chunk = "results/pfam/{database}_all_pfam.tsv",
+        pfam_result_chunk2 = "results/pfam/{database}_all_pfam_dom.tsv"
+    log:
+        "logs/all_supfam_hmmsearch_{database}.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        hmmsearch --noali --notextw --tblout {output.pfam_result_chunk} --domtblout {output.pfam_result_chunk2} -E 1e-6 --cpu {threads} {input.pfam} {input.filtered_seq_db} &> {log}
+        """
+
+rule remove_wrong_family_sequences:
+    """
+    Removes sequences which have hits of other families (both Pfam and Supfam) which are stronger.
+    """
+    input:
+        pfam = "results/pfam/{database}_all_pfam.tsv",
+        supfam = "results/supfam/{database}_all_supfam.tsv",
+        fasta = "results/{database}_filtered_1.fasta"
+    output:
+        filtered = "results/{database}_filtered_2_tmp.fasta",
+        pfam_file_tab = "results/pfam/{database}_all_pfam2.tsv",
+        supfam_file_tab = "results/supfam/{database}_all_supfam2.tsv"
+    log:
+        "logs/remove_wrong_family_sequences_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        allowed_classes = [48576, 48239]
+        allowed_pfams2 = ['PF01397.24','PF03936.19','PF19086.3','PF13243.9','PF13249.9','PF00494.22','PF06330.14','PF00348.20','PF00432.24','PF02458.18']
+
+        # convert the hmmsearch tab output to real tsv
+        pfam_tab = input.pfam
+        pfam_tab_new = output.pfam_file_tab
+
+        with open(pfam_tab,'r') as in_file:
+            lines = in_file.readlines()
+        with open(pfam_tab_new, 'w') as out_file:
+            columns = ['target name','target accession','query name','query accession','full seq E-value','full seq score','full seq bias','best dom E-value','best dom score','best dom bias','exp','reg','clu','ov','env','dom','rep','inc']
+            out_file.write("\t".join(columns)+'\n')
+            for line in lines:
+                if line.startswith('#'):
+                    continue
+                line_l = line.split()
+                #print(line_l)
+                full_description = f"{line_l[0]} {' '.join(line_l[18:])}"
+                new_line_l = [full_description] + line_l[1:18]
+                #print(new_line_l)
+                out_file.write('\t'.join(new_line_l)+'\n')
+        
+        supfam_tab = input.supfam
+        supfam_tab_new = output.supfam_file_tab
+
+        with open(supfam_tab,'r') as in_file:
+            lines = in_file.readlines()
+        with open(supfam_tab_new, 'w') as out_file:
+            columns = ['target name','target accession','query name','query accession','full seq E-value','full seq score','full seq bias','best dom E-value','best dom score','best dom bias','exp','reg','clu','ov','env','dom','rep','inc']
+            out_file.write("\t".join(columns)+'\n')
+            for line in lines:
+                if line.startswith('#'):
+                    continue
+                line_l = line.split()
+                #print(line_l)
+                full_description = f"{line_l[0]} {' '.join(line_l[18:])}"
+                new_line_l = [full_description] + line_l[1:18]
+                #print(new_line_l)
+                out_file.write('\t'.join(new_line_l)+'\n')
+
+        # read the hmmsearch tab output
+        df = pd.read_csv(supfam_tab_new, sep='\t')
+
+        # get the best family hit for each sequence
+        grouped_supfam = df.groupby(['target name', 'query accession'])['full seq E-value'].agg('min')
+        supfam_best_fam = pd.DataFrame(grouped_supfam.groupby(level='target name').idxmin().apply(lambda x: x[1]))
+        supfam_filtered_ids = supfam_best_fam[~supfam_best_fam['full seq E-value'].isin(allowed_classes)].index.tolist()
+
+        # read the hmmsearch tab output
+        df = pd.read_csv(pfam_tab_new, sep='\t')
+      
+        # get the best family hit for each sequence
+        grouped_pfam = df.groupby(['target name', 'query accession'])['full seq E-value'].agg('min')
+        pfam_best_fam = pd.DataFrame(grouped_pfam.groupby(level='target name').idxmin().apply(lambda x: x[1]))
+        pfam_filtered_ids = pfam_best_fam[~pfam_best_fam['full seq E-value'].isin(allowed_pfams2)].index.tolist()
+
+        # get the ids of sequences which have hits of other families in both Pfam and Supfam
+        filtered_ids = set(supfam_filtered_ids).intersection(set(pfam_filtered_ids))
+
+        # filter the fasta file
+        with open(input.fasta, 'r') as fasta_file, open(output.filtered, 'w') as out_file:
+            for record in SeqIO.parse(fasta_file, "fasta"):
+                description = record.description
+                description = " ".join(description.split())
+                #description = " ".join(description.split('\t'))
+                if description not in filtered_ids:
+                    SeqIO.write(record, out_file, "fasta")
+
+####################################
+## 3) Presence of motif filtering ##
+####################################
+
+rule rename_sequences:
+    """
+    Assigns a number ID to each sequence to minimize risk with problems due to sequence IDs etc. and mapping.
+    """
+    input:
+        fasta =  "results/{database}_filtered_2_tmp.fasta"
+    output:
+        fasta_renamed = "results/{database}_filtered_2.fasta",
+        mapping = "results/{database}_mapping.tsv"
+    log:
+        "logs/rename_sequences_{database}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        database=wildcards.database
+        with open(input.fasta, 'r') as in_file, open(output.fasta_renamed, 'w') as out_file, open(output.mapping, 'w') as mapping:
+            mapping.write(f'record_id~record_description~new_id\n')
+            for i, record in enumerate(SeqIO.parse(in_file, "fasta")):
+                new_id = f'{database}_{i:06}'
+                new_record = SeqRecord(record.seq, id=new_id, description="")
+                SeqIO.write(new_record, out_file, "fasta")
+                mapping.write(f'{record.id}~{record.description}~{new_id}\n')
+
+rule motif_scan:
+    """
+    Scans the database to find motifs.
+    """
+    input:
+        fasta = "results/{database}_filtered_2.fasta",
+        motif="tps_db_analysis/motifs/motif_{motif}.txt"
+    output:
+        filtered = "results/motifs/{database}_filtered_2_{motif}.out"
+    log:
+        "logs/filter_motif_{database}_{motif}.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        fuzzpro -sequence {input.fasta} -pattern {wildcards.motif} -outfile {output.filtered} 2> {log}
+        """
+
+rule parse_motif_results:
+    """
+    Gets information about the motifs.
+    """
+    input:
+        input_files=lambda wildcards: expand("results/motifs/{database}_filtered_2_{motif}.out", motif=MOTIFS, database=wildcards.database)
+    output:
+        out1 = 'results/motifs/{database}_motifs_info.txt',
+        out2 = 'results/motifs/{database}_motifs_info_summary.txt'
+    log:
+        'logs/parse_motif_results_{database}.log'
+    params:
+        memory="2"
+    threads:
+        1
+    run:
+        motif_DXDD = ['DXDD']
+        motif_DDXXD = ['DDXXD','DDXX[DE]']
+        motif_NSE_DTE = ['[ND]DXX[ST]XXXE','[ND]D[LIV]X[ST]XXXE','[ND][DE]XX[ST]XX[NKR][DE]']
+
+        motifs = motif_DXDD + motif_DDXXD + motif_NSE_DTE
+
+        motifs_dict = {}
+        database=wildcards.database
+
+        for motif in motifs:
+            file_name = f"results/motifs/{database}_filtered_2_{motif}.out"
+            out_file_name = f'results/motifs/{database}_result_{motif}_sequence_ids.txt'
+            with open(file_name, 'r') as in_file, open(out_file_name, 'w') as out_file:
+                motif_sequences = []
+                lines = in_file.readlines()
+                for line in lines:
+                    if line.startswith('# Sequence:'):
+                        seq_name = line.split()[2]
+                        out_file.write(seq_name + '\n')
+                        motif_sequences.append(seq_name)
+                motifs_dict[motif] = motif_sequences
+
+        all_sequences = []
+        for sequence_l in motifs_dict.values():
+            all_sequences += sequence_l
+        all_sequences = list(set(all_sequences))
+
+        sequences_dict = {}
+        for sequence in all_sequences:
+            motif_l = []
+            for motif, sequence_l in motifs_dict.items():
+                if sequence in sequence_l:
+                    motif_l.append(motif)
+            sequences_dict[sequence] = motif_l
+
+        with open(output.out1, 'w') as out1_file, open(output.out2, 'w') as out2_file:
+            for sequence, motif_l in sequences_dict.items():
+                out1_file.write(f'{sequence}: {motif_l}\n')
+                motif_set = set()
+                for motif in motif_l:
+                    if motif in motif_NSE_DTE:
+                        motif_set.add('NSE/DTE')
+                    elif motif in motif_DDXD:
+                        motif_set.add('DXDD')
+                    elif motif in motif_DDXXD:
+                        motif_set.add('DDXXD')
+                out2_file.write(f'{sequence}: {motif_set}\n')
+
+rule get_motif_filtered_sequences:
+    input:
+        summary = 'results/motifs/{database}_motifs_info_summary.txt',
+        fasta = 'results/{database}_filtered_2.fasta'
+    output:
+        fasta = 'results/{database}_filtered_3.fasta'
+    log:
+        'logs/motif_filtered_{database}.log'
+    params:
+        memory='10'
+    threads:
+        1
+    run:
+        with open(input.summary, 'r') as in_file, open(input.fasta, 'r') as in_fasta, open(output.fasta, 'w') as out_fasta:
+            seq_ids = [line.strip().split(':')[0] for line in in_file.readlines()]
+            for record in SeqIO.parse(in_fasta, "fasta"):
+                if record.id in seq_ids:
+                    SeqIO.write(record, out_fasta, "fasta")
+
+###############################
+## 4) architecture filtering ##
+###############################
+
+rule pfam_scan:
+    input:
+        fasta='results/{database}_filtered_3.fasta',
+        tps_pfam='pfam_profiles/tps_pfam.hmm'
+    output:
+        out='results/pfam_architectures/{database}_hmmscan.out',
+        tsv='results/pfam_architectures/{database}_hmmscan.tsv'
+    log:
+        'logs/pfam_hmmsearch_{database}_for_filtering.log'
+    params:
+        memory='4'
+    threads:
+        4
+    shell:
+        """
+        hmmscan -o {output.out} --domtblout {output.tsv} --cpu {threads} {input.tps_pfam} {input.fasta} 2> {log}
+        """
+
+rule supfam_scan:
+    input:
+        fasta='results/{database}_filtered_3.fasta',
+        tps_supfam='supfam_profiles/tps_supfam.hmm'
+    output:
+        out='results/supfam_architectures/{database}_hmmscan.out',
+        tsv='results/supfam_architectures/{database}_hmmscan.tsv'
+    log:
+        'logs/supfam_hmmsearch_{database}_for_filtering.log'
+    params:
+        memory='4'
+    threads:
+        4
+    shell:
+        """
+        hmmscan -o {output.out} --domtblout {output.tsv} --cpu {threads} {input.tps_supfam} {input.fasta} 2> {log}
+        """
+    
+rule architecture_filter:
+    input:
+        fasta='results/{database}_filtered_3.fasta',
+        pfam_result='results/pfam_architectures/{database}_hmmscan.tsv',
+        supfam_result='results/supfam_architectures/{database}_hmmscan.tsv',
+        hmmer_utils='hmmer_utils.py'
+    output:
+        fasta='results/{database}_filtered_4.fasta'
+    log:
+        'logs/architecture_filter_{database}/log'
+    params:
+        memory='4'
+    threads:
+        1
+    run:
+        from hmmer_utils import get_domain_hit_list, get_reduced_architectures, get_architectures_df, join_pfam_supfam_dfs, filter_partial_df
+
+        pfam_hits = get_domain_hit_list(input.pfam_result)
+        pfam_architectures = get_reduced_architectures(pfam_hits)
+        pfam_df = get_architectures_df(pfam_architectures)
+
+        supfam_hits = get_domain_hit_list(input.supfam_result)
+        supfam_architectures = get_reduced_architectures(supfam_hits)
+        supfam_df = get_architectures_df(supfam_architectures, supfam=True)
+
+        df = join_pfam_supfam_dfs(pfam_df, supfam_df)
+        df_filtered = filter_partial_df(df)
+
+        seq_ids = df_filtered['id'].tolist()
+
+        with open(input.fasta, 'r') as in_file, open(output.fasta, 'w') as out_file:
+            for record in SeqIO.parse(in_file, "fasta"):
+                if record.id in seq_ids:
+                    SeqIO.write(record, out_file, "fasta")
+
+###############################
+## 5) Filtering possible PTS ##
+###############################
+rule get_pts_fasta:
+    """
+    Gets fasta of PTS in the TPS db
+    """
+    input:
+        tps_db='tps_db_analysis/data/TPS-database.xlsx'
+    output:
+        tsv='tps_db_analysis/data/pts.tsv',
+        fasta='tps_db_analysis/data/pts.fasta'
+    log:
+        'logs/get_pts_fasta.log'
+    params:
+        memory='2'
+    threads:
+        1
+    run:
+        # Load the TPS db
+        tps_df = pd.read_excel(input.tps_db)
+        tps_df['Amino acid sequence'] = tps_df['Amino acid sequence'].str.replace('\n', '')
+        tps_df['Amino acid sequence'] = tps_df['Amino acid sequence'].str.replace(' ', '')
+
+        # Get PTS
+        pts_groups = ['ggpps', 'fpps', 'gpps', 'gfpps']
+        monofun_pts = tps_df.groupby('Uniprot ID').apply(lambda x: all([typ in pts_groups for typ in x['Type (mono, sesq, di, …)'].tolist()]))
+        pts_ids_mono=monofun_pts[monofun_pts==True].index.tolist()
+        tps_df[tps_df['Uniprot ID'].isin(pts_ids_mono)][['Uniprot ID','Amino acid sequence']].drop_duplicates().to_csv(output.tsv, sep='\t', header=False, index=False)
+
+        
+        # Create a fasta file
+        with open(output.tsv) as in_handle:
+            records = list(SeqIO.parse(in_handle, "tab"))
+
+        with open(output.fasta, "w") as out_handle:
+            SeqIO.write(records, out_handle, "fasta")
+
+rule make_pts_db:
+    input:
+        pts_fasta='tps_db_analysis/data/pts.fasta'
+    output:
+        'results/pts/pts_db.psq'
+    log:
+        'logs/make_pts_db.log'
+    params:
+        memory='2'
+    threads:
+        1
+    shell:
+        """
+        mkdir -p results/pts
+        makeblastdb -in {input.pts_fasta} -dbtype prot -out results/pts/pts_db  2> {log}
+        """
+
+rule pts_blast:
+    """
+    Runs blast to get percent identity between the mined sequences and PTS
+    """
+    input:
+        fasta='results/{database}_filtered_4.fasta'#, 
+        #pts_db='results/pts/pts_db'
+    output:
+        result='results/pts/pts_blast_{database}.txt'
+    log:
+        'logs/pts_blast_{database}.log'
+    params:
+        memory='4'
+    threads:
+        5
+    shell:
+        """
+        # TODO: try running again with evalue 100 or bigger and check if that changes the results!
+        blastp -db results/pts/pts_db -query {input.fasta} -outfmt 6 -out {output.result} -num_threads {threads} 2> {log}
+        """
+
+rule filter_pts:
+    """
+    Filters out sequences which have sequence identity higher than 80% to PTS in the TPSdb (excluding bifunctional PTS, i.e. with PTS and TPS activity.)
+    """
+    input:
+        fasta='results/{database}_filtered_4.fasta',
+        blast='results/pts/pts_blast_{database}.txt'
+    output:
+        fasta='results/{database}_filtered_5.fasta'
+    log:
+        'logs/filter_pts_{database}.log'
+    params:
+        memory='4'
+    threads:
+        1
+    run:
+        blast_df = pd.read_csv(input.blast,sep='\t',header=None)
+        blast_df = blast_df[[0,1,2]]
+        blast_df.columns=['seq1','seq2','perc_identity']
+        blast_ids = blast_df[blast_df['perc_identity']>80]['seq1'].unique()
+
+        with open(input.fasta) as in_handle, open(output.fasta, 'w') as out_handle:
+            filtered = []
+            for record in SeqIO.parse(in_handle, 'fasta'):
+                if record.id not in blast_ids:
+                    filtered.append(record)
+            
+            SeqIO.write(filtered, out_handle, 'fasta')
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
