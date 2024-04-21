@@ -29,7 +29,8 @@ In the `notebooks` directory, find various notebooks analyzing the TPS db
     - assign a most "rare" product count to each sequence
 - `05_embeddings_visualization.ipynb`
     - t-SNE projection of the ESM2 protein embeddings
-
+    - input: `data/clean_data/tps_db_v1.csv` + embeddings
+    
 ## 3. Plots
 
 Resulting plots can be found in the `plots` directory
