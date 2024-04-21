@@ -1,0 +1,467 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+# Load libraries
+library(dplyr)
+library(ggplot2)
+library(ggridges)
+library(tidyr)
+library(stringr)
+```
+
+```{r}
+setwd('C:/Users/terca/OneDrive/Dokumenty/Uni/Mgr/2.rocnik/diplomka/results/results')
+```
+
+
+```{r}
+# Load the data
+db_file <- "all_filtered_5_annotation.csv"
+df <- data.frame(read.csv(db_file, header = T, sep = ","))
+```
+
+
+```{r}
+df %>% select(length) %>% min()
+```
+```{r}
+df %>% select(length) %>% max()
+```
+
+# Colormaps
+```{r}
+superkingdom_cmap = c('Metagenome'='#BF8F6B',
+                      'Eukaryota'='#FF9536',
+                      'Bacteria'='#995FBC',
+                      'Archaea'='#2E2D97',
+                      'Viruses'='#D2EDE0',
+                      'unknown'='#C3CAD7',
+                      'undef'='#C3CAD7'
+                      )
+```
+
+```{r}
+kingdom_cmap = c('Metazoa'='#94CCFC',
+                 'Fungi'='#FF9481',
+                 'Viridiplantae'='#BEDF7C',
+                 'unknown'='#FF9536'
+)
+```
+
+```{r}
+pfam_color_map <- c('PF00494.22'='#C70E7B',
+                    'PF01397.24'='#FC6882',
+                    'PF03936.19'='#007BC3',
+                    'PF06330.14'='#54BCD1',
+                    'PF13243.9'='#EF7C12',
+                    'PF13249.9'='#F4B95A',
+                    'PF19086.3'='#009F3F'
+                    )
+
+```
+
+```{r}
+supfam_color_map <- c('X0041184'='#8FDA04',
+                      'X0053354'='#172869',
+                      'X0053355'='#F5D000',
+                      'X0048261'='#831818',
+                      'X0048806'='#C62320',
+                      'X0046340'='#9F5691',
+                      'X0047573'='#633372')
+```
+
+# Overall length distribution
+```{r}
+ggplot(df, aes(x = length)) +
+  geom_density(alpha=0.6, fill='steelblue1', color = NA, adjust = 7) +
+  theme_ridges() + 
+  ggtitle('Length distribution') +
+  theme(legend.position = "none", 
+        text = element_text(size = 26),
+        plot.title = element_text(size = 30,  hjust = 0.4),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_blank()
+        ) +
+  xlim(300, 1100) + 
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100))
+ggsave('plots/lengths.png', width=8, height=6)
+ggsave('plots/lengths.svg', width=8, height=6)
+```
+
+## Superkingdoms
+
+```{r}
+df$superkingdom <- factor(df$superkingdom, levels=rev(c('Eukaryota','Bacteria','Archaea','Metagenome','Viruses','unknown','undef')))
+```
+
+```{r}
+ggplot(df, aes(x = length,y=superkingdom, fill=superkingdom)) +
+  geom_density_ridges(alpha=0.6,bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 26),
+        plot.title = element_text(size = 30,  hjust = 0),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20)
+        ) +
+  ggtitle('Length distribution') + 
+  scale_fill_manual(values = superkingdom_cmap) +
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+ggsave('plots/superkingdom_lengths.png', width=8, height=6)
+ggsave('plots/superkingdom_lengths.svg', width=8, height=6)
+```
+## Eukaryotes
+```{r}
+eukaryotes_df <- df %>% filter(superkingdom=='Eukaryota')
+```
+
+```{r}
+table(eukaryotes_df$kingdom)
+```
+
+```{r}
+eukaryotes_df$kingdom <- factor(eukaryotes_df$kingdom, levels=rev(c('Viridiplantae','Fungi','Metazoa','unknown')))
+```
+
+```{r}
+ggplot(eukaryotes_df, aes(x = length,y=kingdom, fill=kingdom)) +
+  geom_density_ridges(alpha=0.6,bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() + 
+  theme(legend.position  = "None", 
+        text = element_text(size = 26),
+        plot.title = element_text(size = 30,  hjust = 0),
+        axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20)
+        ) +
+  ggtitle('Length distribution') + 
+  scale_fill_manual(values = kingdom_cmap)+
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+ggsave('plots/eukaryotes_lengths.png', width=8, height=6)
+ggsave('plots/eukaryotes_lengths.svg', width=8, height=6)
+```
+
+# Pfam domains and lengths
+```{r}
+pfam_df = df %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(pfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+melted_df$variable <- factor(melted_df$variable, levels = rev(c('PF01397.24', 'PF03936.19','PF19086.3','PF06330.14','PF13243.9','PF13249.9','PF00494.22')))
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Length distribution by Pfam domains') +
+  scale_fill_manual(values = pfam_color_map) +
+  ylab("Pfam domains") +  
+  xlab("Length")+
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+ggsave('plots/pfam_lengths3.png', width=10, height=10)
+ggsave('plots/pfam_lengths3.svg', width=10, height=10)
+```
+# Supfam domains and lengths
+```{r}
+supfam_df = df %>%
+  select('length','X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(supfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+melted_df$variable <- factor(melted_df$variable, levels = rev(c('X0041184', 'X0053354', 'X0053355', 'X0048261', 'X0048806', 'X0046340', 'X0047573')))
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Length distribution by SUPERFAMILY domains') +
+  scale_fill_manual(values = supfam_color_map) +
+  xlab('Length') + 
+  ylab('SUPERFAMILY domains')+
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+ggsave('plots/supfam_lengths3.png', width=10, height=10)
+ggsave('plots/supfam_lengths3.svg', width=10, height=10)
+```
+
+
+# Pfam domains in superkingdoms/kingdoms
+```{r}
+```
+
+## Plantae
+```{r}
+plant_pfam_df = df %>%
+  filter(kingdom=='Viridiplantae') %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+plant_pfam_df <- replace(plant_pfam_df, is.na(plant_pfam_df), 0)
+```
+
+```{r}
+plant_pfam_percentages <- plant_pfam_df %>% select('PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9') %>% colMeans() * 100
+plot_df <- data.frame(column = names(plant_pfam_percentages), percentage = plant_pfam_percentages)
+plot_df$column <- factor(plot_df$column, levels=(c('PF01397.24','PF03936.19', 'PF19086.3','PF06330.14','PF13243.9','PF13249.9', 'PF00494.22')))
+```
+
+
+```{r}
+ggplot(plot_df, aes(x = column, y = percentage, fill = column)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = pfam_color_map) +
+  theme_minimal() +  
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.text.y = element_text(size = 30)
+        ) +
+  labs(x = NULL, y=NULL) +
+  ylim(0, 100) +
+  ggtitle('Percentage of Pfam domains presence\nPlants')
+```
+
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(plant_pfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Plant length distribution\nby Pfam domains') +
+  scale_fill_manual(values = pfam_color_map) +
+  xlab('Length') + 
+  ylab('Pfam domains')+
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+#ggsave('plots/supfam_lengths.png', width=10, height=10)
+#ggsave('plots/supfam_lengths.svg', width=10, height=10)
+```
+## Fungi
+```{r}
+fungi_pfam_df = df %>%
+  filter(kingdom=='Fungi') %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(fungi_pfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Fungi length distribution\nby Pfam domains') +
+  scale_fill_manual(values = pfam_color_map) +
+  xlab('Length') + 
+  ylab('Pfam domains')+
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+#ggsave('plots/supfam_lengths.png', width=10, height=10)
+#ggsave('plots/supfam_lengths.svg', width=10, height=10)
+```
+## Metazoa
+```{r}
+metazoa_pfam_df = df %>%
+  filter(kingdom=='Metazoa') %>%
+  select('length','PF06330.14', 'PF01397.24', 'PF03936.19', 'PF00494.22', 'PF13249.9', 'PF19086.3', 'PF13243.9')
+```
+
+```{r}
+# Reshape dataframe to long format
+melted_df <- pivot_longer(metazoa_pfam_df, cols = -length, names_to = "variable", values_to = "value")
+
+# Filter rows with value 1 and drop rows with value 0
+melted_df <- subset(melted_df, value == 1)
+
+# Create ridge plot
+ggplot(melted_df, aes(x = length, y = variable, fill = variable)) +
+  geom_density_ridges(alpha = 0.6, bandwidth = 20,  color = NA, scale=1) +
+  theme_ridges() +
+  theme(legend.position  = "None", 
+        text = element_text(size = 30),
+        plot.title = element_text(size = 38,  hjust = 0.4),
+        axis.text.x = element_text(size = 30),
+        axis.text.y = element_text(size = 30)
+        ) +
+  ggtitle('Metazoa length distribution\nby Pfam domains') +
+  scale_fill_manual(values = pfam_color_map) +
+  xlab('Length') + 
+  ylab('Pfam domains')+
+  scale_x_continuous(breaks = c(300, 500, 700, 900, 1100)) +
+  xlim(300, 1100)
+#ggsave('plots/supfam_lengths.png', width=10, height=10)
+#ggsave('plots/supfam_lengths.svg', width=10, height=10)
+```
+## Other eukaryotes
+## Bacteria
+## Archaea
+## Metagenome
+## Viruses
+# Counts
+```{r}
+table(df$superkingdom)
+```
+## Superkingdoms
+```{r}
+df$superkingdom <- factor(df$superkingdom, levels=rev(c('Metagenome','Bacteria','Eukaryota','Archaea','Viruses','unknown','undef')))
+ggplot(df, aes(x = superkingdom, fill=superkingdom)) +
+  geom_bar() +
+  coord_flip() +
+  theme_minimal() +
+  geom_text(stat = 'count', 
+            aes(label = paste(stat(count), " (", sprintf("%.1f", stat(count / sum(stat(count))) * 100), "%)", sep = "")),
+            hjust = -0.2, 
+            size = 7) +  
+  #labs(x = "Category", y = "Count") +
+  ggtitle("Counts by superkingdom") + 
+  scale_fill_manual(values = superkingdom_cmap) +
+  theme(legend.position = "none", 
+        text = element_text(size = 26),
+        axis.text.x = element_blank()) +
+  labs(x = NULL)
+ggsave('plots/superkingdoms_counts.png', width=8, height=6)
+ggsave('plots/superkingdoms_counts.svg', width=8, height=6)
+```
+## Eukaryotes
+```{r}
+ggplot(eukaryotes_df, aes(x = kingdom, fill = kingdom)) +
+  geom_bar() +
+  coord_flip() +
+  theme_minimal() +
+  geom_text(stat = 'count', 
+            aes(label = paste(stat(count), " (", sprintf("%.1f", stat(count / sum(stat(count))) * 100), "%)", sep = "")),
+            hjust = -0.2, 
+            size = 7) +
+  labs(x = "Category", y = "Count") +
+  ggtitle("Counts by Kingdom\nEukaryotes") +
+  scale_fill_manual(values = kingdom_cmap) +
+  theme(legend.position = "none", 
+        text = element_text(size = 26),
+        axis.text.x = element_blank()) +
+  labs(x = NULL)
+ggsave('plots/eukaryotes_counts.png', width=8, height=6)
+ggsave('plots/eukaryotes_counts.svg', width=8, height=6)
+```
+## Metagenome
+```{r}
+
+metagenome_df <-  df %>% filter(superkingdom=='Metagenome')
+```
+
+```{r}
+table(metagenome_df$kingdom)
+```
+```{r}
+
+metagenome_df <- metagenome_df %>%
+  mutate(kingdom = ifelse(kingdom == "", "unknown", kingdom)) %>%
+  mutate(kingdom = tolower(kingdom)) %>%
+  mutate(kingdom = ifelse(str_detect(kingdom, ","), "Multiple sources", kingdom)
+         )
+metagenome_df$kingdom <- factor(metagenome_df$kingdom, levels=rev(c('environmental','host-associated','unknown','engineered','mixed','multiple sources')))
+```
+
+
+```{r}
+ggplot(metagenome_df, aes(x = kingdom, fill = kingdom)) +
+  geom_bar() +
+  coord_flip() +
+  theme_minimal() +
+  geom_text(stat = 'count', 
+            aes(label = paste(stat(count), " (", sprintf("%.1f", stat(count / sum(stat(count))) * 100), "%)", sep = "")),
+            hjust = -0.2, 
+            size = 7) +
+  labs(x = "Category", y = "Count") +
+  ggtitle("Metagenomic sample sources") +
+  theme(legend.position = "none", 
+        text = element_text(size = 26),
+        axis.text.x = element_blank()) +
+  labs(x = NULL)
+ggsave('plots/metagenomes_counts.png', width=8, height=6)
+ggsave('plots/metagenomes_counts.svg', width=8, height=6)
+```
+
+## Databases
+```{r}
+df$source_database <- sub("_.*", "", df$id)
+df <- df %>%
+  mutate(source_database = ifelse(source_database == "uniprot", "uniparc", source_database))
+```
+
+```{r}
+table(df$source_database)
+```
+```{r}
+df$source_database <- factor(df$source_database, levels=rev(c('uniparc','mgnify','bfd','tsa','onekp','phytozome'))) 
+ggplot(df, aes(x = source_database, fill = source_database)) +
+  geom_bar() +
+  coord_flip() +
+  theme_minimal() +
+  geom_text(stat = 'count', 
+            aes(label = paste(stat(count), " (", sprintf("%.1f", stat(count / sum(stat(count))) * 100), "%)", sep = "")),
+            hjust = -0.2, 
+            size = 7) +
+  labs(x = "Category", y = "Count") +
+  ggtitle("Source databases by count") +
+  theme(legend.position = "none", 
+        text = element_text(size = 26),
+        axis.text.x = element_blank()) +
+  labs(x = NULL)
+ggsave('plots/db_counts.png', width=8, height=6)
+ggsave('plots/db_counts.svg', width=8, height=6)
+```
+
+
+
+
