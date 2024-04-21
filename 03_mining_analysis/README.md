@@ -14,7 +14,6 @@ Combination of manual and computational annotation for mining results from indiv
 
 ## Notebooks
 In the `notebooks` directory, find various notebooks analyzing the TPS db
-- TODO: describe the individual notebooks
 - `00_merge_annotations.ipynb`
     - merge individually annotated mined database files
 - `01_domain_analysis.ipynb`
