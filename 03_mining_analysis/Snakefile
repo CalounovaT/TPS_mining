@@ -1,0 +1,597 @@
+import os
+import Bio
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from Bio import Phylo
+import requests
+import pandas as pd
+import pathlib
+
+#########################
+## SEQUENCE SIMILARITY ##
+#########################
+
+rule blast_sequence_similarity:
+    """
+    Runs blast to get the sequence similairy of every mined sequence to every characterized sequence.
+    """
+    input:
+        fasta = "results/filtering/all_filtered_5_unique_no_stop.fasta",
+        tps_db = 'tps_db_analysis/data/TPS-database_filtered.fasta'
+    output:
+        out = 'results/analysis/sequence_similarity/all_filtered_5_blast.txt',
+        blast_db ='results/analysis/sequence_similarity/db/tps_db.psq'
+    log:
+        "logs/all_filtered_5_seq_similarity.log"
+    params:
+        memory="10"
+    threads:
+        10
+    shell:
+        """
+        makeblastdb -in {input.tps_db} -dbtype prot -out results/analysis/sequence_similarity/db/tps_db  2> {log}
+        blastp -db results/analysis/sequence_similarity/db/tps_db -query {input.fasta} -evalue 1000 -outfmt "6 qseqid sseqid evalue pident" -out {output.out} -num_threads {threads} 2>> {log}
+        """
+
+rule get_most_similar:
+    """
+    Reads the sequence similarity file to find the most similar characterized sequence for each sequence and the similarity value
+    """
+    input:
+        blast = 'results/analysis/sequence_similarity/all_filtered_5_blast.txt'
+    output:
+        out = 'results/analysis/sequence_similarity/all_filtered_5_most_similar.csv'
+    log:
+        "logs/get_most_similar.log"
+    params: 
+        memory="10"
+    threads:
+        1
+    run:
+        current_query = None
+        max_similarity = -1
+        most_similar = None
+        with open(input.blast, 'r') as in_file, open(output.out, 'w') as out_file:
+            for line in in_file.readlines():
+                query, char_sequence, evalue, similarity = line.split()
+
+                # Read the first query in the file
+                if current_query is None:
+                    current_query = query
+                    max_similarity = similarity
+                    most_similar = char_sequence
+                    continue
+                
+                # New query sequence ->  write current max and update the default value to current best
+                if query != current_query:
+                    out_file.write(f'{current_query},{most_similar},{max_similarity}\n')
+                    current_query = query
+                    max_similarity = similarity
+                    most_similar = char_sequence
+
+                # When same query -> update current best if necessary
+                else:
+                    if similarity > max_similarity:
+                        max_similarity = similarity
+                        most_similar = char_sequence
+
+            # Write results for the last query after the loop
+            out_file.write(f'{current_query},{most_similar},{max_similarity}\n')
+
+#####################
+## SSN USING BLAST ##
+#####################
+
+rule create_dataset:
+    """
+    Merges the filtered dataset into a one file.
+    Removes duplicated sequences.
+    Removes stop characters from the sequences.
+    """
+    input:
+        expand("results/filtering/{database}_filtered_5.fasta", database=DATABASES)
+    output:
+        all_fasta = "results/filtering/all_filtered_5.fasta",
+        all_unique_fasta = "results/filtering/all_filtered_5_unique.fasta",
+        all_unique_no_stop_fasta = "results/filtering/all_filtered_5_unique_no_stop.fasta"
+    log:
+        "logs/create_dataset_5.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        cat {input} > {output.all_fasta} 2> {log}
+        seqkit rmdup -s {output.all_fasta} -o {output.all_unique_fasta} 2>> {log}
+        seqkit replace -s -p "\*" -r "" {output.all_unique_fasta} -o {output.all_unique_no_stop_fasta} 2>> {log}
+        """
+
+rule reduce_dataset_50:
+    """
+    Reduces the dataset size by similarity clustering using threshold of 50%
+    """
+    input:
+        fasta = "results/filtering/all_filtered_5_unique_no_stop.fasta"
+    output:
+        clusters = "results/analysis/clustering/50_identity/all_filtered_5_unique_no_stop_50.clstr",
+        representatives = "results/analysis/clustering/50_identity/all_filtered_5_unique_no_stop_50"
+    log:
+        "logs/ssn_cluster_50_all.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/analysis/clustering/50_identity
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.50 -T {threads} -M 2000 -n 3 &> {log}
+        """
+
+rule analyze_clusters:
+    """
+    Create a basic analysis for the clusters.
+    """
+    input: 
+        clusters = "results/analysis/clustering/50_identity/all_filtered_5_unique_no_stop_50.clstr"
+    output:
+        clusters_data = "results/analysis/clustering/50_identity/all_filtered_5_unique_no_stop_50_clstr_analysis.tsv"
+    log:
+        'logs/cluster_analysis_50.log'
+    params:
+        memory='5'
+    threads:
+        1
+    run:
+        with open(input.clusters, 'r') as in_handle, open(output.clusters_data, 'w') as out_handle:
+            cluster_i = 0
+            cluster_data = []
+            cluster_repr = None
+            out_handle.write(f'cluster_name\tcluster_size\tcluster_representative\tcluster_members_with_identities\n')
+            first_line = True
+            for line in in_handle.readlines()[1:]:
+                # Skip first line
+                if (line.startswith('>Cluster')) and first_line:
+                    first_line = False
+                    continue
+
+                # New cluster encountered
+                elif (line.startswith('>Cluster')):
+                    # Write the data
+                    cluster_data_str = ", ".join([f'{k} ({v})' for k, v in cluster_data])
+                    out_handle.write(f'Cluster_{cluster_i}\t{len(cluster_data)}\t{cluster_repr}\t{cluster_data_str}\n')
+
+                    # Initialize new cluster
+                    cluster_i += 1
+                    cluster_data = []
+                    cluster_repr = None
+
+                # Continue reading the cluster data
+                else:
+                    if '*' in line:
+                        _, length,seq_id,identity = line.split()
+                        seq_id = seq_id.strip('.').strip('>')
+                        cluster_repr = seq_id
+                        identity = '100'
+                    else:
+                        _, length,seq_id,_,identity = line.split()
+                        identity = identity.strip('%')
+                        seq_id = seq_id.strip('.').strip('>')
+                    cluster_data.append((seq_id, identity))
+
+rule add_char_dataset_50:
+    """
+    Adds characterized sequences to the reduced dataset
+    """
+    input:
+        representatives = "results/analysis/clustering/50_identity/all_filtered_5_unique_no_stop_50",
+        characterized = 'tps_db_analysis/data/TPS-database_filtered.fasta'
+    output:
+        fasta = 'results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char.fasta'
+    log:
+        "logs/ssn_add_char_50.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        mkdir -p results/analysis/ssn/data/
+        cat {input.representatives} {input.characterized} > {output.fasta}
+        """
+
+rule all_vs_all_blast:
+    """
+    Runs all by all blast to create the SSN.
+    """
+    input:
+        fasta = 'results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char.fasta'
+    output:
+        fasta_db = 'results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char_db.psq',
+        ssn = 'results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char_ssn_e50.txt'
+    log:
+        "logs/ssn_blast_50.log"
+    params:
+        memory="10"
+    threads:
+        10
+    shell:
+        """
+        makeblastdb -in {input.fasta} -dbtype prot -out results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char_db  2> {log}
+        #blastp -db {output.fasta_db} -query {input.fasta} -outfmt 6 -out results/ssn/data/all_filtered_4_unique_no_stop_50_with_char_ssn.txt -num_threads {threads} -evalue 10e-22 2>> {log}
+        blastp -db results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char_db -query {input.fasta} -outfmt 6 -out {output.ssn} -num_threads {threads} -evalue 10e-50 2>> {log}
+        """
+
+#################
+## ESM NETWORK ##
+#################
+
+rule create_embeddings:
+    input:
+        unchar_fasta='results/filtering/all_filtered_5_unique_no_stop.fasta',
+        char_fasta='tps_db_analysis/data/TPS-database_filtered.fasta'
+    output:
+        directory('../esm/embeddings2')
+    log:
+        "logs/get_embeddings.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        python scripts/extract.py esm2_t6_8M_UR50D {input.char_fasta} ../esm/embeddings2 --include mean 2> {log}
+        python scripts/extract.py esm2_t6_8M_UR50D {input.unchar_fasta} ../esm/embeddings2 --include mean 2>> {log}
+        """
+
+rule make_esm_network:
+    """
+    Gets embeddings of the cluster representatives and characterized sequences. 
+    Creates a network by connecting sequences whose embeddings have Euclidian similarity over defined threshold.
+    """
+    input:
+        sequences = 'results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char.fasta'
+    output:
+        network = 'results/analysis/esm/all_filtered_5_unique_no_stop_50_with_char_08.txt'
+    params:
+        memory='100'
+    threads:
+        1
+    shell:
+        """
+        python create_network.py 2> {log}
+        """
+
+#######################
+## PHYLOGENETIC TREE ##
+#######################
+rule msa:
+    """
+    Creates a MSA using MAFFT
+    """
+    input:
+        sequences =  'results/analysis/ssn/data/all_filtered_5_unique_no_stop_50_with_char.fasta'
+    output:
+        msa = 'results/analysis/phylogenetics/msa/all_filtered_5_unique_no_stop_50_with_char_aligned.fasta'
+    log:
+        'logs/msa.log'
+    params:
+        memory="300"
+    threads:
+        10
+    shell:
+        """
+        #mafft --thread 6 --auto {input.sequences} > {output.msa} 2> {log}
+        clustalo -i {input.sequences} -o {output.msa} --auto -v --threads {threads} 2> {log}
+        """
+
+rule trim_msa:
+    """
+    Trim the MSA to get only relevant positions for creating the phylogenetic tree
+    """
+    input:
+        msa = 'results/analysis/phylogenetics/msa/all_filtered_5_unique_no_stop_50_with_char_aligned.fasta'
+    output:
+        msa_trimmed = 'results/analysis/phylogenetics/msa/all_filtered_5_unique_no_stop_50_with_char_aligned_trimmed.fasta'
+    log:
+        'logs/trim_msa.log'
+    params:
+        memory="100"
+    threads:
+        1
+    shell:
+        """
+        trimal -in {input.msa} -out {output.msa_trimmed} -fasta -strictplus -gt 0.8 -cons 60
+        """
+
+rule create_tree:
+    """
+    Creates a phylogenetic tree from a trimmed MSA using fasttree. Fasttree is approximated maximum likelihood method.
+    First, a rough topology is obtained by heuristic neighbor-joining. 
+    Then, the length of the tree is shortened by nearest-neighbor rearrangements (NNI) and subtree-prune-regrafting (SPR). Finally, the tree is optimized by ML.
+    """
+    input:
+        trimmed_msa = 'results/analysis/phylogenetics/msa/trimal_gt_80_cons_60/all_filtered_5_unique_no_stop_50_with_char_aligned_trimmed_gt_80_cons_60.fasta'
+    output:
+        tree = 'results/analysis/phylogenetics/trees/clustal/trimal_gt_80_cons_60/all_filtered_5_unique_no_stop_50_with_char.tree'
+    log:
+        'logs/create_tree.log'
+    params:
+        memory="100"
+    threads:
+        1
+    shell:
+        """
+        fasttree  -log results/analysis/phylogenetics/msa/trimal_gt_80_cons_60/tree.log -out {output.tree} {input.trimmed_msa} 2> {log}
+        """
+
+rule split_uncharacterized:
+    """
+    Splits the list of uncharacterized sequence ids into 10 chunks and writes the to files
+    """
+    input:
+        tree = 'results/analysis/phylogenetics/trees/clustal/trimal_gt_80_cons_60/all_filtered_5_unique_no_stop_50_with_char.tree',
+        characterized_fasta = 'tps_db_analysis/data/TPS-database_filtered.fasta'
+    output:
+        out_dir = directory('results/analysis/phylogenetics/unchar_ids_chunks')
+    log:
+        'logs/split_uncharacterized.log'
+    params:
+        memory='1'
+    threads:
+        1
+    run:
+        def get_characterized(fasta):
+            ids = []
+            with open(fasta) as handle:
+                for record in SeqIO.parse(handle, "fasta"):
+                    ids.append(record.id)
+            return ids
+
+        # Load the tree
+        tree = Phylo.read(input.tree, 'newick')
+        characterized_leaf_ids = get_characterized(input.characterized_fasta)
+
+        characterized_leaves = []
+        uncharacterized_leaves = []
+
+        # Find characterized and uncharacterized leaves
+        for leaf in tree.get_terminals():
+            if leaf.name in characterized_leaf_ids:
+                characterized_leaves.append(leaf.name)
+            else:
+                uncharacterized_leaves.append(leaf.name)
+        
+        #os.mkdir(output.out_dir, parents=True, exist_ok=True)
+        pathlib.Path(output.out_dir).mkdir(parents=True, exist_ok=True) 
+        
+        for i in range(0, len(uncharacterized_leaves), 2129):
+            chunk = uncharacterized_leaves[i:i+2129]
+            with open(f'{output.out_dir}/chunk_{i}.txt', 'w') as out_handle:
+                out_handle.write(", ".join(chunk))
+
+rule get_closest_char:
+    """
+    For each uncharacterized leaf in the tree finds the closest characterized leaf. Closest means with minimum distance (sum of branch lengths).
+    """
+    input:
+        tree = 'results/analysis/phylogenetics/trees/clustal/trimal_gt_80_cons_60/all_filtered_5_unique_no_stop_50_with_char.tree',
+        characterized_fasta = 'tps_db_analysis/data/TPS-database_filtered.fasta',
+        uncharacterized_chunk = 'results/analysis/phylogenetics/unchar_ids_chunks/chunk_{i}.txt'
+    output:
+        distances = 'results/analysis/phylogenetics/trees/clustal/trimal_gt_80_cons_60/min_distances_{i}.csv'
+    log:
+        'logs/get_closest_char_{i}.log'
+    params:
+        memory="100"
+    threads:
+        4
+    run:
+
+        def find_closest_characterized_leaf(tree, uncharacterized_leaf, characterized_leaves):
+            min_distance = float('inf')
+            closest_characterized_leaf = None
+            for characterized_leaf in characterized_leaves:
+                distance = tree.distance(characterized_leaf, uncharacterized_leaf)
+                if distance < min_distance:
+                    min_distance = distance
+                    closest_characterized_leaf = characterized_leaf
+            return min_distance, closest_characterized_leaf
+
+        def get_characterized(fasta):
+            ids = []
+            with open(fasta) as handle:
+                for record in SeqIO.parse(handle, "fasta"):
+                    ids.append(record.id)
+            return ids
+
+        # Load the tree
+        tree = Phylo.read(input.tree, 'newick')
+        characterized_leaf_ids = get_characterized(input.characterized_fasta)
+
+        # Load uncharacterized chunk
+        with open(input.uncharacterized_chunk, 'r') as in_handle:
+            uncharacterized_leaf_ids = in_handle.readline().split(', ')
+
+        characterized_leaves = []
+        uncharacterized_leaves = []
+
+        # Find characterized and uncharacterized leaves
+        for leaf in tree.get_terminals():
+            if leaf.name in characterized_leaf_ids:
+                characterized_leaves.append(leaf)
+            elif leaf.name in uncharacterized_leaf_ids:
+                uncharacterized_leaves.append(leaf)
+
+        print(f'# characterized: {len(characterized_leaves)}')
+        print(f'# uncharacterized: {len(uncharacterized_leaves)}')
+
+        # Compute minimum distance for each uncharacterized leaf
+        distances = {}
+        for i, uncharacterized_leaf in enumerate(uncharacterized_leaves):
+            if i % 100 == 0:
+                print(f'{i} / {len(uncharacterized_leaves)}')
+            distance, closest_characterized_leaf = find_closest_characterized_leaf(tree, uncharacterized_leaf, characterized_leaves)
+            distances[uncharacterized_leaf.name] = {'distance_to_closest_characterized': distance,
+                                                    'closest_characterized_leaf': closest_characterized_leaf.name}
+
+        # Make a distance df and export it
+        df = pd.DataFrame.from_dict(distances, orient='index')
+        df.to_csv(output.distances)
+
+distances_file_names = ["results/analysis/phylogenetics/trees/clustal/trimal_gt_80_cons_60/min_distances_{}.csv".format(i) for i in range(0, 21290, 2129)]
+
+rule concatenate_distance_files:
+    input:
+        distances_file_names
+    output:
+        out_csv = "results/analysis/phylogenetics/trees/clustal/trimal_gt_80_cons_60/min_distances.csv"
+    log:
+        'logs/concatenate_distance_files'
+    params:
+        memory="1"
+    threads:
+        1
+    run:
+        # Read each file and concatenate them into a single DataFrame
+        dfs = [pd.read_csv(file) for file in input]
+        concatenated_df = pd.concat(dfs)
+        
+        # Write the concatenated DataFrame to a single file
+        concatenated_df.to_csv(output.out_csv)
+
+###############
+## PLANT SSN ##
+###############
+
+rule filter_plant_sequences:
+    """
+    Filters plant sequences.
+    """
+    input:
+        fasta = "results/filtering/all_filtered_5.fasta",
+        annotation = 'results/annotation/all_annotation.txt'
+    output:
+        plant_fasta = 'results/filtering/all_filtered_5_plants.fasta'
+    log:
+        'logs/filter_plants.log'
+    params:
+        memory='10'
+    threads:
+        1
+    run:
+        df = pd.read_csv(input.annotation, sep='\t')
+        df_filtered = df[df['kingdom'] == 'Viridiplantae']
+        plant_ids = df_filtered['id'].tolist()
+        print(len(plant_ids))
+
+        with open(input.fasta, 'r') as in_handle:
+            plant_records = []
+            for record in SeqIO.parse(in_handle, "fasta"):
+                if record.id in plant_ids:
+                    plant_records.append(record)
+        print(len(plant_records))
+
+        with open(output.plant_fasta, "w") as out_handle:
+            SeqIO.write(plant_records, out_handle, "fasta")
+
+rule create_plant_dataset:
+    """
+    Removes stop characters from the sequences.
+    """
+    input:
+        fasta = 'results/filtering/all_filtered_5_plants.fasta'
+    output:
+        no_stop_fasta = "results/filtering/all_filtered_5_plants_no_stop.fasta"
+    log:
+        "logs/create_dataset_5_plants.log"
+    params:
+        memory="10"
+    threads:
+        1
+    shell:
+        """
+        seqkit replace -s -p "\*" -r "" {input.fasta} -o {output.no_stop_fasta} 2> {log}
+        """
+
+rule reduce_plant_dataset_60:
+    """
+    Reduces the plant dataset size by similarity clustering using threshold of 60%
+    """
+    input:
+        fasta = "results/filtering/all_filtered_5_plants_no_stop.fasta"
+    output:
+        clusters = "results/analysis/clustering/60_identity/all_filtered_5_plants_no_stop_60.clstr",
+        representatives = "results/analysis/clustering/60_identity/all_filtered_5_plants_no_stop_60"
+    log:
+        "logs/ssn_cluster_plants_60_all.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        cd-hit -i {input.fasta} -o {output.representatives} -c 0.60 -T {threads} -M 2000 -n 3 &> {log}
+        """
+
+rule add_char_dataset_plants_60:
+    """
+    Adds characterized sequences to the reduced dataset
+    """
+    input:
+        representatives = "results/analysis/clustering/60_identity/all_filtered_5_plants_no_stop_60",
+        characterized = 'tps_db_analysis/data/TPS-database_filtered.fasta'
+    output:
+        fasta = 'results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char.fasta'
+    log:
+        "logs/ssn_add_char_plants_60.log"
+    params:
+        memory="10"
+    threads:
+        6
+    shell:
+        """
+        cat {input.representatives} {input.characterized} > {output.fasta}
+        """
+
+rule plant_all_vs_all_blast:
+    """
+    Runs all by all blast to create the plant SSN.
+    """
+    input:
+        fasta = 'results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char.fasta'
+    output:
+        fasta_db = 'results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char_db.psq',
+        ssn = 'results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char_ssn_e50.txt'
+    log:
+        "logs/ssn_blast_50.log"
+    params:
+        memory="10"
+    threads:
+        10
+    shell:
+        """
+        makeblastdb -in {input.fasta} -dbtype prot -out results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char_db  2> {log}
+        #blastp -db {output.fasta_db} -query {input.fasta} -outfmt 6 -out results/ssn/data/all_filtered_4_unique_no_stop_50_with_char_ssn.txt -num_threads {threads} -evalue 10e-22 2>> {log}
+        blastp -db results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char_db -query {input.fasta} -outfmt 6 -out {output.ssn} -num_threads {threads} -evalue 10e-50 2>> {log}
+        """
+
+rule prepare_plant_ssn:
+    input:
+        ssn = 'results/analysis/ssn/data/all_filtered_5_plants_no_stop_60_with_char_ssn_e50.txt'
+    output:
+        ssn = 'results/analysis/ssn/ssn/all_filtered_5_plants_no_stop_60_with_char_ssn_e50.txt'
+    log:
+        "logs/plant_ssn.log"
+    params:
+        memory="10"
+    threads:
+        1
+    run:
+        df=pd.read_csv(input.ssn, sep='\t', header=None)
+        df=df[[0,1]]
+        df = df[df[0] != df[1]]
+        df[[0, 1]] = df.apply(lambda row: pd.Series(sorted([row[0], row[1]])), axis=1)
+        df = df.drop_duplicates()
+        df.to_csv(output.ssn, sep='\t')
