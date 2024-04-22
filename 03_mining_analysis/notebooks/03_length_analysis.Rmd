@@ -19,7 +19,7 @@ setwd('C:/Users/terca/OneDrive/Dokumenty/Uni/Mgr/2.rocnik/diplomka/results/resul
 
 ```{r}
 # Load the data
-db_file <- "all_filtered_5_annotation.csv"
+db_file <- "../annotation/all_filtered_5_annotation.csv"
 df <- data.frame(read.csv(db_file, header = T, sep = ","))
 ```
 
