@@ -52,5 +52,11 @@ In the `notebooks` directory, find various notebooks analyzing the TPS db
 - `02_product_uniqness.ipynb`
     - exploration of rarest product count in cytoscape
 
+## SSN
+TODO: create a directory, add the SSN file and also the Cytoscape session and info (some link to tutorial etc.).
+
+## Phylogenetic tree
+TODO: create a directory, add the phylogenetic tree file and the annotations and info how to load it to iTOL.
+
 ## Plots
 Resulting plots can be found in the `plots` directory
