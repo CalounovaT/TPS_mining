@@ -14,4 +14,4 @@ Each directory contains a `README.md` with overview of the directory, and a `Sna
 The analysis directories also include `notebooks` directory containing various analysis notebooks.
 
 ## Conda and pip
-conda and python packages that were used can be found in `requirements.txt`.
+conda and python packages that were used can be found in `packages.txt`.
