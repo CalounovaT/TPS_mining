@@ -17,11 +17,11 @@ See `Snakefile`
 In the `notebooks` directory, find various notebooks analyzing the TPS db
 
 - `00_prepare_df.ipynb`
-    - small modifcations to the dataframe
+    - small modifications to the dataframe
 - `01_motif_presence_analysis.ipynb`
     - analysis of the conserved motifs presence
 - `02_domain_architecture_analysis.ipynb`
-    - analysis of the domain archotectures
+    - analysis of the domain architectures
 - `03_length_analysis.Rmd`
     - analysis of the length distribution
 - `04_product_occurences_counts.ipynb`
@@ -29,7 +29,6 @@ In the `notebooks` directory, find various notebooks analyzing the TPS db
     - assign a most "rare" product count to each sequence
 - `05_embeddings_visualization.ipynb`
     - t-SNE projection of the ESM2 protein embeddings
-    - input: `data/clean_data/tps_db_v1.csv` + embeddings
     
 ## 3. Plots
 
