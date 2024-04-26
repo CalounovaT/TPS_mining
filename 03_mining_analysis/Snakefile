@@ -282,7 +282,6 @@ rule msa:
         10
     shell:
         """
-        #mafft --thread 6 --auto {input.sequences} > {output.msa} 2> {log}
         clustalo -i {input.sequences} -o {output.msa} --auto -v --threads {threads} 2> {log}
         """
 

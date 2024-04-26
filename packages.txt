@@ -1,0 +1,38 @@
+biopython                 1.79                     pypi_0    pypi
+blast                     2.14.1          pl5321h6f7f691_0    bioconda
+cd-hit                    4.8.1                h43eeafb_9    bioconda
+clustalo                  1.2.4                hdbdd923_7    bioconda
+emboss                    6.6.0                h6debe1e_0    bioconda
+entrez-direct             16.2                 he881be0_1    bioconda
+ete3                      3.1.3                    pypi_0    pypi
+fasta-splitter            0.2.6                hdfd78af_1    bioconda
+fasttree                  2.1.11               h031d066_2    bioconda
+hmmer                     3.3.2                h87f3376_2    bioconda
+matplotlib                3.8.0           py311haa95532_0
+ncbi-vdb                  3.0.0           pl5321h87f3376_0    bioconda
+networkx                  3.2.1                    pypi_0    pypi
+numpy                     1.24.3          py310hdc03b94_0
+pandas                    1.5.1                    pypi_0    pypi
+plotly                    5.19.0          py311h746a85d_0
+py4cytoscape              1.9.0                    pypi_0    pypi
+python                    3.11.0          h582c2e5_0_cpython    conda-forge
+pytorch                   1.12.1          cpu_py310h5e1f01c_1
+requests                  2.28.1             pyhd8ed1ab_1    conda-forge
+r-ggplot2                 3.1.1             r36h6115d3f_0
+r-plyr                    1.8.4             r36h6115d3f_0
+r-tibble                  2.1.1             r36h6115d3f_
+scikit-learn              1.3.0           py310h4ed8f06_0
+scipy                     1.10.1          py310hb9afe5d_0
+seaborn                   0.12.2          py310haa95532_0
+seqkit                    2.3.1                h9ee0642_0    bioconda
+snakemake                 7.18.2               hdfd78af_1    bioconda
+taxoniq                   1.0.1                    pypi_0    pypi
+transdecoder              5.5.0           pl5321hdfd78af_5    bioconda
+trimal                    1.4.1                h4ac6f70_8    bioconda
+umap-learn                0.5.5           py310h5588dad_0    conda-forge
+uniprot                   1.3                        py_1    bioconda
+upimapi                   1.9.0                hdfd78af_0    bioconda
+
+
+
+
