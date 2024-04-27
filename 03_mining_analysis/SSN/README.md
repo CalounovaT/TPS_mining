@@ -26,3 +26,5 @@ To use Cytocape, see the Cytoscape manual: https://manual.cytoscape.org/en/stabl
 See an overview jupyter notebook here: https://github.com/cytoscape/cytoscape-automation/blob/master/for-scripters/Python/Overview-of-py4cytoscape.ipynb
 
 Useful case for this project was for example to programatically export images of coloring by different domains, see `../notebooks/SSN/01_color_domains.ipynb`
+
+![SSN](https://github.com/CalounovaT/TPS_mining/blob/main/03_mining_analysis/plots/annotated_types.png?raw=true)

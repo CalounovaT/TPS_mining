@@ -56,7 +56,7 @@ In the `notebooks` directory, find various notebooks analyzing the mined TPS cad
 This directory contains the SSN file and Cytoscape session where the network is loaded and annotated, see `SSN/README.md` for more information.
 
 ## Phylogenetic tree
-TODO: create a directory, add the phylogenetic tree file and the annotations and info how to load it to iTOL.
+In `phylogenetic_tree` directory find the phylogenetic tree, annotation files for iTOL and instructions for iTOL visualization, see `phylogenetic_tree/README.md`
 
 ## Plots
 Resulting plots can be found in the `plots` directory

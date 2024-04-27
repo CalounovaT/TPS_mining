@@ -28,4 +28,4 @@ Upload the annotations by drag and drop of the annotation files in the `itol_ann
 
 With a free iTOL account, the tree is saved without the annotations but they can be always easily loaded by this drag and drop of annotation files. 
 
-![SSN](https://github.com/CalounovaT/TPS_mining/blob/main/03_mining_analysis/plots/annotated_tree.png?raw=true)
+![tree](https://github.com/CalounovaT/TPS_mining/blob/main/03_mining_analysis/plots/annotated_tree.png?raw=true)
