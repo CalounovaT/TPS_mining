@@ -13,7 +13,7 @@ Snakemake pipeline to prepare various files for further analysis
 Combination of manual and computational annotation for mining results from individual databases is documented in `annotation/{database}/{database}_mapping.ipynb`
 
 ## Notebooks
-In the `notebooks` directory, find various notebooks analyzing the TPS db
+In the `notebooks` directory, find various notebooks analyzing the mined TPS cadidates.
 - `00_merge_annotations.ipynb`
     - merge individually annotated mined database files
 - `01_domain_analysis.ipynb`
@@ -53,7 +53,7 @@ In the `notebooks` directory, find various notebooks analyzing the TPS db
     - exploration of rarest product count in cytoscape
 
 ## SSN
-TODO: create a directory, add the SSN file and also the Cytoscape session and info (some link to tutorial etc.).
+This directory contains the SSN file and Cytoscape session where the network is loaded and annotated, see `SSN/README.md` for more information.
 
 ## Phylogenetic tree
 TODO: create a directory, add the phylogenetic tree file and the annotations and info how to load it to iTOL.

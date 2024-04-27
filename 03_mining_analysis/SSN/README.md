@@ -2,7 +2,7 @@
 
 ## Files
 - `ssn.zip` - zip archive containing the input network as a file of edges
-- `cytoscape_sessiions.zip` - zip archive containing cytoscape sessions of the annotated SSN
+- `cytoscape_sessions` - directory containing cytoscape sessions of the annotated SSN
     - `ssn_annotated_characterized_types.cys` - colored characterized TPSs according to their type
     - `ssn_annotated_superkingdoms.cys` - colored sequences according to the superkingdoms
     - `ssn_annotated_novelty.cys` - colored sequences according to the novelty score
